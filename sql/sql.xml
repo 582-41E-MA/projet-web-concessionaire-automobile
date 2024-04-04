@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: https://sql.toad.cz/ -->
+<sql>
+<datatypes db="mysql">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+	</group>
+	
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+		<type label="SET" length="1" sql="SET" quote=""/>
+		<type label="Bit" length="0" sql="bit" quote=""/>
+	</group>
+</datatypes><table x="338" y="224" name="users">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="nom" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="prenom" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="anniversaire" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<row name="adresse" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="code_postal" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="ville_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="villes" row="id" />
+</row>
+<row name="telephone" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="telephone_portable" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="courriel" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="mdp" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="privilege_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="privileges" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<key type="UNIQUE" name="">
+<part>courriel</part>
+</key>
+</table>
+<table x="374" y="582" name="privileges">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="pri_role_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="pri_role_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="62" y="92" name="journal_connexions">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="jc_date" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<row name="jc_adresse_IP" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="jc_utilisateur_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="users" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="658" y="107" name="voitures">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="annee" null="0" autoincrement="0">
+<datatype>YEAR</datatype>
+</row>
+<row name="modele_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="modeles" row="id" />
+</row>
+<row name="date_arrivee" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<row name="employe_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="users" row="id" />
+</row>
+<row name="prix_base" null="0" autoincrement="0">
+<datatype>DOUBLE</datatype>
+</row>
+<row name="taux_augmenter" null="0" autoincrement="0">
+<datatype>DOUBLE</datatype>
+</row>
+<row name="commande_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="commandes" row="id" />
+</row>
+<row name="prix_paye" null="0" autoincrement="0">
+<datatype>DOUBLE</datatype>
+</row>
+<row name="pays_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="pays" row="id" />
+</row>
+<row name="description_en" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="description_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="337" y="37" name="user_reserves">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ur_utilisateur_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="users" row="id" />
+</row>
+<row name="ur_voiture_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="voitures" row="id" />
+</row>
+<row name="date_reserver" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="663" y="554" name="commandes">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="commande_utilisateur_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="users" row="id" />
+</row>
+<row name="date_commande" null="0" autoincrement="0">
+<datatype>DATE</datatype>
+</row>
+<row name="mode_paiement_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="mode_paiements" row="id" />
+</row>
+<row name="expedition_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="expeditions" row="id" />
+</row>
+<row name="statut_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="statut_commandes" row="id" />
+</row>
+<row name="taxe_rate_paye" null="0" autoincrement="0">
+<datatype>DOUBLE</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="76" y="632" name="taxes">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="taxe_province_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="provinces" row="id" />
+</row>
+<row name="TVP/TVQ" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+</row>
+<row name="TPS" null="0" autoincrement="0">
+<datatype>INT</datatype>
+</row>
+<row name="TVH" null="0" autoincrement="0">
+<datatype>INT</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="895" y="30" name="photos">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="photo_titre" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="photo_voiture_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="voitures" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="76" y="479" name="provinces">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="privince_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="province_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="61" y="307" name="villes">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="ville_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="ville_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="ville_province_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="provinces" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="899" y="185" name="modeles">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="modele_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="modele_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="modele_marque_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="marques" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1162" y="200" name="marques">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="marque_en" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="marque_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1025" y="613" name="expeditions">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="expedition_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="expedition_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1026" y="742" name="statut_commandes">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="statut_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="statut_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="914" y="359" name="pays">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="pays_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="pays_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1024" y="495" name="mode_paiements">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="mode_paiement_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="mode_paiement_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>
