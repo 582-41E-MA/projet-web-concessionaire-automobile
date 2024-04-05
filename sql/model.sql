@@ -54,7 +54,7 @@ CREATE TABLE `journal_connexions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `jc_date` DATE NOT NULL,
   `jc_adresse_IP` VARCHAR(100) NOT NULL,
-  `jc_utilisateur_id` INT NOT NULL,
+  `jc_user_id` INT NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -68,16 +68,17 @@ DROP TABLE IF EXISTS `voitures`;
 CREATE TABLE `voitures` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `annee` YEAR NOT NULL,
+  `description_en` VARCHAR(100) NOT NULL,
+  `description_fr` VARCHAR(100) NOT NULL,
   `modele_id` INT NOT NULL,
+  `carrosserie_id` INT NOT NULL,
   `date_arrivee` DATE NOT NULL,
   `employe_id` INT NOT NULL,
   `prix_base` DOUBLE NOT NULL,
   `taux_augmenter` DOUBLE NOT NULL,
-  `commande_id` INT NOT NULL,
   `prix_paye` DOUBLE NOT NULL,
   `pays_id` INT NOT NULL,
-  `description_en` VARCHAR(100) NOT NULL,
-  `description_fr` VARCHAR(100) NOT NULL,
+  `commande_id` INT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -90,7 +91,7 @@ DROP TABLE IF EXISTS `user_reserves`;
 		
 CREATE TABLE `user_reserves` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `ur_utilisateur_id` INT NOT NULL,
+  `ur_user_id` INT NOT NULL,
   `ur_voiture_id` INT NOT NULL,
   `date_reserver` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
@@ -105,12 +106,11 @@ DROP TABLE IF EXISTS `commandes`;
 		
 CREATE TABLE `commandes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `commande_utilisateur_id` INT NOT NULL,
+  `commande_user_id` INT NOT NULL,
   `date_commande` DATE NOT NULL,
   `mode_paiement_id` INT NOT NULL,
   `expedition_id` INT NOT NULL,
   `statut_id` INT NOT NULL,
-  `taxe_rate_paye` DOUBLE NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -124,9 +124,8 @@ DROP TABLE IF EXISTS `taxes`;
 CREATE TABLE `taxes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `taxe_province_id` INT NOT NULL,
-  `TVP/TVQ` DECIMAL NOT NULL,
-  `TPS` INT NOT NULL,
-  `TVH` INT NOT NULL,
+  `taxe_nom` ENUM('TVP','TVQ','TPS','TVH') NOT NULL,
+  `taxe_rate` DECIMAL NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -259,19 +258,48 @@ CREATE TABLE `mode_paiements` (
 );
 
 -- ---
+-- Table 'carrosseries'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `carrosseries`;
+		
+CREATE TABLE `carrosseries` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `carrosserie_en` VARCHAR(50) NOT NULL,
+  `carrosserie_fr` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'commande_taxes'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `commande_taxes`;
+		
+CREATE TABLE `commande_taxes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `commande_id` INT NOT NULL,
+  `taxe_id` INT NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
 -- Foreign Keys 
 -- ---
 
 ALTER TABLE `users` ADD FOREIGN KEY (ville_id) REFERENCES `villes` (`id`);
 ALTER TABLE `users` ADD FOREIGN KEY (privilege_id) REFERENCES `privileges` (`id`);
-ALTER TABLE `journal_connexions` ADD FOREIGN KEY (jc_utilisateur_id) REFERENCES `users` (`id`);
+ALTER TABLE `journal_connexions` ADD FOREIGN KEY (jc_user_id) REFERENCES `users` (`id`);
 ALTER TABLE `voitures` ADD FOREIGN KEY (modele_id) REFERENCES `modeles` (`id`);
+ALTER TABLE `voitures` ADD FOREIGN KEY (carrosserie_id) REFERENCES `carrosseries` (`id`);
 ALTER TABLE `voitures` ADD FOREIGN KEY (employe_id) REFERENCES `users` (`id`);
-ALTER TABLE `voitures` ADD FOREIGN KEY (commande_id) REFERENCES `commandes` (`id`);
 ALTER TABLE `voitures` ADD FOREIGN KEY (pays_id) REFERENCES `pays` (`id`);
-ALTER TABLE `user_reserves` ADD FOREIGN KEY (ur_utilisateur_id) REFERENCES `users` (`id`);
+ALTER TABLE `voitures` ADD FOREIGN KEY (commande_id) REFERENCES `commandes` (`id`);
+ALTER TABLE `user_reserves` ADD FOREIGN KEY (ur_user_id) REFERENCES `users` (`id`);
 ALTER TABLE `user_reserves` ADD FOREIGN KEY (ur_voiture_id) REFERENCES `voitures` (`id`);
-ALTER TABLE `commandes` ADD FOREIGN KEY (commande_utilisateur_id) REFERENCES `users` (`id`);
+ALTER TABLE `commandes` ADD FOREIGN KEY (commande_user_id) REFERENCES `users` (`id`);
 ALTER TABLE `commandes` ADD FOREIGN KEY (mode_paiement_id) REFERENCES `mode_paiements` (`id`);
 ALTER TABLE `commandes` ADD FOREIGN KEY (expedition_id) REFERENCES `expeditions` (`id`);
 ALTER TABLE `commandes` ADD FOREIGN KEY (statut_id) REFERENCES `statut_commandes` (`id`);
@@ -279,6 +307,8 @@ ALTER TABLE `taxes` ADD FOREIGN KEY (taxe_province_id) REFERENCES `provinces` (`
 ALTER TABLE `photos` ADD FOREIGN KEY (photo_voiture_id) REFERENCES `voitures` (`id`);
 ALTER TABLE `villes` ADD FOREIGN KEY (ville_province_id) REFERENCES `provinces` (`id`);
 ALTER TABLE `modeles` ADD FOREIGN KEY (modele_marque_id) REFERENCES `marques` (`id`);
+ALTER TABLE `commande_taxes` ADD FOREIGN KEY (commande_id) REFERENCES `commandes` (`id`);
+ALTER TABLE `commande_taxes` ADD FOREIGN KEY (taxe_id) REFERENCES `taxes` (`id`);
 
 -- ---
 -- Table Properties
@@ -300,6 +330,8 @@ ALTER TABLE `modeles` ADD FOREIGN KEY (modele_marque_id) REFERENCES `marques` (`
 -- ALTER TABLE `statut_commandes` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `pays` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `mode_paiements` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `carrosseries` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `commande_taxes` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -309,16 +341,16 @@ ALTER TABLE `modeles` ADD FOREIGN KEY (modele_marque_id) REFERENCES `marques` (`
 -- ('','','','','','','','','','','','');
 -- INSERT INTO `privileges` (`id`,`pri_role_fr`,`pri_role_en`) VALUES
 -- ('','','');
--- INSERT INTO `journal_connexions` (`id`,`jc_date`,`jc_adresse_IP`,`jc_utilisateur_id`) VALUES
+-- INSERT INTO `journal_connexions` (`id`,`jc_date`,`jc_adresse_IP`,`jc_user_id`) VALUES
 -- ('','','','');
--- INSERT INTO `voitures` (`id`,`annee`,`modele_id`,`date_arrivee`,`employe_id`,`prix_base`,`taux_augmenter`,`commande_id`,`prix_paye`,`pays_id`,`description_en`,`description_fr`) VALUES
--- ('','','','','','','','','','','','');
--- INSERT INTO `user_reserves` (`id`,`ur_utilisateur_id`,`ur_voiture_id`,`date_reserver`) VALUES
+-- INSERT INTO `voitures` (`id`,`annee`,`description_en`,`description_fr`,`modele_id`,`carrosserie_id`,`date_arrivee`,`employe_id`,`prix_base`,`taux_augmenter`,`prix_paye`,`pays_id`,`commande_id`) VALUES
+-- ('','','','','','','','','','','','','');
+-- INSERT INTO `user_reserves` (`id`,`ur_user_id`,`ur_voiture_id`,`date_reserver`) VALUES
 -- ('','','','');
--- INSERT INTO `commandes` (`id`,`commande_utilisateur_id`,`date_commande`,`mode_paiement_id`,`expedition_id`,`statut_id`,`taxe_rate_paye`) VALUES
--- ('','','','','','','');
--- INSERT INTO `taxes` (`id`,`taxe_province_id`,`TVP/TVQ`,`TPS`,`TVH`) VALUES
--- ('','','','','');
+-- INSERT INTO `commandes` (`id`,`commande_user_id`,`date_commande`,`mode_paiement_id`,`expedition_id`,`statut_id`) VALUES
+-- ('','','','','','');
+-- INSERT INTO `taxes` (`id`,`taxe_province_id`,`taxe_nom`,`taxe_rate`) VALUES
+-- ('','','','');
 -- INSERT INTO `photos` (`id`,`photo_titre`,`photo_voiture_id`) VALUES
 -- ('','','');
 -- INSERT INTO `provinces` (`id`,`privince_en`,`province_fr`) VALUES
@@ -336,4 +368,8 @@ ALTER TABLE `modeles` ADD FOREIGN KEY (modele_marque_id) REFERENCES `marques` (`
 -- INSERT INTO `pays` (`id`,`pays_en`,`pays_fr`) VALUES
 -- ('','','');
 -- INSERT INTO `mode_paiements` (`id`,`mode_paiement_en`,`mode_paiement_fr`) VALUES
+-- ('','','');
+-- INSERT INTO `carrosseries` (`id`,`carrosserie_en`,`carrosserie_fr`) VALUES
+-- ('','','');
+-- INSERT INTO `commande_taxes` (`id`,`commande_id`,`taxe_id`) VALUES
 -- ('','','');

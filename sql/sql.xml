@@ -83,7 +83,7 @@
 <part>courriel</part>
 </key>
 </table>
-<table x="374" y="582" name="privileges">
+<table x="394" y="564" name="privileges">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -107,7 +107,7 @@
 <row name="jc_adresse_IP" null="0" autoincrement="0">
 <datatype>VARCHAR(100)</datatype>
 </row>
-<row name="jc_utilisateur_id" null="0" autoincrement="0">
+<row name="jc_user_id" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="users" row="id" />
 </row>
@@ -115,16 +115,26 @@
 <part>id</part>
 </key>
 </table>
-<table x="658" y="107" name="voitures">
+<table x="637" y="190" name="voitures">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
 <row name="annee" null="0" autoincrement="0">
 <datatype>YEAR</datatype>
 </row>
+<row name="description_en" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="description_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
 <row name="modele_id" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="modeles" row="id" />
+</row>
+<row name="carrosserie_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="carrosseries" row="id" />
 </row>
 <row name="date_arrivee" null="0" autoincrement="0">
 <datatype>DATE</datatype>
@@ -139,10 +149,6 @@
 <row name="taux_augmenter" null="0" autoincrement="0">
 <datatype>DOUBLE</datatype>
 </row>
-<row name="commande_id" null="0" autoincrement="0">
-<datatype>INT</datatype>
-<relation table="commandes" row="id" />
-</row>
 <row name="prix_paye" null="0" autoincrement="0">
 <datatype>DOUBLE</datatype>
 </row>
@@ -150,11 +156,9 @@
 <datatype>INT</datatype>
 <relation table="pays" row="id" />
 </row>
-<row name="description_en" null="0" autoincrement="0">
-<datatype>VARCHAR(100)</datatype>
-</row>
-<row name="description_fr" null="0" autoincrement="0">
-<datatype>VARCHAR(100)</datatype>
+<row name="commande_id" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="commandes" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -164,7 +168,7 @@
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
-<row name="ur_utilisateur_id" null="0" autoincrement="0">
+<row name="ur_user_id" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="users" row="id" />
 </row>
@@ -179,11 +183,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="663" y="554" name="commandes">
+<table x="649" y="613" name="commandes">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
-<row name="commande_utilisateur_id" null="0" autoincrement="0">
+<row name="commande_user_id" null="0" autoincrement="0">
 <datatype>INT</datatype>
 <relation table="users" row="id" />
 </row>
@@ -202,14 +206,11 @@
 <datatype>INT</datatype>
 <relation table="statut_commandes" row="id" />
 </row>
-<row name="taxe_rate_paye" null="0" autoincrement="0">
-<datatype>DOUBLE</datatype>
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="76" y="632" name="taxes">
+<table x="71" y="639" name="taxes">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -217,14 +218,11 @@
 <datatype>INT</datatype>
 <relation table="provinces" row="id" />
 </row>
-<row name="TVP/TVQ" null="0" autoincrement="0">
+<row name="taxe_nom" null="0" autoincrement="0">
+<datatype>ENUM('TVP','TVQ','TPS','TVH')</datatype>
+</row>
+<row name="taxe_rate" null="0" autoincrement="0">
 <datatype>DECIMAL</datatype>
-</row>
-<row name="TPS" null="0" autoincrement="0">
-<datatype>INT</datatype>
-</row>
-<row name="TVH" null="0" autoincrement="0">
-<datatype>INT</datatype>
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -277,7 +275,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="899" y="185" name="modeles">
+<table x="900" y="164" name="modeles">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -295,7 +293,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1162" y="200" name="marques">
+<table x="1166" y="172" name="marques">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -309,7 +307,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1025" y="613" name="expeditions">
+<table x="895" y="761" name="expeditions">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -323,7 +321,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1026" y="742" name="statut_commandes">
+<table x="867" y="891" name="statut_commandes">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -337,7 +335,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="914" y="359" name="pays">
+<table x="915" y="468" name="pays">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -351,7 +349,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1024" y="495" name="mode_paiements">
+<table x="897" y="633" name="mode_paiements">
 <row name="id" null="0" autoincrement="1">
 <datatype>INT</datatype>
 </row>
@@ -360,6 +358,36 @@
 </row>
 <row name="mode_paiement_fr" null="0" autoincrement="0">
 <datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="942" y="335" name="carrosseries">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="carrosserie_en" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="carrosserie_fr" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="413" y="779" name="commande_taxes">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT</datatype>
+</row>
+<row name="commande_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="commandes" row="id" />
+</row>
+<row name="taxe_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<relation table="taxes" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
