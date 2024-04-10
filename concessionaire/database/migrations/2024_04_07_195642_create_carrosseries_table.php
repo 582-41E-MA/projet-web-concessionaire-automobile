@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('carrosseries', function (Blueprint $table) {
             $table->id();
+            $table->string('carrosserie_en');
+            $table->string('carrosserie_fr');
             $table->timestamps();
         });
     }

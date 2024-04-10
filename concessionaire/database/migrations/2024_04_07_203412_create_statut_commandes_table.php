@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('statut_commandes', function (Blueprint $table) {
             $table->id();
+            $table->string('statut_en');
+            $table->string('statut_fr');
             $table->timestamps();
         });
     }

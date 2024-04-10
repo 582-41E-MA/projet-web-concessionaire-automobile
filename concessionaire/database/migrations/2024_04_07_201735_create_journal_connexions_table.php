@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('journal_connexions', function (Blueprint $table) {
             $table->id();
+            $table->date('jc_date');
+            $table->string('jc_adresse_ip');
+            $table->unsignedBigInteger('jc_user_id');
+            $table->foreign('jc_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
