@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Etudiant;
 use App\Models\Ville;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,8 +26,15 @@ class UserController extends Controller
      */
     public function create()
     {
-        $villes = Ville::all();
-        return view('user.create', ["villes" => $villes]);
+        $provinces = Province::all();
+        return view('user.signup', ["provinces" => $provinces]);
+    }
+
+    public function getVilles(Request $request)
+    {
+        $provinceId = $request->input('province_id');
+        $villes = Ville::where('province_id', $provinceId)->get();
+        return response()->json($villes);
     }
 
     /**
