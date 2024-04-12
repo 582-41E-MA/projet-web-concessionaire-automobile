@@ -10,6 +10,43 @@
 </head>
 <body class="d-flex flex-column h-100">
     <!--header-->
+    @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
+        <a class="navbar-brand" href="{{asset('/')}}"><img src="{{asset('assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top mx-3" alt="logo">OZCARS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Trouver un véhicule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="#">Politiques de vente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'À propos de nous' ? 'active' : '' }}" href="#">À propos de nous</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="#">Nous contacter</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Langue</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">en</a></li>
+                        <li><a class="dropdown-item" href="#">fr</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="ml-auto d-none d-lg-block">
+            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
+        </div>
+    </nav>
+    @endif
     <!--main-->
     <div>
         @yield('content')

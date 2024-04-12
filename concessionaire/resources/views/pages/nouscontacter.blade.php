@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center mt-5 mb-5 text-center">
     <h1 class="mt-5 mb-4">Nous contacter</h1>
-    <form class="form-signin col-sm-4 mb-3" method="POST">
+    <form class="form-signin col-sm-8 col-md-6 col-lg-4 mb-3">
         @csrf
         <div class="form-group mb-3 text-start">
             <label for="contracterCourriel" class="form-label">Votre adresse courriel</label>
