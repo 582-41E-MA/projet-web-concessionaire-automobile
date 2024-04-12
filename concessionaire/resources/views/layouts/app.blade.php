@@ -10,7 +10,6 @@
 </head>
 <body class="d-flex flex-column h-100">
     <!--header-->
-<<<<<<< HEAD
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
         <a class="navbar-brand" href="{{asset('/')}}"><img src="{{asset('assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top mx-3" alt="logo">OZCARS</a>
@@ -48,40 +47,6 @@
         </div>
     </nav>
     @endif
-=======
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('pages.nouscontacter') }}">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('pages.aproposdenous') }}">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('pages.politiques') }}">Politiques</a>
-      </li>
-    </ul>
-    <ul>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('login') }}">login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('user.create') }}">inscription</a>
-        </li>
-        
-    </ul>
-  </div>
-</nav>
-    </header>
->>>>>>> saif
     <!--main-->
     <div>
         @yield('content')
@@ -92,9 +57,9 @@
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="{{asset('/')}}" class="nav-link px-2 text-body-secondary">Accueil</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Trouver un véhicule</a></li>
-        <li class="nav-item"><a href="{{asset('/politiques')}}" class="nav-link px-2 text-body-secondary">Politiques de vente</a></li>
-        <li class="nav-item"><a href="{{asset('/about')}}" class="nav-link px-2 text-body-secondary">À propos de nous</a></li>
-        <li class="nav-item"><a href="{{asset('/contact')}}" class="nav-link px-2 text-body-secondary">Nous contacter</a></li>
+        <li class="nav-item"><a href="{{ route('pages.politiques') }}" class="nav-link px-2 text-body-secondary">Politiques de vente</a></li>
+        <li class="nav-item"><a href="{{ route('pages.aproposdenous') }}" class="nav-link px-2 text-body-secondary">À propos de nous</a></li>
+        <li class="nav-item"><a href="{{ route('pages.nouscontacter') }}" class="nav-link px-2 text-body-secondary">Nous contacter</a></li>
         </ul>
         <p class="text-center text-body-secondary">&copy; 2024 OZCARS, Inc</p>
     </footer>
