@@ -2,7 +2,7 @@
 @section('title', 'Inscription')
 @section('content')
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form class="form-signin col-sm-4 mb-3" method="POST">
+        <form class="form-signin col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
             @csrf
             <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
             <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>         
