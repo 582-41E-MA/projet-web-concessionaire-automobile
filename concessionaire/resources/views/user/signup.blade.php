@@ -70,7 +70,7 @@
             </div>
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>
-        <p>Vous avez déjà un compte ? <a href="#" class="link-underline-primary">Se connecter</a></p>
+        <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="link-underline-primary">Se connecter</a></p>
     </div>
 
     <!-- Script pour generer les villes a partir de la province selectionnée -->
