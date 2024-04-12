@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Statut_commande extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'statut_en',
+        'statut_fr'
+    ];
 }

@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provinces', function (Blueprint $table) {
+        Schema::create('commande_taxes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('commande_id');
+            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade');
+            $table->unsignedBigInteger('taxe_id');
+            $table->foreign('taxe_id')->references('id')->on('taxes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provinces');
+        Schema::dropIfExists('commande_taxes');
     }
 };

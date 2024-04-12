@@ -2,7 +2,7 @@
 @section('title','Nous contacter')
 @section('content')
 <h1 class="mt-5 mb-4">Nous contacter</h1>
-<div class="row justify-content-center mt-5 mb-5">
+<div class="row justify-content-center mt-5 mb-5 w-50">
     <form method="POST">
         @csrf
         <div class="mb-3">

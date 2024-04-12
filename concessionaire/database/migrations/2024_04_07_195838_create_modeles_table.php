@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('modeles', function (Blueprint $table) {
             $table->id();
+            $table->string('modele_en');
+            $table->string('modele_fr');
+            $table->unsignedBigInteger('modele_marque_id');
+            $table->foreign('modele_marque_id')->references('id')->on('marques')->onDelete('cascade');
             $table->timestamps();
         });
     }

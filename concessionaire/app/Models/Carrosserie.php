@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Carrosserie extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'carrosserie_en',
+        'carrosserie_fr'
+      
+    ];
 }
