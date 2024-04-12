@@ -10,6 +10,7 @@
 </head>
 <body class="d-flex flex-column h-100">
     <!--header-->
+<<<<<<< HEAD
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
         <a class="navbar-brand" href="{{asset('/')}}"><img src="{{asset('assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top mx-3" alt="logo">OZCARS</a>
@@ -47,6 +48,40 @@
         </div>
     </nav>
     @endif
+=======
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('pages.nouscontacter') }}">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('pages.aproposdenous') }}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('pages.politiques') }}">Politiques</a>
+      </li>
+    </ul>
+    <ul>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('login') }}">login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('user.create') }}">inscription</a>
+        </li>
+        
+    </ul>
+  </div>
+</nav>
+    </header>
+>>>>>>> saif
     <!--main-->
     <div>
         @yield('content')
