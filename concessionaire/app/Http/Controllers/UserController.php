@@ -30,7 +30,7 @@ class UserController extends Controller
         return view('user.signup', ["provinces" => $provinces]);
     }
 
-    public function getVilles(Request $request)
+    public function getVilles(Request $request, $id)
     {
         $provinceId = $request->input('province_id');
         $villes = Ville::where('province_id', $provinceId)->get();
