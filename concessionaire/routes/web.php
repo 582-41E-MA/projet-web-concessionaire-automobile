@@ -1,17 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AproposController;
+use App\Http\Controllers\PolitiquesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return view('welcom.blade.php');
+    return view('pages.accueil');
 });
 
 Route::get('/contact', function () {
     return view('pages.nouscontacter');
 });
+Route::get('/apropos', function () {
+    return view('pages.nouscontacter');
+});
+Route::get('/politiques', function () {
+    return view('pages.nouscontacter');
+});
 
+Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
+Route::get('/apropos', [AproposController::class, 'index'])->name('pages.aproposdenous');
+Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.politiques');
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
 Route::get('/villes', [UserController::class, 'getVilles']);
