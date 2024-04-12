@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('anniversaire');
             $table->string('adresse');
             $table->string('code_postal');
+            $table->unsignedBigInteger('province_id');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
             $table->unsignedBigInteger('ville_id');
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('cascade');
             $table->string('email')->unique();

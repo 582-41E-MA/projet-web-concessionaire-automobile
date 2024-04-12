@@ -24,6 +24,7 @@ class User extends Authenticatable
         'anniversaire',
         'adresse',
         'code_postal',
+        'province_id',
         'ville_id',
         'telephone',
         'telephone_portable',
