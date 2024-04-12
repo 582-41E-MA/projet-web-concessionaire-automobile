@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
+            $table->string('photo_titre');
+            $table->unsignedBigInteger('photo_voiture_id');
+            $table->foreign('photo_voiture_id')->references('id')->on('voitures')->onDelete('cascade');
             $table->timestamps();
         });
     }
