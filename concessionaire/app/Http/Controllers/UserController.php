@@ -29,6 +29,7 @@ class UserController extends Controller
         $provinces = Province::all();
         return view('user.signup', ["provinces" => $provinces]);
     }
+    
 
     public function getVilles(Request $request, $id)
     {
@@ -42,30 +43,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:50',
-            'email' => 'required|email|unique:users',
-            'password' => 'min:6|max:20', 
-            'adresse' => 'required|string',
-            'telephone' => 'required|string',
-            'date_de_naissance' => 'required|date'   
-        ]);
+        // return $request;
+        // $request->validate([
+        //     'name' => 'required|max:50',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'min:6|max:20', 
+        //     'adresse' => 'required|string',
+        //     'telephone' => 'required|string',
+        //     'date_de_naissance' => 'required|date'   
+        // ]);
 
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
         $user->save();
         // Pour changer la valeur de Etudiant selon le type de "type" choisi, on peut creer une variable et y mettre a valeur de type,ex: $type = $request->type.
-        $etudiant = Etudiant::create([
-            'id' => $user->id,
-            'adresse' => $request->adresse,
-            'telephone' => $request->telephone,
-            'ville_id' => $request->ville,
-            'date_de_naissance' => $request->date_de_naissance
-        ]);
+        // $etudiant = Etudiant::create([
+        //     'id' => $user->id,
+        //     'adresse' => $request->adresse,
+        //     'telephone' => $request->telephone,
+        //     'ville_id' => $request->ville,
+        //     'date_de_naissance' => $request->date_de_naissance
+        // ]);
         // return $user->type;
         // if($user->type == "etudiant"){
-            return redirect(route('etudiant.show',  $user->id))->withSuccess('Utilisateur enregistré comme etudiant');
+            return redirect(route('/',  $user->id))->withSuccess('Utilisateur enregistré comme client');
         // }else{
             // return redirect(route('user.index'))->withSuccess('User created successfully!');
         // }

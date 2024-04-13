@@ -16,6 +16,7 @@ Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposde
 Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.politiques');
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
+Route::post('/inscription', [UserController::class, 'store']);
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
