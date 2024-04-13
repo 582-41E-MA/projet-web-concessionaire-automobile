@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Etudiant;
 use App\Models\Ville;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -32,10 +31,55 @@ class UserController extends Controller
 
     public function getVilles(Request $request)
     {
-        $provinceId = $request->input('province_id');
-        $villes = Ville::where('province_id', $provinceId)->get();
+        $provinceId = $request->id;
+        $villes = Ville::where('ville_province_id', $provinceId)->get();
         return response()->json($villes);
     }
+
+
+    // Function pour générer les villes dans la bd en englais et en francais
+    public function genererVilles (){
+        // chemin des villes du fichier json
+        $path_villes = resource_path('data/cities.json');
+        // lire le contenu json
+        $json_read = file_get_contents($path_villes);
+        // le transformer en array
+        $json_villes = json_decode($json_read, true);
+        // foreach.$json_villes(   )
+        // return $json_villes[1];
+        // rajouter l'id des provinces dans leur villes respectives
+        $array_ids =[['BC', 2], ['SK', 10], ['AB', 1], ['QC', 9], ['ON', 7], ['NT', 12], ['NS', 6], ['NL', 5], ['NT', 11], ['PE', 8], ['NB', 4], ['MB', 3], ['YT', 13]];
+        foreach ($json_villes as $ville => $value) {
+            # code...
+            // echo ($value);
+            // foreach($array_ids as $){
+
+            // }
+            }
+            // $province = Province::create([
+            //     'province_en' => $value[0],
+            //     'province_fr' => $value[1]
+            // ]);
+        };
+
+
+    }
+
+    // Function pour générer les provinces dans la bd en englais et en francais
+    public function insererProvinces(){
+        $provinces_en_fr = [
+            ['Alberta', 'Alberta'], ['British Columbia', 'Colombie-Britannique'], ['Manitoba','Manitoba'], ['New Brunswick', 'Nouveau-Brunswick'], ['Newfoundland and Labrador', 'Terre-Neuve-et-Labrador'], ['Nova Scotia', 'Nouvelle-Écosse'], ['Ontario','Ontario'], ['Prince Edward Island', 'Île-du-Prince-Édouard'], ['Quebec','Quebec'], ['Saskatchewan','Saskatchewan'], ['Northwest Territories','Territoires du Nord-Ouest'], ['Nunavut', 'Nunavut'], ['Yukon','Yukon']
+        ];
+
+        foreach ($provinces_en_fr as $prov => $value) {
+            # code...
+            $province = Province::create([
+                'province_en' => $value[0],
+                'province_fr' => $value[1]
+            ]);
+        };
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -16,14 +16,6 @@ class ProvinceFactory extends Factory
      */
     public function definition(): array
     {
-        $provinces = [
-            'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
-            'Nova Scotia', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan'
-        ];
-        return [
-            'province_en' => $this->faker->unique()->randomElement($provinces),
-            'province_fr' => "test"
-
-        ];
+    //   Pour generer les provinces dans la bd, taper url "/provinces";
     }
 }

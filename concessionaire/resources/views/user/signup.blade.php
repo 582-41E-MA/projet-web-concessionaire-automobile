@@ -35,8 +35,9 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
                 <select name="province" id="inputProvince" class="form-control">
+                        <option value="" >Choisir la province</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->id }}" >{{ $province->nom }}</option>
+                        <option value="{{ $province->id }}" >{{ $province->province_en }}</option>
                         @endforeach
                 </select>
             </div>
@@ -44,7 +45,7 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
                 <select name="ville" id="inputVille" class="form-control" disabled>
-                        <option value="" >Choisir une ville</option>
+                        <!-- <option value="" >Choisir ville</option> -->
                 </select>
             </div>
             <!-- telephone -->
@@ -77,25 +78,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#province').change(function() {
+            $('#inputProvince').change(function() {
                 var provinceId = $(this).val();
                 if (provinceId) {
                     $.ajax({
                         type: "GET",
-                        url: "/villes",
-                        data: { province_id: provinceId },
+                        url: "/villes/"+provinceId,
+                        // data: { ville_province_id: provinceId },
                         success: function(villes) {
-                            $('#ville').empty();
-                            $('#ville').append('<option value="">Choisir une ville</option>');
+                            console.log(villes);
+                            $('#inputVille').empty();
                             $.each(villes, function(key, value) {
-                                $('#ville').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                                $('#inputVille').append('<option value="' + value.id + '">' + value.ville_en + '</option>');
                             });
-                            $('#ville').prop('disabled', false);
+                            $('#inputVille').prop('disabled', false);
                         }
                     });
                 } else {
-                    $('#ville').empty();
-                    $('#ville').prop('disabled', true);
+                    $('#inputVille').empty();
+                    $('#inputVille').prop('disabled', true);
                 }
             });
         });

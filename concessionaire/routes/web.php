@@ -11,4 +11,9 @@ Route::get('/', function () {
 // });
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
-Route::get('/villes', [UserController::class, 'getVilles']);
+
+Route::get('/villes/{id}', [UserController::class, 'getVilles']);
+// pour generer les villes
+Route::get('/generervilles', [UserController::class, 'genererVilles']);
+// pour generer les provinces
+Route::get('/provinces', [UserController::class, 'insererProvinces']);
