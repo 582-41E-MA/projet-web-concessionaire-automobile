@@ -34,17 +34,19 @@
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
-                <select name="province" id="inputProvince" class="form-control">
+                <select name="province_id" id="inputProvince" class="form-control">
+                    <option value="1" selected>default province</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->id }}" >{{ $province->nom }}</option>
+                    <option value="{{ $province->id }}" >{{ $province->nom }}</option>
                         @endforeach
                 </select>
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
-                <select name="ville" id="inputVille" class="form-control" disabled>
-                        <option value="" >Choisir une ville</option>
+                <select name="ville_id" id="inputVille" class="form-control">
+                        <option value="1" selected>Choisir une ville</option>
+                        <option value="2" selected>Choisir 2</option>
                 </select>
             </div>
             <!-- telephone -->
@@ -52,10 +54,6 @@
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
-                </div>
-                <div class="form-group mb-3 text-start w-50">
-                    <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
-                    <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>
                 </div>
             </div>
             <!-- courriel -->

@@ -53,21 +53,28 @@ class UserController extends Controller
         //     'date_de_naissance' => 'required|date'   
         // ]);
 
-        $user = new User;
-        $user->fill($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
+        // $user = new User;
+        // $user->fill($request->all());
+        // $user->password = Hash::make($request->password);
+        // return $user;    
+        // $user->save();
         // Pour changer la valeur de Etudiant selon le type de "type" choisi, on peut creer une variable et y mettre a valeur de type,ex: $type = $request->type.
-        // $etudiant = Etudiant::create([
-        //     'id' => $user->id,
-        //     'adresse' => $request->adresse,
-        //     'telephone' => $request->telephone,
-        //     'ville_id' => $request->ville,
-        //     'date_de_naissance' => $request->date_de_naissance
-        // ]);
-        // return $user->type;
+        $user = User::create([
+            'name' => $request->name,
+            'prenom' => $request->prenom,
+            'telephone' => $request->telephone,
+            'anniversaire' => $request->anniversaire,
+            'adresse' => $request->adresse,
+            'code_postal' => $request->code_postal,
+            'province_id' => $request->province_id,
+            'ville_id' => 2,
+            'email' => $request->email,
+            'privilege_id' => 1,
+            'password' => Hash::make($request->password)
+        ]);
+        // return $user;
         // if($user->type == "etudiant"){
-            return redirect(route('/',  $user->id))->withSuccess('Utilisateur enregistré comme client');
+            return redirect(route('login'))->withSuccess('Utilisateur enregistré comme client');
         // }else{
             // return redirect(route('user.index'))->withSuccess('User created successfully!');
         // }

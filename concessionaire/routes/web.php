@@ -9,7 +9,7 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('pages.accueil');
-});
+})->name('accueil');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');
