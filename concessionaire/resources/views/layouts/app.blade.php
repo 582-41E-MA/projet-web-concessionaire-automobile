@@ -10,6 +10,7 @@
 </head>
 <body class="d-flex flex-column h-100">
     <!--header-->
+    
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
         <a class="navbar-brand" href="{{asset('/')}}"><img src="{{asset('assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top mx-3" alt="logo">OZCARS</a>
@@ -43,7 +44,11 @@
             </ul>
         </div>
         <div class="ml-auto d-none d-lg-block">
+        @guest
             <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
+        @else
+            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
+        @endguest    
         </div>
     </nav>
     @endif
