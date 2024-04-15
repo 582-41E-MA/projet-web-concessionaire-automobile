@@ -18,8 +18,13 @@ Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.p
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
-Route::post('/inscription', [UserController::class, 'store']);
+Route::post('/inscription', [UserController::class, 'store'])->name('user.store');
+
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
+// pour generer les villes
+Route::get('/generervilles', [UserController::class, 'genererVilles']);
+// pour generer les provinces
+Route::get('/provinces', [UserController::class, 'insererProvinces']);
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
