@@ -105,16 +105,9 @@ class UserController extends Controller
             'password' => 'min:6|max:20' 
         ]);
 
-        // $user = new User;
-        // $user->fill($request->all());
         $password = Hash::make($request->password);
-        // $user->save();
-    
-        // echo $request->code_postal;
-        // echo $request->province;
-        // echo $user->id;
-        // echo $password;
-        // Pour changer la valeur de Etudiant selon le type de "type" choisi, on peut creer une variable et y mettre a valeur de type,ex: $type = $request->type.
+
+        // je crée privilege en premier pour pouvoir utiliser l'id du privilege dans user 
         $privilege = Privilege::create([
             'pri_role_en' => 'client',
             'pri_role_fr' => 'client'
