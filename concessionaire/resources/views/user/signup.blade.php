@@ -17,9 +17,10 @@
         @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
         <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+
             @csrf
-            <img class="mb-4" src="{{asset('img/logo.png')}}" alt="" width="176" height="155">
-            <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>
+            <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
+            <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>         
             <!-- name -->
             <div class="form-group mb-3 text-start">
                 <label for="inputNom" class="sr-only form-label">Nom</label>
@@ -48,18 +49,31 @@
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
+<<<<<<< HEAD
                 <select name="province" id="inputProvince" class="form-control">
                         <option value="" >Choisir la province</option>
                     @foreach($provinces as $province)
                         <option value="{{ $province->id }}" >{{ $province->province_en }}</option>
+=======
+                <select name="province_id" id="inputProvince" class="form-control">
+                    <option value="1" selected>default province</option>
+                    @foreach($provinces as $province)
+                    <option value="{{ $province->id }}" >{{ $province->nom }}</option>
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
                         @endforeach
                 </select>
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
+<<<<<<< HEAD
                 <select name="ville" id="inputVille" class="form-control" disabled>
                         <!-- <option value="" >Choisir ville</option> -->
+=======
+                <select name="ville_id" id="inputVille" class="form-control">
+                        <option value="1" selected>Choisir une ville</option>
+                        <option value="2" selected>Choisir 2</option>
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
                 </select>
             </div>
             <!-- telephone -->
@@ -68,11 +82,14 @@
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
                 </div>
+<<<<<<< HEAD
                 <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
                     <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>
                 </div>
+=======
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
@@ -86,7 +103,7 @@
             </div>
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>
-        <p>Vous avez déjà un compte ? <a href="#" class="link-underline-primary">Se connecter</a></p>
+        <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="link-underline-primary">Se connecter</a></p>
     </div>
 
     <!-- Script pour generer les villes a partir de la province selectionnée -->

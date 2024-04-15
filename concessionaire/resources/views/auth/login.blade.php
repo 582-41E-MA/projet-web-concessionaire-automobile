@@ -2,9 +2,9 @@
 @section('title', 'Connexion')
 @section('content')
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form class="form-signin col-sm-4 mb-3" method="POST">
+        <form class="form-signin col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
             @csrf
-            <img class="mb-4" src="{{asset('img/logo.png')}}" alt="" width="176" height="155">
+            <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
             <h1 class="h3 mb-3 font-weight-normal">Connectez-vous à votre compte</h1>
             <div class="form-group mb-3 text-start">
                 <label for="inputEmail" class="sr-only form-label">Courriel</label>
@@ -17,6 +17,6 @@
             <p><a href="#" class="link-underline-primary">Mot de passe oublié ?</a></p>
             <button class="btn btn-lg btn-primary w-100" type="submit">Se connecter</button>
         </form>
-        <p>Vous n'avez pas de compte ? <a href="#" class="link-underline-primary">S'inscrire</a></p>
+        <p>Vous n'avez pas de compte ? <a href="{{ route('user.create') }}" class="link-underline-primary">S'inscrire</a></p>
     </div>
 @endsection

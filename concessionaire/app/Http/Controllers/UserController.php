@@ -29,8 +29,9 @@ class UserController extends Controller
         $provinces = Province::all();
         return view('user.signup', ["provinces" => $provinces]);
     }
+    
 
-    public function getVilles(Request $request)
+    public function getVilles(Request $request, $id)
     {
         $provinceId = $request->id;
         $villes = Ville::where('ville_province_id', $provinceId)->get();
@@ -131,6 +132,7 @@ class UserController extends Controller
         // if($user->type == "etudiant"){
             // return redirect(route('/'));
             // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
+
         // }else{
             // return redirect(route('user.index'))->withSuccess('User created successfully!');
         // }
