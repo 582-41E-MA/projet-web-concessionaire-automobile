@@ -1,8 +1,23 @@
 @extends('layouts.app')
 @section('title', 'Inscription')
 @section('content')
+<!-- gestion des erreur -->
+    @if(!$errors->isEmpty())
+    <div class="container">
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form class="form-signin col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
+        <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+
             @csrf
             <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
             <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>         
@@ -34,19 +49,31 @@
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
+<<<<<<< HEAD
+                <select name="province" id="inputProvince" class="form-control">
+                        <option value="" >Choisir la province</option>
+                    @foreach($provinces as $province)
+                        <option value="{{ $province->id }}" >{{ $province->province_en }}</option>
+=======
                 <select name="province_id" id="inputProvince" class="form-control">
                     <option value="1" selected>default province</option>
                     @foreach($provinces as $province)
                     <option value="{{ $province->id }}" >{{ $province->nom }}</option>
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
                         @endforeach
                 </select>
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
+<<<<<<< HEAD
+                <select name="ville" id="inputVille" class="form-control" disabled>
+                        <!-- <option value="" >Choisir ville</option> -->
+=======
                 <select name="ville_id" id="inputVille" class="form-control">
                         <option value="1" selected>Choisir une ville</option>
                         <option value="2" selected>Choisir 2</option>
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
                 </select>
             </div>
             <!-- telephone -->
@@ -55,6 +82,14 @@
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
                 </div>
+<<<<<<< HEAD
+                <!-- telephone_portable -->
+                <div class="form-group mb-3 text-start w-50">
+                    <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
+                    <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>
+                </div>
+=======
+>>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
@@ -75,25 +110,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#province').change(function() {
+            $('#inputProvince').change(function() {
                 var provinceId = $(this).val();
                 if (provinceId) {
                     $.ajax({
                         type: "GET",
-                        url: "/villes",
-                        data: { province_id: provinceId },
+                        url: "/villes/"+provinceId,
+                        // data: { ville_province_id: provinceId },
                         success: function(villes) {
-                            $('#ville').empty();
-                            $('#ville').append('<option value="">Choisir une ville</option>');
+                            console.log(villes);
+                            $('#inputVille').empty();
                             $.each(villes, function(key, value) {
-                                $('#ville').append('<option value="' + value.id + '">' + value.nom + '</option>');
+                                $('#inputVille').append('<option value="' + value.id + '">' + value.ville_en + '</option>');
                             });
-                            $('#ville').prop('disabled', false);
+                            $('#inputVille').prop('disabled', false);
                         }
                     });
                 } else {
-                    $('#ville').empty();
-                    $('#ville').prop('disabled', true);
+                    $('#inputVille').empty();
+                    $('#inputVille').prop('disabled', true);
                 }
             });
         });
