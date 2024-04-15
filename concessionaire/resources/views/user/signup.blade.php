@@ -49,31 +49,20 @@
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
-<<<<<<< HEAD
                 <select name="province" id="inputProvince" class="form-control">
                         <option value="" >Choisir la province</option>
                     @foreach($provinces as $province)
                         <option value="{{ $province->id }}" >{{ $province->province_en }}</option>
-=======
-                <select name="province_id" id="inputProvince" class="form-control">
-                    <option value="1" selected>default province</option>
-                    @foreach($provinces as $province)
-                    <option value="{{ $province->id }}" >{{ $province->nom }}</option>
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
+
                         @endforeach
                 </select>
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
-<<<<<<< HEAD
                 <select name="ville" id="inputVille" class="form-control" disabled>
                         <!-- <option value="" >Choisir ville</option> -->
-=======
-                <select name="ville_id" id="inputVille" class="form-control">
-                        <option value="1" selected>Choisir une ville</option>
-                        <option value="2" selected>Choisir 2</option>
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
+
                 </select>
             </div>
             <!-- telephone -->
@@ -82,14 +71,12 @@
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
                 </div>
-<<<<<<< HEAD
                 <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
                     <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>
                 </div>
-=======
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
+
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
