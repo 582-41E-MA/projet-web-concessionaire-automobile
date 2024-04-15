@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Ville;
 use App\Models\Province;
+use App\Models\Privilege;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -45,23 +46,27 @@ class UserController extends Controller
         $json_read = file_get_contents($path_villes);
         // le transformer en array
         $json_villes = json_decode($json_read, true);
-        // foreach.$json_villes(   )
-        // return $json_villes[1];
         // rajouter l'id des provinces dans leur villes respectives
         $array_ids =[['BC', 2], ['SK', 10], ['AB', 1], ['QC', 9], ['ON', 7], ['NT', 12], ['NS', 6], ['NL', 5], ['NT', 11], ['PE', 8], ['NB', 4], ['MB', 3], ['YT', 13]];
         foreach ($json_villes as $ville => $value) {
-            # code...
-            // echo ($value);
-            // foreach($array_ids as $){
 
-            // }
+            foreach ($array_ids as $key2 => $pair_id) {
+
+                if($value[1] == $pair_id[0]){     
+                    array_unshift($value, $pair_id[1]);
+                    $new_villes_array[] = $value;
+                }
             }
-            // $province = Province::create([
-            //     'province_en' => $value[0],
-            //     'province_fr' => $value[1]
-            // ]);
-        };
-
+           
+        }
+        // Créer les villes dans la bd
+        foreach ($new_villes_array as $ville => $value) {
+            $nouvelleVille = Ville::create([
+                    'ville_en' => $value[1],
+                    'ville_fr' => $value[1],
+                    'ville_province_id' => $value[0]
+                ]);
+        }
 
     }
 
@@ -88,28 +93,51 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|max:50',
+            'prenom' => 'required|max:50',
             'email' => 'required|email|unique:users',
-            'password' => 'min:6|max:20', 
+            'anniversaire' => 'required|date',
             'adresse' => 'required|string',
-            'telephone' => 'required|string',
-            'date_de_naissance' => 'required|date'   
+            'code_postal' => 'required|string',
+            'province' => 'numeric',
+            'ville' => 'numeric',
+            'telephone' => 'required|numeric',
+            'telephone_portable' => 'numeric',
+            'password' => 'min:6|max:20' 
         ]);
 
-        $user = new User;
-        $user->fill($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
+        // $user = new User;
+        // $user->fill($request->all());
+        $password = Hash::make($request->password);
+        // $user->save();
+    
+        // echo $request->code_postal;
+        // echo $request->province;
+        // echo $user->id;
+        // echo $password;
         // Pour changer la valeur de Etudiant selon le type de "type" choisi, on peut creer une variable et y mettre a valeur de type,ex: $type = $request->type.
-        $etudiant = Etudiant::create([
-            'id' => $user->id,
-            'adresse' => $request->adresse,
-            'telephone' => $request->telephone,
-            'ville_id' => $request->ville,
-            'date_de_naissance' => $request->date_de_naissance
+        $privilege = Privilege::create([
+            'pri_role_en' => 'client',
+            'pri_role_fr' => 'client'
         ]);
+        $user_client = User::create([
+            'name' => $request->name,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'password' => $password,
+            'anniversaire' => $request->anniversaire,
+            'adresse' => $request->adresse,
+            'code_postal' => $request->code_postal,
+            'province_id' => $request->province,
+            'ville_id' => $request->ville,
+            'telephone' => $request->telephone,
+            'telephone_portable' => $request->telephone_portable,
+            'privilege_id' => $privilege->id,
+        ]);
+        
         // return $user->type;
         // if($user->type == "etudiant"){
-            return redirect(route('etudiant.show',  $user->id))->withSuccess('Utilisateur enregistré comme etudiant');
+            // return redirect(route('/'));
+            // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
         // }else{
             // return redirect(route('user.index'))->withSuccess('User created successfully!');
         // }

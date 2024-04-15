@@ -1,8 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Inscription')
 @section('content')
+<!-- gestion des erreur -->
+    @if(!$errors->isEmpty())
+    <div class="container">
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
             @csrf
             <img class="mb-4" src="{{asset('img/logo.png')}}" alt="" width="176" height="155">
             <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>
@@ -54,6 +68,7 @@
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
                 </div>
+                <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
                     <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>

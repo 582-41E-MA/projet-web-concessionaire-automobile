@@ -11,6 +11,7 @@ Route::get('/', function () {
 // });
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
+Route::post('/inscription', [UserController::class, 'store'])->name('user.store');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 // pour generer les villes
