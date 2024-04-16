@@ -28,6 +28,8 @@ Route::get('/generervilles', [UserController::class, 'genererVilles']);
 Route::get('/provinces', [UserController::class, 'insererProvinces']);
 // pour generer les carrosseries
 Route::get('/generercarrosseries', [VoitureController::class, 'genererCarrosseries']);
+// pour generer les pays
+Route::get('/genererpays', [VoitureController::class, 'genererPays']);
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
