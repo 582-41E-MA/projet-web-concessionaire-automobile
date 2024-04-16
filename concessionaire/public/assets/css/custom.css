@@ -11,8 +11,11 @@
 .btn-info {
     background-color: #FD9843;
     border-color: #FD9843;
+    color: white;
 }
 
 .btn-info:hover {
+    background-color: #FD9843;
+    border-color: #FD9843;
     color:#052C65;
 }
