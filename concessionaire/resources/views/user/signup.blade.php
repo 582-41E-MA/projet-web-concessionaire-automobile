@@ -35,6 +35,11 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputPrenom" class="sr-only form-label">Prénom</label>
                 <input name="prenom" type="text" id="inputPrenom" class="form-control" placeholder="Prenom*" value="{{old('prenom')}}" autofocus>
+                @if($errors->has('name'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('name')}}
+                    </div>
+                @endif
                 
             </div>
             <!-- anniversaire -->
