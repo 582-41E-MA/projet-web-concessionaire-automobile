@@ -27,6 +27,7 @@ class User extends Authenticatable
         'province_id',
         'ville_id',
         'telephone',
+        'telephone_portable',
         'privilege_id'
     ];
 

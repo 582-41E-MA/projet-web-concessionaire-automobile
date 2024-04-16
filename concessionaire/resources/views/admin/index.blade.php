@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','À propos de nous')
+@section('title','Admin')
 @section('content')
 
 <h1>index admin</h1>
