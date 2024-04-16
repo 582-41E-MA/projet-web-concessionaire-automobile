@@ -24,82 +24,68 @@
             <!-- name -->
             <div class="form-group mb-3 text-start">
                 <label for="inputNom" class="sr-only form-label">Nom</label>
-                <input name="name" type="text" id="inputNom" class="form-control" placeholder="Nom*" required autofocus>
+                <input name="name" type="text" id="inputNom" class="form-control" placeholder="Nom*" value="{{old('name')}}" autofocus>
             </div>
             <!-- prenom -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPrenom" class="sr-only form-label">Prénom</label>
-                <input name="prenom" type="text" id="inputPrenom" class="form-control" placeholder="Prenom*" required autofocus>
+                <input name="prenom" type="text" id="inputPrenom" class="form-control" placeholder="Prenom*" value="{{old('prenom')}}" autofocus>
             </div>
             <!-- anniversaire -->
             <div class="form-group mb-3 text-start">
                 <label for="inputAnniversaire" class="sr-only form-label">Anniversaire</label>
-                <input name="anniversaire" type="date" id="inputAnniversaire" class="form-control" placeholder="Anniversaire*" required autofocus>
+                <input name="anniversaire" type="date" id="inputAnniversaire" class="form-control" placeholder="Anniversaire*" value="{{old('anniversaire')}}" autofocus>
             </div>
             <!-- adresse -->
             <div class="form-group mb-3 text-start">
                 <label for="inputAdresse" class="sr-only form-label">Adresse</label>
-                <input name="adresse" type="text" id="inputAdresse" class="form-control" placeholder="Adresse*" required autofocus>
+                <input name="adresse" type="text" id="inputAdresse" class="form-control" placeholder="Adresse*" value="{{old('adresse')}}" autofocus>
             </div>
             <!-- code postal -->
             <div class="form-group mb-3 text-start">
                 <label for="inputCode_postal" class="sr-only form-label">Code Postal</label>
-                <input name="code_postal" type="text" id="inputCode_postal" class="form-control" placeholder="Code Postal*" required autofocus>
+                <input name="code_postal" type="text" id="inputCode_postal" class="form-control" placeholder="Code Postal*" value="{{old('code_postal')}}" autofocus>
             </div>
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
-<<<<<<< HEAD
                 <select name="province" id="inputProvince" class="form-control">
                         <option value="" >Choisir la province</option>
                     @foreach($provinces as $province)
-                        <option value="{{ $province->id }}" >{{ $province->province_en }}</option>
-=======
-                <select name="province_id" id="inputProvince" class="form-control">
-                    <option value="1" selected>default province</option>
-                    @foreach($provinces as $province)
-                    <option value="{{ $province->id }}" >{{ $province->nom }}</option>
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
+                        <option value="{{$province->id}}" @if($province->id == old('province')) selected @endif >{{ $province->province_en }}</option>
+
                         @endforeach
                 </select>
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
-<<<<<<< HEAD
                 <select name="ville" id="inputVille" class="form-control" disabled>
                         <!-- <option value="" >Choisir ville</option> -->
-=======
-                <select name="ville_id" id="inputVille" class="form-control">
-                        <option value="1" selected>Choisir une ville</option>
-                        <option value="2" selected>Choisir 2</option>
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
+
                 </select>
             </div>
             <!-- telephone -->
             <div class="d-flex  gap-4">
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
-                    <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone" required autofocus>
+                    <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone"  value="{{old('telephone')}}" autofocus>
                 </div>
-<<<<<<< HEAD
                 <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
-                    <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable" required autofocus>
+                    <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable"  value="{{old('telephone_portable')}}" autofocus>
                 </div>
-=======
->>>>>>> 1bfc0d014129ae08586048fa75b47721e63d1dbe
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
                 <label for="inputEmail" class="sr-only form-label">Courriel</label>
-                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Courriel*" required autofocus>
+                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Courriel*"  value="{{old('email')}}" autofocus>
             </div>
             <!-- mot de passe -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPassword" class="sr-only form-label">Mot de passe</label>
-                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe*" required>
+                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe*" >
             </div>
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>
@@ -111,18 +97,19 @@
     <script>
         $(document).ready(function() {
             $('#inputProvince').change(function() {
+                var oldVille = "{{ old('ville') }}";
                 var provinceId = $(this).val();
                 if (provinceId) {
                     $.ajax({
                         type: "GET",
                         url: "/villes/"+provinceId,
-                        // data: { ville_province_id: provinceId },
                         success: function(villes) {
-                            console.log(villes);
                             $('#inputVille').empty();
                             $.each(villes, function(key, value) {
-                                $('#inputVille').append('<option value="' + value.id + '">' + value.ville_en + '</option>');
+                                $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>');
+                                // $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>').prop('selected', $('#inputVille').prop('value') !== null);
                             });
+                            console.log(oldVille);
                             $('#inputVille').prop('disabled', false);
                         }
                     });
