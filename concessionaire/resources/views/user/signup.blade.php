@@ -4,7 +4,7 @@
 <!-- gestion des erreur -->
     @if(!$errors->isEmpty())
     <div class="container">
-
+<!-- 
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
                 @foreach($errors->all() as $error)
@@ -14,7 +14,7 @@
             
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
+        @endif -->
     <div class="row justify-content-center mt-5 mb-5 text-center">
         <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
 
@@ -25,26 +25,52 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputNom" class="sr-only form-label">Nom</label>
                 <input name="name" type="text" id="inputNom" class="form-control" placeholder="Nom*" value="{{old('name')}}" autofocus>
+                @if($errors->has('name'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('name')}}
+                    </div>
+                @endif
             </div>
             <!-- prenom -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPrenom" class="sr-only form-label">Prénom</label>
                 <input name="prenom" type="text" id="inputPrenom" class="form-control" placeholder="Prenom*" value="{{old('prenom')}}" autofocus>
+                @if($errors->has('name'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('name')}}
+                    </div>
+                @endif
+                
             </div>
             <!-- anniversaire -->
             <div class="form-group mb-3 text-start">
                 <label for="inputAnniversaire" class="sr-only form-label">Anniversaire</label>
                 <input name="anniversaire" type="date" id="inputAnniversaire" class="form-control" placeholder="Anniversaire*" value="{{old('anniversaire')}}" autofocus>
+                @if($errors->has('prenom'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('prenom')}}
+                    </div>
+                @endif
             </div>
             <!-- adresse -->
             <div class="form-group mb-3 text-start">
                 <label for="inputAdresse" class="sr-only form-label">Adresse</label>
                 <input name="adresse" type="text" id="inputAdresse" class="form-control" placeholder="Adresse*" value="{{old('adresse')}}" autofocus>
+                @if($errors->has('adresse'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('adresse')}}
+                    </div>
+                @endif
             </div>
             <!-- code postal -->
             <div class="form-group mb-3 text-start">
                 <label for="inputCode_postal" class="sr-only form-label">Code Postal</label>
                 <input name="code_postal" type="text" id="inputCode_postal" class="form-control" placeholder="Code Postal*" value="{{old('code_postal')}}" autofocus>
+                @if($errors->has('code_postal'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('code_postal')}}
+                    </div>
+                @endif
             </div>
             <!-- province -->
             <div class="form-group mb-3 text-start">
@@ -56,6 +82,11 @@
 
                         @endforeach
                 </select>
+                @if($errors->has('province'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('province')}}
+                    </div>
+                @endif
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
@@ -64,28 +95,53 @@
                         <!-- <option value="" >Choisir ville</option> -->
 
                 </select>
+                @if($errors->has('ville'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('ville')}}
+                    </div>
+                @endif
             </div>
             <!-- telephone -->
             <div class="d-flex  gap-4">
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone" class="sr-only form-label">Telephone</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone"  value="{{old('telephone')}}" autofocus>
+                    @if($errors->has('telephone'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('telephone')}}
+                    </div>
+                @endif
                 </div>
                 <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
                     <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
                     <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable"  value="{{old('telephone_portable')}}" autofocus>
+                    @if($errors->has('telephone_portable'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('telephone_portable')}}
+                    </div>
+                @endif
                 </div>
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
                 <label for="inputEmail" class="sr-only form-label">Courriel</label>
                 <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Courriel*"  value="{{old('email')}}" autofocus>
+                @if($errors->has('email'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('email')}}
+                    </div>
+                @endif
             </div>
             <!-- mot de passe -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPassword" class="sr-only form-label">Mot de passe</label>
                 <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe*" >
+                @if($errors->has('password'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('password')}}
+                    </div>
+                @endif
             </div>
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>
