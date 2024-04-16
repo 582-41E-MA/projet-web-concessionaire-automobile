@@ -7,6 +7,7 @@ use App\Http\Controllers\PolitiquesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VoitureController;
 
 Route::get('/', function () {
     return view('pages.accueil');
@@ -25,8 +26,12 @@ Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 Route::get('/generervilles', [UserController::class, 'genererVilles']);
 // pour generer les provinces
 Route::get('/provinces', [UserController::class, 'insererProvinces']);
+// pour generer les carrosseries
+Route::get('/generercarrosseries', [VoitureController::class, 'genererCarrosseries']);
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 
