@@ -22,9 +22,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Trouver un véhicule</a>
                 </li>
+                @auth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
                 </li>
@@ -42,13 +44,13 @@
                     </ul>
                 </li>
             </ul>
-        </div>
-        <div class="ml-auto d-none d-lg-block">
-        @guest
-            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
-        @else
-            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
-        @endguest    
+            <div class="ms-auto">
+            @guest
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
+            @else
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
+            @endguest    
+            </div>
         </div>
     </nav>
     @endif
