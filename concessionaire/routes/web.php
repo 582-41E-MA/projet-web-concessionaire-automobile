@@ -10,7 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController;
 
 Route::get('/', function () {
-    return view('pages.accueil');
+    return view('welcome');
 })->name('accueil');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
