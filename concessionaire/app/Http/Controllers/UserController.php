@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -108,11 +109,10 @@ class UserController extends Controller
 
         $password = Hash::make($request->password);
 
-        // je crée privilege en premier pour pouvoir utiliser l'id du privilege dans user 
-        $privilege = Privilege::create([
-            'pri_role_en' => 'client',
-            'pri_role_fr' => 'client'
-        ]);
+        if (!Auth::check()) {
+            $privilege = 1;
+        }
+
         $user_client = User::create([
             'name' => $request->name,
             'prenom' => $request->prenom,
@@ -125,7 +125,7 @@ class UserController extends Controller
             'ville_id' => $request->ville,
             'telephone' => $request->telephone,
             'telephone_portable' => $request->telephone_portable,
-            'privilege_id' => $privilege->id,
+            'privilege_id' => $privilege,
         ]);
         
         // return $user->type;
