@@ -4,7 +4,7 @@
 <!-- gestion des erreur -->
     @if(!$errors->isEmpty())
     <div class="container">
-<!-- 
+
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
                 @foreach($errors->all() as $error)
@@ -14,7 +14,7 @@
             
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif -->
+        @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
         <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
 
@@ -144,7 +144,22 @@
                 @endif
             </div>
 
-            <input type="hidden" name="privilege_id" value="">
+            <!-- privilege -->
+            <div class="form-group mb-3 text-start">
+                <label for="inputProvince" class="form-label">privilege</label>
+                <select name="privilege_id" id="inputProvince" class="form-control">
+                        <option value="" >Choisir le privilege</option>
+                    @foreach($privileges as $privilege)
+                        <option value="{{$privilege->id}}" @if($privilege->id == old('privilege')) selected @endif >{{ $privilege->pri_role_en }}</option>
+
+                        @endforeach
+                </select>
+                @if($errors->has('privilege'))
+                    <div class="text-danger mt-2">
+                        {{ $errors->first('privilege')}}
+                    </div>
+                @endif
+            </div>
 
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>

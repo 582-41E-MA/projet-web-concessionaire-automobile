@@ -5,6 +5,7 @@
 <h1>index admin</h1>
 
 <div class="container">
+    <h2><a href="{{ route('user.create') }}"> Add New User</a></h2>
     <table class="table">
         <thead>
             <tr>

@@ -28,7 +28,14 @@ class UserController extends Controller
     public function create()
     {
         $provinces = Province::all();
+
+        if (Auth::user()->privilege_id == 3) {
+            $privileges = Privilege::all();
+            // return $privileges;
+            return view('user.signupByAdmin', ["provinces" => $provinces, "privileges" => $privileges]);
+        } else {
         return view('user.signup', ["provinces" => $provinces]);
+        }
     }
     
 
@@ -93,6 +100,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required|max:50',
             'prenom' => 'required|max:50',
@@ -109,8 +117,8 @@ class UserController extends Controller
 
         $password = Hash::make($request->password);
 
-        if (!Auth::check()) {
-            $privilege = 1;
+        if (!Auth::check() && $request->privilege_id == "") {
+            $request->privilege_id = 1;
         }
 
         $user_client = User::create([
@@ -125,7 +133,7 @@ class UserController extends Controller
             'ville_id' => $request->ville,
             'telephone' => $request->telephone,
             'telephone_portable' => $request->telephone_portable,
-            'privilege_id' => $privilege,
+            'privilege_id' => $request->privilege_id,
         ]);
         
         // return $user->type;
@@ -134,7 +142,7 @@ class UserController extends Controller
             // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
 
         // }else{
-            // return redirect(route('user.index'))->withSuccess('User created successfully!');
+            return redirect(route('login'))->withSuccess('User created successfully!');
         // }
     }
 

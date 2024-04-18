@@ -22,11 +22,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Trouver un véhicule</a>
                 </li>
-                @auth
+                @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
-                @endauth
+                @endif
                 <li class="nav-item">
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
                 </li>
@@ -56,6 +56,13 @@
     @endif
     <!--main-->
     <div>
+            <div class="container my-5">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
         @yield('content')
     </div>
     <!--footer-->
