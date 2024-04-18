@@ -23,13 +23,15 @@ Route::post('/inscription', [UserController::class, 'store'])->name('user.store'
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 // pour generer les villes
-Route::get('/generervilles', [UserController::class, 'genererVilles']);
+Route::get('/generervilles', [DataController::class, 'genererVilles']);
 // pour generer les provinces
-Route::get('/provinces', [UserController::class, 'insererProvinces']);
+Route::get('/provinces', [DataController::class, 'insererProvinces']);
 // pour generer les carrosseries
-Route::get('/generercarrosseries', [VoitureController::class, 'genererCarrosseries']);
+Route::get('/generercarrosseries', [DataController::class, 'genererCarrosseries']);
 // pour generer les pays
-Route::get('/genererpays', [VoitureController::class, 'genererPays']);
+Route::get('/genererpays', [DataController::class, 'genererPays']);
+// pour generer les marques
+Route::get('/generermarques', [DataController::class, 'genererMarquesetModeles']);
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
