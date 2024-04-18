@@ -201,7 +201,7 @@ class UserController extends Controller
             'privilege_id' => $request->privilege_id,
         ]);
 
-        return redirect()->route('accueil')->with('success', 'user updated success');
+        return redirect()->route('accueil')->with('success', 'user updated with success');
     }
 
     /**
@@ -210,6 +210,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        return redirect()->route('accueil')->with('success', 'user deleted with success');
     }
     public function forgot(){
         return view('user.forgot');

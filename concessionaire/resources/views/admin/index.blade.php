@@ -27,7 +27,7 @@
                     @endif
                 </td>
                 <td>{{ $user->name }}</td>
-                <td> <button class="btn btn-sm"> <a href="{{ route('user.edit', $user->id)}}">Modifier</a> </button> /  <form  method="post">
+                <td> <button class="btn btn-sm"> <a href="{{ route('user.edit', $user->id)}}">Modifier</a> </button> /  <form action="{{ route('user.delete', $user->id) }}"  method="post">
             @csrf
             @method('delete')
             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
