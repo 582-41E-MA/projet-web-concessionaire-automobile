@@ -28,6 +28,11 @@
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
                 @endif
+                @if(Auth::user()->privilege_id != 1)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('voiture.create') }}">Ajouter un véhicule</a>
+                </li>
+                @endif
                 @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
