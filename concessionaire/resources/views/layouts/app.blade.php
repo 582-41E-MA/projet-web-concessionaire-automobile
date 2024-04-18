@@ -20,11 +20,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Trouver un véhicule</a>
+                    <a class="nav-link" href="{{ route('voiture.index') }}">Trouver un véhicule</a>
                 </li>
+                @auth
+                @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
+                @endif
+                @if(Auth::user()->privilege_id != 1)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('voiture.create') }}">Ajouter un véhicule</a>
+                </li>
+                @endif
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
                 </li>
@@ -42,18 +51,25 @@
                     </ul>
                 </li>
             </ul>
-        </div>
-        <div class="ml-auto d-none d-lg-block">
-        @guest
-            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
-        @else
-            <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
-        @endguest    
+            <div class="ms-auto">
+            @guest
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
+            @else
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
+            @endguest    
+            </div>
         </div>
     </nav>
     @endif
     <!--main-->
     <div>
+            <div class="container my-5">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
         @yield('content')
     </div>
     <!--footer-->

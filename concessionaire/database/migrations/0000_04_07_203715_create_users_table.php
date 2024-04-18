@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('ville_id')->references('id')->on('villes')->onDelete('set null');
             $table->string('email')->unique();
             $table->string('telephone');
+            $table->string('telephone_portable');
             $table->unsignedBigInteger('privilege_id')->nullable();
             $table->foreign('privilege_id')->references('id')->on('privileges')->onDelete('set null');
             $table->timestamp('email_verified_at')->nullable();

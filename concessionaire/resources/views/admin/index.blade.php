@@ -1,10 +1,11 @@
 @extends('layouts.app')
-@section('title','À propos de nous')
+@section('title','Admin')
 @section('content')
 
 <h1>index admin</h1>
 
 <div class="container">
+    <h2><a href="{{ route('user.create') }}"> Add New User</a></h2>
     <table class="table">
         <thead>
             <tr>
@@ -26,7 +27,11 @@
                     @endif
                 </td>
                 <td>{{ $user->name }}</td>
-                <td> <a href="#">Modifier</a> / <a href="#">Supprimer</a> </td>
+                <td> <button class="btn btn-sm"> <a href="{{ route('user.edit', $user->id)}}">Modifier</a> </button> /  <form action="{{ route('user.delete', $user->id) }}"  method="post">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form> </td>
                 
             </tr>
             @empty

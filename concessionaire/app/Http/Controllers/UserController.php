@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -27,7 +28,14 @@ class UserController extends Controller
     public function create()
     {
         $provinces = Province::all();
+
+        if (Auth::user()->privilege_id == 3) {
+            $privileges = Privilege::all();
+            // return $privileges;
+            return view('user.signupByAdmin', ["provinces" => $provinces, "privileges" => $privileges]);
+        } else {
         return view('user.signup', ["provinces" => $provinces]);
+        }
     }
     
 
@@ -43,6 +51,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required|max:50',
             'prenom' => 'required|max:50',
@@ -59,11 +68,10 @@ class UserController extends Controller
 
         $password = Hash::make($request->password);
 
-        // je crée privilege en premier pour pouvoir utiliser l'id du privilege dans user 
-        $privilege = Privilege::create([
-            'pri_role_en' => 'client',
-            'pri_role_fr' => 'client'
-        ]);
+        if (!Auth::check() && $request->privilege_id == "") {
+            $request->privilege_id = 1;
+        }
+
         $user_client = User::create([
             'name' => $request->name,
             'prenom' => $request->prenom,
@@ -76,7 +84,7 @@ class UserController extends Controller
             'ville_id' => $request->ville,
             'telephone' => $request->telephone,
             'telephone_portable' => $request->telephone_portable,
-            'privilege_id' => $privilege->id,
+            'privilege_id' => $request->privilege_id,
         ]);
         
         // return $user->type;
@@ -85,7 +93,7 @@ class UserController extends Controller
             // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
 
         // }else{
-            // return redirect(route('user.index'))->withSuccess('User created successfully!');
+            return redirect(route('login'))->withSuccess('User created successfully!');
         // }
     }
 
@@ -103,6 +111,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        $provinces = Province::all();
+        $privileges = Privilege::all();
+        $villes = Ville::all();
+        // return $user;
+        return view('user.edit', ['user' => $user, "provinces" => $provinces, "privileges" => $privileges, "villes" => $villes]);
     }
 
     /**
@@ -111,6 +124,35 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        // return $request;
+        $request->validate([
+            'name' => 'required|max:50',
+            'prenom' => 'required|max:50',
+            'email' => 'required|email',
+            'anniversaire' => 'required|date',
+            'adresse' => 'required|string',
+            'code_postal' => 'required|string',
+            'province' => 'numeric',
+            'ville' => 'numeric',
+            'telephone' => 'required|numeric',
+            'telephone_portable' => 'numeric',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'anniversaire' => $request->anniversaire,
+            'adresse' => $request->adresse,
+            'code_postal' => $request->code_postal,
+            'province_id' => $request->province,
+            'ville_id' => $request->ville,
+            'telephone' => $request->telephone,
+            'telephone_portable' => $request->telephone_portable,
+            'privilege_id' => $request->privilege_id,
+        ]);
+
+        return redirect()->route('accueil')->with('success', 'user updated with success');
     }
 
     /**
@@ -119,6 +161,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        return redirect()->route('accueil')->with('success', 'user deleted with success');
     }
     public function forgot(){
         return view('user.forgot');

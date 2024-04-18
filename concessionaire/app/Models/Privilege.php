@@ -11,7 +11,6 @@ class Privilege extends Model
     protected $fillable = [
         'pri_role_en',
         'pri_role_fr'
-      
     ];
     
 }
