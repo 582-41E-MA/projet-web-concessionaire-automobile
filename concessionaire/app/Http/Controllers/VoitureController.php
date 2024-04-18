@@ -50,7 +50,19 @@ class VoitureController extends Controller
     //
     // api link:
     // /api/explore/v2.1/catalog/datasets/all-vehicles-model/records?limit=20
-      /**
+
+        /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $voitures = Voiture::all();
+
+        return view('voiture.index', ['voitures' => $voitures]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
