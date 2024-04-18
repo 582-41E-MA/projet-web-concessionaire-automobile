@@ -160,6 +160,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        $provinces = Province::all();
+        $privileges = Privilege::all();
+        $villes = Ville::all();
+        // return $user;
+        return view('user.edit', ['user' => $user, "provinces" => $provinces, "privileges" => $privileges, "villes" => $villes]);
     }
 
     /**
@@ -168,6 +173,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        return $request;
     }
 
     /**

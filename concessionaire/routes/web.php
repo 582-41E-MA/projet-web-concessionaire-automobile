@@ -9,9 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('accueil');
+Route::get('/', function () { return view('welcome'); })->name('accueil');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');
@@ -20,6 +18,9 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
 Route::post('/inscription', [UserController::class, 'store'])->name('user.store');
+Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 // pour generer les villes

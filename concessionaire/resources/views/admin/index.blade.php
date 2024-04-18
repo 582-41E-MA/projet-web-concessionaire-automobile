@@ -27,7 +27,11 @@
                     @endif
                 </td>
                 <td>{{ $user->name }}</td>
-                <td> <a href="#">Modifier</a> / <a href="#">Supprimer</a> </td>
+                <td> <button class="btn btn-sm"> <a href="{{ route('user.edit', $user->id)}}">Modifier</a> </button> /  <form  method="post">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form> </td>
                 
             </tr>
             @empty
