@@ -22,11 +22,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Trouver un véhicule</a>
                 </li>
+                @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
                 @endif
+                @endauth
                 <li class="nav-item">
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
                 </li>
