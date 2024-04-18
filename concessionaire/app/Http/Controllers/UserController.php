@@ -173,7 +173,35 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        return $request;
+        // return $request;
+        $request->validate([
+            'name' => 'required|max:50',
+            'prenom' => 'required|max:50',
+            'email' => 'required|email',
+            'anniversaire' => 'required|date',
+            'adresse' => 'required|string',
+            'code_postal' => 'required|string',
+            'province' => 'numeric',
+            'ville' => 'numeric',
+            'telephone' => 'required|numeric',
+            'telephone_portable' => 'numeric',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'anniversaire' => $request->anniversaire,
+            'adresse' => $request->adresse,
+            'code_postal' => $request->code_postal,
+            'province_id' => $request->province,
+            'ville_id' => $request->ville,
+            'telephone' => $request->telephone,
+            'telephone_portable' => $request->telephone_portable,
+            'privilege_id' => $request->privilege_id,
+        ]);
+
+        return redirect()->route('accueil')->with('success', 'user updated success');
     }
 
     /**

@@ -137,16 +137,6 @@
                     </div>
                 @endif
             </div>
-            <!-- mot de passe -->
-            <div class="form-group mb-3 text-start">
-                <label for="inputPassword" class="sr-only form-label">Mot de passe</label>
-                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe*" >
-                @if($errors->has('password'))
-                    <div class="text-danger mt-2">
-                        {{ $errors->first('password')}}
-                    </div>
-                @endif
-            </div>
 
             <!-- privilege -->
             <div class="form-group mb-3 text-start">
