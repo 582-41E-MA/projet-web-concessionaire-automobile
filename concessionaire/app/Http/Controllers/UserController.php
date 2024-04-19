@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $provinces = Province::all();
 
-        if (Auth::user()->privilege_id == 3) {
+        if (isset(Auth::user()->privilege_id) && Auth::user()->privilege_id == 3) {
             $privileges = Privilege::all();
             // return $privileges;
             return view('user.signupByAdmin', ["provinces" => $provinces, "privileges" => $privileges]);
