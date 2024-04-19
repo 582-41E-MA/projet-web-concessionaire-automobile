@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Voiture;
+use App\Models\Photo;
 use App\Models\Carrosserie;
 use App\Models\Marque;
 use App\Models\Modele;
@@ -23,13 +24,13 @@ class VoitureController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        //
         $voitures = Voiture::all();
-        return view('voiture.index', ['voitures'=>$voitures]);
+        $photos = Photo::all(); 
+        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos]);
     }
 
     //  * Show the form for creating a new resource.
@@ -63,6 +64,15 @@ class VoitureController extends Controller
 
         return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture created successfully!');
 
+    }
+
+        /**
+     * Display the specified resource.
+     */
+    public function show(Voiture $voiture)
+    {
+        return $voiture;
+        return view('voiture.show', ["voiture" => $voiture]);
     }
 
 }

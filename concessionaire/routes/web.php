@@ -42,5 +42,6 @@ Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
+Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 
