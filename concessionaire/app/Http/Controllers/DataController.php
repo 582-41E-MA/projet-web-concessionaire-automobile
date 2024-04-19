@@ -13,7 +13,7 @@ use App\Models\Province;
 use App\Models\Ville;
 
 
-class VoitureController extends Controller
+class DataController extends Controller
 {
     // Function pour générer les villes dans la bd en englais et en francais
     public function genererVilles (){
@@ -34,7 +34,6 @@ class VoitureController extends Controller
                     $new_villes_array[] = $value;
                 }
             }
-           
         }
         // Créer les villes dans la bd
         foreach ($new_villes_array as $ville => $value) {
