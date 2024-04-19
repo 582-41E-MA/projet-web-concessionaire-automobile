@@ -143,6 +143,9 @@
                     </div>
                 @endif
             </div>
+
+            <input type="hidden" name="privilege_id" value="">
+
             <button class="btn btn-lg btn-primary w-100" type="submit">S'inscrire</button>
         </form>
         <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="link-underline-primary">Se connecter</a></p>
