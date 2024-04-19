@@ -97,58 +97,91 @@
 		</div>
 	</form>
 	<!--list des voitures-->
-	<div class="album flex-fill d-flex flex-wrap">
+	<div class="album flex-fill d-flex flex-row flex-sm-wrap">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			<div class="col" style="width: 437px;">
-			<div class="card shadow-sm">
-				<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
-				<div class="card-body">
+		<!--une voiture-->
+		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
+			<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+			<div class="card-body text-start d-flex flex-column justify-content-start">
+				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
+				<h4>Marque voiture</h4>
 				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="text-body-secondary">Montréal Québec Canada</p>
+				<h3 class="mb-3">7 777$</h3>
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="btn-group">
 					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
 					</div>
-					<small class="text-body-secondary">9 mins</small>
-				</div>
-				</div>
-			</div>
-			</div>
-			
-			<div class="col" style="width: 437px;">
-			<div class="card shadow-sm">
-				<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
-				<div class="card-body">
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
-					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-					</div>
-					<small class="text-body-secondary">9 mins</small>
-				</div>
+					<small class="text-body-secondary">disponible depuis 6 mois</small>
 				</div>
 			</div>
-			</div>
-			
-			<div class="col" style="width: 437px;">
-			<div class="card shadow-sm">
-				<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
-				<div class="card-body">
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
-					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-					</div>
-					<small class="text-body-secondary">9 mins</small>
-				</div>
-				</div>
-			</div>
-			</div>
+		</div>
         
+		<!--une voiture-->
+		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
+			<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+			<div class="card-body text-start d-flex flex-column justify-content-start">
+				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
+				<h4>Marque voiture</h4>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="text-body-secondary">Montréal Québec Canada</p>
+				<h3 class="mb-3">7 777$</h3>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
+					</div>
+					<small class="text-body-secondary">disponible depuis 6 mois</small>
+				</div>
+			</div>
+		</div>
+
+		<!--une voiture-->
+		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
+			<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+			<div class="card-body text-start d-flex flex-column justify-content-start">
+				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
+				<h4>Marque voiture</h4>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="text-body-secondary">Montréal Québec Canada</p>
+				<h3 class="mb-3">7 777$</h3>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
+					</div>
+					<small class="text-body-secondary">disponible depuis 6 mois</small>
+				</div>
+			</div>
+		</div>
+
+		<!--une voiture-->
+		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
+			<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+			<div class="card-body text-start d-flex flex-column justify-content-start">
+				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
+				<h4>Marque voiture</h4>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="text-body-secondary">Montréal Québec Canada</p>
+				<h3 class="mb-3">7 777$</h3>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
+					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
+					</div>
+					<small class="text-body-secondary">disponible depuis 6 mois</small>
+				</div>
+			</div>
 		</div>
 	</div>
 
-<div class="col" style="width: 437px;">
+	@forelse($voitures as $voiture)
+		<div class="col" style="width: 437px;">
           <div class="card shadow-sm">
           @foreach($photos as $photo)
           @if( $photo->photo_voiture_id == $voiture->id )
@@ -166,6 +199,8 @@
             </div>
           </div>
         </div>
+
+
 
 	<h3> {{ $voiture->description_en }}</h3>
 
