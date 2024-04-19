@@ -55,6 +55,8 @@
             @guest
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
             @else
+
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">Panier</a>
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
             @endguest    
             </div>
