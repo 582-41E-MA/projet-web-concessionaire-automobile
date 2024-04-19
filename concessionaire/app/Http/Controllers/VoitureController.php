@@ -22,7 +22,7 @@ class VoitureController extends Controller
         return response()->json($modeles);
     }   
 
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -33,7 +33,6 @@ class VoitureController extends Controller
         return view('voiture.index', ["voitures" => $voitures, "photos" => $photos]);
     }
 
-    
     //  * Show the form for creating a new resource.
     //  */
     public function create()
