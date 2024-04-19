@@ -16,7 +16,7 @@ return new class extends Migration
             $table->year('annee');
             $table->text('description_en');
             $table->text('description_fr');
-            $table->date('date_arrivee');
+            $table->date('date_arrivee')->default('');
             $table->double('prix_base', 8, 2);
             $table->double('taux_augmenter', 3, 2);
             $table->double('prix_paye', 8, 2);
