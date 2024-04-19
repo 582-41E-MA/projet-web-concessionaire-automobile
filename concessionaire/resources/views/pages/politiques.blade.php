@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center mt-5 mb-5 text-center">
     <h1 class="mt-5 mb-5">Politiques de vente</h1>
-    <div class="text-start col-sm-10 col-md-10 col-lg-9 mb-4 lead">
+    <div class="text-start col-10 col-lg-9 mb-4 lead">
         <p>Chez Ozcars, nous nous engageons à offrir une expérience d'achat transparente et satisfaisante à nos clients. Nos politiques de vente sont conçues pour garantir la confiance, la transparence et la satisfaction à chaque étape de votre parcours avec nous.</p>
         <h4>1. Sélection et Qualité des Voitures</h4>
         <p>Toutes nos voitures d'occasion sont soigneusement sélectionnées et inspectées pour garantir leur qualité et leur fiabilité.</p>

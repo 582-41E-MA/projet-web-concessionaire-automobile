@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-center mt-5 mb-5 text-center">
     <h1 class="mt-5 mb-5">À propos de nous</h1>
-    <div class="text-start col-sm-11 col-md-10 col-lg-9 mb-4 lead">
+    <div class="text-start col-10 col-lg-9 mb-4 lead">
         <p>Chez Ozcars, nous sommes fiers de vous offrir une sélection exceptionnelle de voitures d'occasion abordables qui sont prêtes à partir dès aujourd'hui. Que vous recherchiez une berline élégante, un SUV robuste ou une compacte économe en carburant, notre inventaire diversifié répondra à vos besoins et à votre budget.</p>
         <h4>Voitures Abordables de Qualité</h4>
         <p>Nous comprenons l'importance de trouver une voiture de qualité à un prix abordable. C'est pourquoi chaque véhicule dans notre collection est soigneusement inspecté et préparé pour assurer une performance fiable et une satisfaction à long terme. Nous nous engageons à vous proposer des voitures d'occasion qui représentent un excellent rapport qualité-prix.</p>
