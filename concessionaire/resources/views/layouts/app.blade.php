@@ -27,8 +27,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
-                @endif
-                @if(Auth::user()->privilege_id != 1)
+                @elseif(Auth::user()->privilege_id != 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('voiture.create') }}">Ajouter un véhicule</a>
                 </li>
@@ -63,13 +62,14 @@
     @endif
     <!--main-->
     <div>
-            <div class="container my-5">
+        <div class="container my-5">
             @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success')}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
+        </div>
         @yield('content')
     </div>
     <!--footer-->

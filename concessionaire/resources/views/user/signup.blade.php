@@ -2,9 +2,10 @@
 @section('title', 'Inscription')
 @section('content')
 <!-- gestion des erreur -->
+<!-- 
     @if(!$errors->isEmpty())
     <div class="container">
-<!-- 
+
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
                 @foreach($errors->all() as $error)
@@ -16,7 +17,7 @@
         </div>
         @endif -->
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('user.store') }}" class="form-signin col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
 
             @csrf
             <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
@@ -75,12 +76,11 @@
             <!-- province -->
             <div class="form-group mb-3 text-start">
                 <label for="inputProvince" class="form-label">Province</label>
-                <select name="province" id="inputProvince" class="form-control">
+                <select name="province" id="inputProvince" class="form-select">
                         <option value="" >Choisir la province</option>
                     @foreach($provinces as $province)
                         <option value="{{$province->id}}" @if($province->id == old('province')) selected @endif >{{ $province->province_en }}</option>
-
-                        @endforeach
+                    @endforeach
                 </select>
                 @if($errors->has('province'))
                     <div class="text-danger mt-2">
@@ -91,7 +91,7 @@
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
-                <select name="ville" id="inputVille" class="form-control" disabled>
+                <select name="ville" id="inputVille" class="form-select" disabled>
                         <!-- <option value="" >Choisir ville</option> -->
 
                 </select>

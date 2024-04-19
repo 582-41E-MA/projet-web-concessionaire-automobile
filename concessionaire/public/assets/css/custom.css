@@ -19,3 +19,8 @@
     border-color: #FD9843;
     color:#052C65;
 }
+
+a.list-group-item-action.active {
+    background-color: #052C65;
+    border-color: #052C65;
+}
