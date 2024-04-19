@@ -25,6 +25,7 @@ Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.u
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/panier', [User_reserveController::class, 'index'])->name('panier.index');
+Route::post('/panier', [User_reserveController::class, 'store'])->name('panier.store');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 

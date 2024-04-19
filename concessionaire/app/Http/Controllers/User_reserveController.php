@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User_reserve;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class User_reserveController extends Controller
 {
@@ -30,6 +31,21 @@ class User_reserveController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request;
+
+        // $request->validate([
+
+        //     'ur_voiture_id' => 'required|unique:user_reserves'
+
+        // ]);
+
+        $ajout_au_panier = User_reserve::create([
+            'date_reserver' => date('Y-m-d'),
+            'ur_user_id' =>  Auth::user()->id,
+            'ur_voiture_id' => $request->voiture_id
+        ]);
+
+        return redirect(route('panier.index'))->withSuccess('Voiture ajouter au panier avec succees');
     }
 
     /**
