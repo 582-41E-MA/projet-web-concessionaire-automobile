@@ -6,6 +6,7 @@ use App\Http\Controllers\AproposController;
 use App\Http\Controllers\PolitiquesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\User_reserveController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController; 
 use App\Http\Controllers\DataController;
@@ -22,6 +23,8 @@ Route::post('/inscription', [UserController::class, 'store'])->name('user.store'
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+
+Route::get('/panier', [User_reserveController::class, 'index'])->name('panier.index');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 
