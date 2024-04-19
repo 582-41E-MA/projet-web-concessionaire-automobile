@@ -24,6 +24,8 @@ Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.u
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
+
+Route::get('/modeles/{id}', [voitureController::class, 'getModeles']);
 // pour generer les villes
 Route::get('/generervilles', [DataController::class, 'genererVilles']);
 // pour generer les provinces

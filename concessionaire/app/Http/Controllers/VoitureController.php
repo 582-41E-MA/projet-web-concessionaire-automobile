@@ -13,13 +13,24 @@ use App\Models\Pays;
 class VoitureController extends Controller
 {
 
-  
+    // get modeles from marque id
+    public function getModeles(Request $request, $id)
+    {
+        $marqueId = $request->id;
+        $modeles = Modele::where('modele_marque_id', $marqueId)->get();
+        return response()->json($modeles);
+    }   
+
+    
     //  * Show the form for creating a new resource.
     //  */
     public function create()
     {
+        $pays = Pays::all();
+        $carrosseries = Carrosserie::all();
+        $marques = Marque::all();
         
-        return view('voiture.create');
+        return view('voiture.create', ["pays" => $pays, "carrosseries" => $carrosseries, "marques" => $marques ]);
     
     }
 
