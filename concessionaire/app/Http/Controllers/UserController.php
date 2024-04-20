@@ -87,6 +87,9 @@ class UserController extends Controller
             'privilege_id' => $request->privilege_id,
         ]);
         
+
+        return redirect()->route('accueil')->with('success', 'user created with success');
+
         // return $user->type;
         // if($user->type == "etudiant"){
             // return redirect(route('/'));

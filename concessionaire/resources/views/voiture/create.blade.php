@@ -4,7 +4,7 @@
 
 <!-- create voiture form -->
 <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('voiture.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
 
             @csrf
             <h1 class="h3 mb-3 font-weight-normal">Ajouter une voiture</h1>
@@ -12,7 +12,7 @@
             <!-- photos de la voiture -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPhotos">Téléverser des photos:</label>
-                <input type="file" id="inputPhotos" class="form-control" name="photos" multiple accept="image/*">
+                <input type="file" id="inputPhotos" class="form-control" name="photos[]" multiple accept="image/*">
 
                 @if($errors->has('photos'))
                     <div class="text-danger mt-2">
@@ -58,7 +58,7 @@
             <!-- date_arrivee -->
             <div class="form-group mb-3 text-start">
                 <label for="inputDate_arrivee" class="sr-only form-label">Date d'arrivée</label>
-                <input name="date_arrivee" type="date" id="inputDate_arrivee" class="form-control" placeholder="date_arrivee*" value="{{old('date_arrivee')}}" autofocus>
+                <input name="date_arrivee" type="date" id="inputDate_arrivee" class="form-control" placeholder="date d'arrivée*" value="{{old('date_arrivee')}}" autofocus>
                 @if($errors->has('date_arrivee'))
                     <div class="text-danger mt-2">
                         {{ $errors->first('date_arrivee')}}
