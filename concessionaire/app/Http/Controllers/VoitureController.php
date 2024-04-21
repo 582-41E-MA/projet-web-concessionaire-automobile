@@ -9,8 +9,9 @@ use App\Models\Carrosserie;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Pays;
-use App\Models\Photo;
 use Illuminate\Support\Facades\Auth;
+use App\Models\File;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -54,7 +55,7 @@ class VoitureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photos' => 'required|array',
+            'photos' => 'required',
             'description_fr' => 'required|string',
             'description_en' => 'required|string',
             'annee' => 'required|numeric',
@@ -67,7 +68,7 @@ class VoitureController extends Controller
             'modele' => 'required|numeric',
             'pays' => 'required|numeric',
         ]);
-        // return $request -> date_arrivee;
+        // return Auth::id();
         $voiture = Voiture::create([
             'description_fr' => $request->description_fr,
             'description_en' => $request->description_en,
@@ -80,18 +81,25 @@ class VoitureController extends Controller
             'carrosserie_id' => $request->carrosserie,
             'employe_id' => Auth::id(),
             'pays_id' => $request->pays,
+            'commande_id' => null,
         ]);
 
-        $photosArray = $request -> photos;
+        $photosArray[] = $request -> photos;
+     
         foreach ($photosArray as $key => $photo) {
-            $photosVoiture = Photo::create([
-                'photo_titre' => $photo[0],
-                'photo_voiture_id' => $voiture ->id
-            ]);
-        }
-        print_r($photosArray);
 
-        // return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture created successfully!');
+            foreach ($photo as $key => $singlePhoto) {
+                $picName = $singlePhoto->getClientOriginalName();
+                $singlePhoto -> move(public_path('images'), $picName);
+
+                $photosVoiture = Photo::create([
+                        'photo_titre' => $picName,
+                        'photo_voiture_id' => $voiture ->id
+                    ]);
+            }
+        }
+
+        return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture created successfully!');
 
     }
 

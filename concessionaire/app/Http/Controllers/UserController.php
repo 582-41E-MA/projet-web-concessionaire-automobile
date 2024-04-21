@@ -61,8 +61,8 @@ class UserController extends Controller
             'code_postal' => 'required|string',
             'province' => 'numeric',
             'ville' => 'numeric',
-            'telephone' => 'required|numeric',
-            'telephone_portable' => 'numeric',
+            'telephone' => 'required|string',
+            'telephone_portable' => 'string',
             'password' => 'min:6|max:20' 
         ]);
 
@@ -88,7 +88,7 @@ class UserController extends Controller
         ]);
         
 
-        return redirect()->route('accueil')->with('success', 'user created with success');
+        // return redirect()->route('accueil')->with('success', 'user created with success');
 
         // return $user->type;
         // if($user->type == "etudiant"){
@@ -96,7 +96,7 @@ class UserController extends Controller
             // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
 
         // }else{
-            return redirect(route('login'))->withSuccess('User created successfully!');
+            return redirect(route('login'))->withSuccess('User created successfully, you can now login!');
         // }
     }
 

@@ -4,7 +4,7 @@
 
 <!-- create voiture form -->
 <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('voiture.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('voiture.store') }}" class="form-signin col-sm-4 mb-3" method="POST" enctype="multipart/form-data">
 
             @csrf
             <h1 class="h3 mb-3 font-weight-normal">Ajouter une voiture</h1>
