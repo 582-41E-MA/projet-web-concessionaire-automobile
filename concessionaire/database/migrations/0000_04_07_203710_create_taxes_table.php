@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('taxes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('taxe_province_id');
-            $table->foreign('taxe_province_id')->references('id')->on('provinces')->onDelete('cascade');
+            $table->unsignedBigInteger('taxe_province_id')->nullable();
+            $table->foreign('taxe_province_id')->references('id')->on('provinces')->onDelete('set null');
             $table->string('taxe_nom');
             $table->decimal('taxe_rate', 7, 2);
             $table->timestamps();
