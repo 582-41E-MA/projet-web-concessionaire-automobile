@@ -9,7 +9,7 @@ class User_reserve extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ur_user-id',
+        'ur_user_id',
         'ur_voiture_id',
         'date_reserver'
     ];

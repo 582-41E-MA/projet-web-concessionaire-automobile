@@ -6,6 +6,7 @@ use App\Http\Controllers\AproposController;
 use App\Http\Controllers\PolitiquesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\User_reserveController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController; 
 use App\Http\Controllers\DataController;
@@ -22,6 +23,9 @@ Route::post('/inscription', [UserController::class, 'store'])->name('user.store'
 Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+
+Route::get('/panier', [User_reserveController::class, 'index'])->name('panier.index');
+Route::post('/panier', [User_reserveController::class, 'store'])->name('panier.store');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 
@@ -44,4 +48,5 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
+Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 

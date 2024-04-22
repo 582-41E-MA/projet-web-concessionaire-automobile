@@ -100,24 +100,7 @@
 	<div class="album flex-fill d-flex flex-row flex-sm-wrap">
 
 		<!--une voiture-->
-		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
-			<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
-			<div class="card-body text-start d-flex flex-column justify-content-start">
-				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
-				<h4>Marque voiture</h4>
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				<p class="text-body-secondary">Montréal Québec Canada</p>
-				<h3 class="mb-3">7 777$</h3>
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
-					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
-					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
-					</div>
-					<small class="text-body-secondary">disponible depuis 6 mois</small>
-				</div>
-			</div>
-		</div>
+
         
 		<!--une voiture-->
 		<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
@@ -131,8 +114,9 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="btn-group">
 					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-					<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
 					<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
+					
 					</div>
 					<small class="text-body-secondary">disponible depuis 6 mois</small>
 				</div>
@@ -181,28 +165,32 @@
 	</div>
 
 	@forelse($voitures as $voiture)
-		<div class="col" style="width: 437px;">
-          <div class="card shadow-sm">
-          @foreach($photos as $photo)
+
+        <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
+        @foreach($photos as $photo)
           @if( $photo->photo_voiture_id == $voiture->id )
           <img src="{{ asset('assets/img/' . $photo->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
           @endif
           @endforeach
-            <div class="card-body">
-              <p class="card-text">{{ $voiture->description_en }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{{ route('voiture.show', $voiture->id) }}">Voir plus</a> </button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
+			<div class="card-body text-start d-flex flex-column justify-content-start">
+				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
+				<h4>Marque voiture</h4>
+				<p class="card-text">{{ $voiture->description_en }}</p>
+				<p class="text-body-secondary">Montréal Québec Canada</p>
+				<h3 class="mb-3">7 777$</h3>
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="btn-group">
+					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+          <form action="{{ route('panier.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
+          <button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
+          </form>
         </div>
-
-
-
-	<h3> {{ $voiture->description_en }}</h3>
+					<small class="text-body-secondary">disponible depuis 6 mois</small>
+				</div>
+			</div>
+		</div>
 
 	@empty
 			<div class="alert alert-danger">There are no Cars to display!</div>
@@ -210,5 +198,4 @@
 
 	</div>
 </div>
-
 @endsection
