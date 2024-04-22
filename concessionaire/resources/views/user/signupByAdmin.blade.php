@@ -16,7 +16,7 @@
         </div>
         @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('user.store') }}" class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('user.store') }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
 
             @csrf
             <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>

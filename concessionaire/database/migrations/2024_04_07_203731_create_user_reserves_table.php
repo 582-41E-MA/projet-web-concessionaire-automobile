@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('user_reserves', function (Blueprint $table) {
             $table->id();
             $table->date('date_reserver');
-            $table->unsignedBigInteger('ur_user_id');
-            $table->foreign('ur_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('ur_voiture_id');
-            $table->foreign('ur_voiture_id')->references('id')->on('voitures')->onDelete('cascade');
+            $table->unsignedBigInteger('ur_user_id')->nullable();
+            $table->foreign('ur_user_id')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedBigInteger('ur_voiture_id')->nullable();
+            $table->foreign('ur_voiture_id')->references('id')->on('voitures')->onDelete('set null');
             $table->timestamps();
         });
     }

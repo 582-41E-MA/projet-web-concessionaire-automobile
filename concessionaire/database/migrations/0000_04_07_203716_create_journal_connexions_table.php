@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('jc_date');
             $table->string('jc_adresse_ip');
-            $table->unsignedBigInteger('jc_user_id');
-            $table->foreign('jc_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('jc_user_id')->nullable();
+            $table->foreign('jc_user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }
