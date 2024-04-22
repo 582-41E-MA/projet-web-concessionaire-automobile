@@ -13,6 +13,9 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputPhotos">Téléverser des photos:</label>
                 <input type="file" id="inputPhotos" class="form-control" name="photos[]" multiple accept="image/*">
+                <div id="thumbnails" class="my-2 mt-3 ">
+                    <!-- ici seront générés les thumbnails d'images de voiture -->
+                </div>
 
                 @if($errors->has('photos'))
                     <div class="text-danger mt-2">
@@ -169,7 +172,37 @@
     <!-- les scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+         //generer les thumbnails des images de voitures uploadées
+         document.getElementById('inputPhotos').addEventListener('change', function(event) {
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            while (thumbnailsContainer.firstChild) { 
+                // thumbnailsContainer.removeChild(thumbnailsContainer.firstChild); 
+                // OR 
+                thumbnailsContainer.firstChild.remove(); 
+            }
+            const files = event.target.files;
+        
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                const thumbnail = createThumbnail(e.target.result, file);
+                thumbnailsContainer.appendChild(thumbnail);
+            };
+            reader.readAsDataURL(file);
+        });
+        });
 
+        function createThumbnail(src, file) {        
+            const thumbnailContainer = document.createElement('div');
+            thumbnailContainer.classList.add('thumbnail');
+            thumbnailContainer.classList.add('card');
+
+            const img = document.createElement('img');
+            img.src = src;
+            thumbnailContainer.appendChild(img);
+
+            return thumbnailContainer;
+        }
         $(document).ready(function() {
             $('#inputMarque').change(function() {
                 var oldModele = "{{ old('modele') }}";

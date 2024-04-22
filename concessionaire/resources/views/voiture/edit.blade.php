@@ -13,10 +13,14 @@
             <!-- photos de la voiture -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPhotos">Téléverser des photos:</label>
-                {{-- dd(public_path('images/'.old($photos[0]->photo_titre))) --}}
-                {{--dd(public_path('images/'.$photos[0]->photo_titre))--}}
-                <input type="file" id="inputPhotos" class="form-control" name="photos[]" multiple accept="image/*" value="{{ public_path('images/'.old($photos[0]->photo_titre)) }}">
+                <input type="file" id="inputPhotos" class="form-control" name="photos[]" multiple accept="image/*" value="{{-- public_path('images/'.old($photos[0]->photo_titre)) --}}">
                 <div id="thumbnails" class="my-2 mt-3 ">
+                @foreach($photos as $photo)
+                    <div class="thumbnail card">
+                        <img src="{{asset('images/'.$voiture->id.'/'. $photo->photo_titre)}}" alt=" photo de voiture {{$voiture->id}} ">
+                    </div>
+                @endforeach
+
                     <!-- ici seront générés les thumbnails d'images de voiture -->
                 </div>
 
