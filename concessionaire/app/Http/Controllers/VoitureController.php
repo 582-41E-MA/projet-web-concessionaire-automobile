@@ -120,11 +120,14 @@ class VoitureController extends Controller
     {
         //
         $pays = Pays::all();
-        $photos = Photo::all();
+        $photos = Photo::where('photo_voiture_id', $voiture->id)->get();
         $carrosseries = Carrosserie::all();
         $marques = Marque::all();
+        $modeles = Modele::all();
+        // $modele = Modele::where('modele_marque_id', $marqueId)->get();
+
         
-        return view('voiture.edit', ["photos" => $photos, "pays" => $pays, "carrosseries" => $carrosseries, "marques" => $marques ]);
+        return view('voiture.edit', ['voiture' => $voiture, "photos" => $photos, "pays" => $pays, "carrosseries" => $carrosseries, "marques" => $marques, 'modeles' => $modeles ]);
     }
 
      /**
