@@ -10,9 +10,7 @@ use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Pays;
 use Illuminate\Support\Facades\Auth;
-use App\Models\File;
 use Illuminate\Support\Facades\Storage;
-
 
 
 class VoitureController extends Controller
@@ -86,7 +84,6 @@ class VoitureController extends Controller
 
         $photosArray[] = $request -> photos;
         $path = public_path('images').'/'.$voiture -> id;
-        File::makeDirectory($path);
 
         foreach ($photosArray as $key => $photo) {
 
