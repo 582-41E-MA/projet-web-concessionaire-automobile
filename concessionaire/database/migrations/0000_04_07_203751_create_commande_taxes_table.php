@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('commande_taxes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('commande_id');
-            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade');
-            $table->unsignedBigInteger('taxe_id');
-            $table->foreign('taxe_id')->references('id')->on('taxes')->onDelete('cascade');
+            $table->unsignedBigInteger('commande_id')->nullable();
+            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('set null');
+            $table->unsignedBigInteger('taxe_id')->nullable();
+            $table->foreign('taxe_id')->references('id')->on('taxes')->onDelete('set null');
             $table->timestamps();
         });
     }
