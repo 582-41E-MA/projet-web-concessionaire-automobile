@@ -85,12 +85,14 @@ class VoitureController extends Controller
         ]);
 
         $photosArray[] = $request -> photos;
-     
+        $path = public_path('images').'/'.$voiture -> id;
+        File::makeDirectory($path);
+
         foreach ($photosArray as $key => $photo) {
 
             foreach ($photo as $key => $singlePhoto) {
                 $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
@@ -150,7 +152,7 @@ class VoitureController extends Controller
             'pays' => 'required|numeric',
         ]);
 
-        $voiture = Voiture::update([
+        $voiture -> update([
             'description_fr' => $request->description_fr,
             'description_en' => $request->description_en,
             'annee' => $request->annee,
@@ -166,12 +168,24 @@ class VoitureController extends Controller
         ]);
 
         $photosArray[] = $request -> photos;
+        $path = public_path('images').'/'.$voiture -> id;
+        // Check if the folder exists
+        return (Storage::exists($path));
+        if (Storage::exists($path)) {
+            // Delete all files and subdirectories inside the folder
+            Storage::deleteDirectory($path);
+        }
+        $photos = Photo::where('photo_voiture_id', $voiture->id)->get();
+        foreach ($photos as $key => $singlePhoto) {
+            $singlePhoto->delete();
+        }
+
      
         foreach ($photosArray as $key => $photo) {
 
             foreach ($photo as $key => $singlePhoto) {
-                $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $picName = $singlePhoto->getClientOriginalName();     
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,

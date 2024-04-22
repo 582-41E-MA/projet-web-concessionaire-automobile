@@ -169,7 +169,7 @@
         <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
         @foreach($photos as $photo)
           @if( $photo->photo_voiture_id == $voiture->id )
-          <img src="{{ asset('assets/img/' . $photo->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+          <img src="{{ asset('images/' . $photo->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
           @endif
           @endforeach
 			<div class="card-body text-start d-flex flex-column justify-content-start">

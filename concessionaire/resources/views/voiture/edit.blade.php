@@ -13,9 +13,12 @@
             <!-- photos de la voiture -->
             <div class="form-group mb-3 text-start">
                 <label for="inputPhotos">Téléverser des photos:</label>
-                {{ dd(public_path('images/'.old($photos[0]->photo_titre))) }}
+                {{-- dd(public_path('images/'.old($photos[0]->photo_titre))) --}}
                 {{--dd(public_path('images/'.$photos[0]->photo_titre))--}}
                 <input type="file" id="inputPhotos" class="form-control" name="photos[]" multiple accept="image/*" value="{{ public_path('images/'.old($photos[0]->photo_titre)) }}">
+                <div id="thumbnails" class="my-2 mt-3 ">
+                    <!-- ici seront générés les thumbnails d'images de voiture -->
+                </div>
 
                 @if($errors->has('photos'))
                     <div class="text-danger mt-2">
@@ -124,11 +127,8 @@
                 <select name="marque" id="inputMarque" class="form-control">
                         <option value="" >Choisir la marque</option>
                     @foreach($marques as $marque)
-                        @foreach($modeles as $modele)
-                            <option value="{{$marque->id}}" @if($marque->id == $modele->modele_marque_id) selected @endif >{{ $marque->marque_en }}</option>
-                        @endforeach
-
-                        @endforeach
+                            <option value="{{$marque->id}}" @if($marque->id == $modeles[0]->modele_marque_id) selected @endif >{{ $marque->marque_en }}</option>
+                    @endforeach
                 </select>
                 @if($errors->has('marque'))
                     <div class="text-danger mt-2">
@@ -178,6 +178,38 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
+        //generer les thumbnails des images de voitures uploadées
+        document.getElementById('inputPhotos').addEventListener('change', function(event) {
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            while (thumbnailsContainer.firstChild) { 
+                // thumbnailsContainer.removeChild(thumbnailsContainer.firstChild); 
+                // OR 
+                thumbnailsContainer.firstChild.remove(); 
+            }
+            const files = event.target.files;
+        
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                const thumbnail = createThumbnail(e.target.result, file);
+                thumbnailsContainer.appendChild(thumbnail);
+            };
+            reader.readAsDataURL(file);
+        });
+        });
+
+        function createThumbnail(src, file) {        
+            const thumbnailContainer = document.createElement('div');
+            thumbnailContainer.classList.add('thumbnail');
+            thumbnailContainer.classList.add('card');
+
+            const img = document.createElement('img');
+            img.src = src;
+            thumbnailContainer.appendChild(img);
+
+            return thumbnailContainer;
+        }
+        //generer les modeles en fonction de la marque choisie
         $(document).ready(function() {
             $('#inputMarque').change(function() {
                 var oldModele = "{{ old('modele') }}";
@@ -190,7 +222,6 @@
                             $('#inputModele').empty();
                             $.each(modeles, function(key, value) {
                                 $('#inputModele').append('<option value="' + value.id + '" >' + value.modele_en + '</option>');
-                                // $('#inputModele').append('<option value="' + value.id + '" >' + value.modele_en + '</option>').prop('selected', $('#inputModele').prop('value') !== null);
                             });
                             console.log(oldmodele);
                             $('#inputModele').prop('disabled', false);
@@ -202,6 +233,7 @@
                 }
             });
         });
+
     </script>
 
 @endsection

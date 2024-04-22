@@ -24,3 +24,45 @@ a.list-group-item-action.active {
     background-color: #052C65;
     border-color: #052C65;
 }
+
+/* css de thumbnail d'images de voiture */
+.thumbnail {
+    display: inline-block;
+    margin-right: 10px;
+}
+  
+.thumbnail img {
+max-width: 100px;
+max-height: 100px;
+}
+
+.delete-button {
+/* position: absolute;
+top: 0;
+left: 0;
+color:black;
+border-radius: 50%;
+max-width: 20px;
+max-height: 20px;
+background-color: red; */
+display:inline-block ;
+width:1em;
+height:1em;
+cursor: pointer;
+    
+    position:absolute;
+    top:2px;
+    right:2px;
+    z-index:1000;
+    
+    font-size:0.8em ;
+    line-height:1em;
+   
+    text-align:center;
+    font-weight:bold;
+    border:1px solid red ;
+    border-radius:1.2em;
+    color:red;
+    background-color:white;
+    /* opacity:.5; */
+}
