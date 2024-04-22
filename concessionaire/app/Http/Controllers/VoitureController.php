@@ -108,7 +108,6 @@ class VoitureController extends Controller
      */
     public function show(Voiture $voiture)
     {
-        return $voiture;
         return view('voiture.show', ["voiture" => $voiture]);
     }
 

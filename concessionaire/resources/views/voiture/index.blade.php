@@ -146,12 +146,11 @@
 								<small class="text-body-secondary">disponible depuis 6 mois</small>
 							</div>
 						</div>
-				</div>
+		    </div>
 			@empty
 				<div class="alert alert-danger">There are no Cars to display!</div>
 			@endforelse 
 			
 		</div>
 	</div>
-</div>
 @endsection

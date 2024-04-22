@@ -27,7 +27,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin') }}">Admin</a>
                 </li>
-                @elseif(Auth::user()->privilege_id != 1)
+                @elseif(Auth::user()->privilege_id == 2 || Auth::user()->privilege_id == 3 )
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('voiture.create') }}">Ajouter un véhicule</a>
                 </li>
