@@ -120,46 +120,12 @@
 				</div>
 			</div>
 
-			@forelse($voitures as $voiture)
-				<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
-					@foreach($photos as $photo)
-						@if( $photo->photo_voiture_id == $voiture->id )
-						<img src="{{ asset('assets/images/'.$voiture->id.'/' . $photo->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
-						@break
-						@endif
-					@endforeach
-					<div class="card-body text-start d-flex flex-column justify-content-start">
-						<p class="btn btn-sm btn-info align-self-end">nouveau</p>
-						<h4>Marque voiture</h4>
-						<p class="card-text" style="height: 72px; overflow: hidden;">{{ $voiture->description_en }}</p>
-						<p class="text-body-secondary">Montréal Québec Canada</p>
-						<h3 class="mb-3">7 777$</h3>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-							<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-							<form action="{{ route('panier.store') }}" method="POST">
-								@csrf
-								<input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
-							<button type="submit" class="btn btn-sm btn-outline-secondary">Réserver</button>
-							</form>
-							</div>
-								<small class="text-body-secondary">disponible depuis 6 mois</small>
-							</div>
-						</div>
-		    </div>
-			@empty
-				<div class="alert alert-danger">There are no Cars to display!</div>
-			@endforelse 
-			
-		</div>
-	</div>
-
 	@forelse($voitures as $voiture)
 
         <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
         @foreach($photos as $photo)
           @if( $photo->photo_voiture_id == $voiture->id )
-          <img src="{{ asset('images/' . $photo->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
+          <img src="{{ asset('images/'. $photo->photo_voiture_id .'/' . $photo->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
           @endif
           @endforeach
 			<div class="card-body text-start d-flex flex-column justify-content-start">
