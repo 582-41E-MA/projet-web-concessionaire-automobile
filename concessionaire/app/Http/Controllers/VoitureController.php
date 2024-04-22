@@ -10,9 +10,7 @@ use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Pays;
 use Illuminate\Support\Facades\Auth;
-use App\Models\File;
 use Illuminate\Support\Facades\Storage;
-
 
 
 class VoitureController extends Controller
@@ -85,12 +83,13 @@ class VoitureController extends Controller
         ]);
 
         $photosArray[] = $request -> photos;
-     
+        $path = public_path('images').'/'.$voiture -> id;
+
         foreach ($photosArray as $key => $photo) {
 
             foreach ($photo as $key => $singlePhoto) {
                 $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
@@ -119,11 +118,14 @@ class VoitureController extends Controller
     {
         //
         $pays = Pays::all();
-        $photos = Photo::all();
+        $photos = Photo::where('photo_voiture_id', $voiture->id)->get();
         $carrosseries = Carrosserie::all();
         $marques = Marque::all();
+        $modeles = Modele::all();
+        // $modele = Modele::where('modele_marque_id', $marqueId)->get();
+
         
-        return view('voiture.edit', ["photos" => $photos, "pays" => $pays, "carrosseries" => $carrosseries, "marques" => $marques ]);
+        return view('voiture.edit', ['voiture' => $voiture, "photos" => $photos, "pays" => $pays, "carrosseries" => $carrosseries, "marques" => $marques, 'modeles' => $modeles ]);
     }
 
      /**
@@ -146,7 +148,7 @@ class VoitureController extends Controller
             'pays' => 'required|numeric',
         ]);
 
-        $voiture = Voiture::update([
+        $voiture -> update([
             'description_fr' => $request->description_fr,
             'description_en' => $request->description_en,
             'annee' => $request->annee,
@@ -162,12 +164,24 @@ class VoitureController extends Controller
         ]);
 
         $photosArray[] = $request -> photos;
+        $path = public_path('images').'/'.$voiture -> id;
+        // Check if the folder exists
+        return (Storage::exists($path));
+        if (Storage::exists($path)) {
+            // Delete all files and subdirectories inside the folder
+            Storage::deleteDirectory($path);
+        }
+        $photos = Photo::where('photo_voiture_id', $voiture->id)->get();
+        foreach ($photos as $key => $singlePhoto) {
+            $singlePhoto->delete();
+        }
+
      
         foreach ($photosArray as $key => $photo) {
 
             foreach ($photo as $key => $singlePhoto) {
-                $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $picName = $singlePhoto->getClientOriginalName();     
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
