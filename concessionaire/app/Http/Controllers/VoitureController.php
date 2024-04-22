@@ -32,7 +32,8 @@ class VoitureController extends Controller
         //
         $voitures = Voiture::all();
         $photos = Photo::all(); 
-        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos]);
+        $marques = Marque::all(); 
+        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques]);
     }
 
     //  * Show the form for creating a new resource.
@@ -107,7 +108,8 @@ class VoitureController extends Controller
      */
     public function show(Voiture $voiture)
     {
-        return view('voiture.show', ["voiture" => $voiture]);
+
+        return view('voiture.show', ['voiture' => $voiture]);
     }
 
     
