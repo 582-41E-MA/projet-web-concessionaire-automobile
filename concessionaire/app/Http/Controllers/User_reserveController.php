@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User_reserve;
+use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,13 @@ class User_reserveController extends Controller
     public function index()
     {
         //
-        return view('panier.index');
+        $reservations = User_reserve::where('ur_user_id', Auth::user()->id)->get(); 
+        
+        foreach ($reservations as $reservation) {
+            $voitures_reservee[] = Voiture::find($reservation->ur_voiture_id);
+        };
+
+        return view('panier.index', ['voitures_reservee' => $voitures_reservee]);
     }
 
     /**
@@ -45,7 +52,7 @@ class User_reserveController extends Controller
             'ur_voiture_id' => $request->voiture_id
         ]);
 
-        return redirect(route('panier.index'))->withSuccess('Voiture ajouter au panier avec succees');
+        return redirect()->route('panier.index')->withSuccess('Voiture ajouter au panier avec succees');
     }
 
     /**

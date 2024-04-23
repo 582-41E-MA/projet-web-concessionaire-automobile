@@ -16,11 +16,11 @@
         </div>
         @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('user.edit', $user->id) }}" class="form-signin col-sm-4 mb-3" method="POST">
+        <form action="{{ route('user.edit', $user->id) }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
             @csrf
             @method('put')
             <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
-            <h1 class="h3 mb-3 font-weight-normal">Créez votre compte</h1>         
+            <h1 class="h3 mb-3 font-weight-normal">Modifier votre compte</h1>         
             <!-- name -->
             <div class="form-group mb-3 text-start">
                 <label for="inputNom" class="sr-only form-label">Nom</label>
@@ -91,7 +91,7 @@
             <!-- ville -->
             <div class="form-group mb-3 text-start">
                 <label for="inputVille" class="form-label">Ville</label>
-                <select name="ville" id="inputVille" class="form-control" disabled>
+                <select name="ville" id="inputVille" class="form-control">
                         <option value="" >Choisir ville</option>
                         @foreach($villes as $ville)
                         <option value="{{$ville->id}}" @if($ville->id == $user->ville_id) selected @endif >{{ $ville->ville_en }}</option>

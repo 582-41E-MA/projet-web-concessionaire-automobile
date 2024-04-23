@@ -14,7 +14,7 @@ class Voiture extends Model
         'description_fr',
         'modele_id',
         'carrosserie_id',
-        'date-arrivee',
+        'date_arrivee',
         'employe_id',
         'prix_base',
         'taux_augmenter',

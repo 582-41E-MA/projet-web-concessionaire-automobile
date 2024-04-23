@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('modele_en');
             $table->string('modele_fr');
-            $table->unsignedBigInteger('modele_marque_id');
-            $table->foreign('modele_marque_id')->references('id')->on('marques')->onDelete('cascade');
+            $table->unsignedBigInteger('modele_marque_id')->nullable();
+            $table->foreign('modele_marque_id')->references('id')->on('marques')->onDelete('set null');
             $table->timestamps();
         });
     }
