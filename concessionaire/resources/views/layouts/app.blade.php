@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 </head>
 <body class="d-flex flex-column h-100">
-@php $locale = session()->get('locale') @endphp
-
-    <!--header-->
+@php $locale = session()->get('locale');
+print_r($locale)
+@endphp
     
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
@@ -27,7 +27,7 @@
                 @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}">Admin</a>
+                    <a class="nav-link" href="{{ route('admin') }}">@lang('Administrator')</a>
                 </li>
                 @endif
                 @if(Auth::user()->privilege_id != 1 )
@@ -48,8 +48,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Langue</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">
-                        <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
-                        <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">Francais</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">@lang('English')</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">@lang('French')</a></li>
                     </ul>
                 </li>
             </ul>
