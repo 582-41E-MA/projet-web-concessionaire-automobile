@@ -101,8 +101,8 @@
 	</div>
 		<!--list des voitures-->
 	<!-- <div class="album flex-fill d-flex flex-row flex-sm-wrap bg-secondary"> -->
-	<div class="row col-12 cards-container col-sm-6 mx-4">
-		
+	<div class="row col-12 cards-container col-sm-6 mx-4 ">
+		{{--dump()--}}
 		@forelse($voitures as $voiture)
 			<div class="card shadow-sm car-card col-12 col-sm-3 col-md-4 col-lg-3" >
 			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
