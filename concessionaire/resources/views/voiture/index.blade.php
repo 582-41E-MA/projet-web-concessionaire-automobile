@@ -180,7 +180,7 @@
 				<h3 class="mb-3">7 777$</h3>
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="btn-group">
-					<button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+					<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
           <form action="{{ route('panier.store') }}" method="POST">
             @csrf
             <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">

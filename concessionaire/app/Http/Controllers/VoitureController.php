@@ -10,7 +10,7 @@ use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Pays;
 use Illuminate\Support\Facades\Auth;
-use App\Models\File;
+use File;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -83,14 +83,15 @@ class VoitureController extends Controller
             'pays_id' => $request->pays,
             'commande_id' => null,
         ]);
-
+        
         $photosArray[] = $request -> photos;
+        $path = public_path('voitureImages').'/'.$voiture -> id;
+        File::makeDirectory($path);
      
         foreach ($photosArray as $key => $photo) {
-
             foreach ($photo as $key => $singlePhoto) {
                 $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
@@ -163,12 +164,13 @@ class VoitureController extends Controller
         ]);
 
         $photosArray[] = $request -> photos;
+        $path = public_path('images').$voiture -> id;
+        File::makeDirectory($path);
      
         foreach ($photosArray as $key => $photo) {
-
             foreach ($photo as $key => $singlePhoto) {
                 $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move(public_path('images'), $picName);
+                $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
