@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 </head>
 <body class="d-flex flex-column h-100">
+@php $locale = session()->get('locale') @endphp
+
     <!--header-->
     
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
@@ -46,14 +48,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Langue</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">
-                        <li><a class="dropdown-item" href="#">en</a></li>
-                        <li><a class="dropdown-item" href="#">fr</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">Francais</a></li>
                     </ul>
                 </li>
             </ul>
             <div class="ms-auto">
             @guest
-                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">Connexion</a>
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">@lang('Login')</a>
             @else
 
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">Panier</a>

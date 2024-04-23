@@ -10,6 +10,7 @@ use App\Http\Controllers\User_reserveController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController; 
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\SetLocaleController;
 
 Route::get('/', function () { return view('welcome'); })->name('accueil');
 
@@ -52,4 +53,7 @@ Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voitu
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
+
+
+Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
