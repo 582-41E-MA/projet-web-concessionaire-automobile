@@ -22,4 +22,20 @@ class Voiture extends Model
         'pays_id',
         'commande_id'
     ];
+    // public function marque() {
+    //     return $this->belongsTo(Ville::class);
+    // }
+
+    public function photos() {
+        return $this->hasMany(Photo::class, 'photo_voiture_id'); 
+    }
+    public function carrosserie(){
+        return $this->belongsTo(carrosserie::class);
+    }
+    public function pays(){
+        return $this->belongsTo(Pays::class);
+    }
+    public function modele(){
+        return $this->belongsTo(Modele::class);
+    }
 }

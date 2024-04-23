@@ -107,8 +107,9 @@ class VoitureController extends Controller
      */
     public function show(Voiture $voiture)
     {
+        $marques = Marque::all();
 
-        return view('voiture.show', ['voiture' => $voiture]);
+        return view('voiture.show', ['voiture' => $voiture, 'marques' => $marques]);
     }
 
     

@@ -14,5 +14,7 @@ class Modele extends Model
         'modele_marque_id'
       
     ];
-    
+    public function marque() {
+        return $this->belongsTo(Marque::class);
+    }
 }

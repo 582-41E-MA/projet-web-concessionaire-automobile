@@ -7,46 +7,45 @@
     <div class="row gx-5">
       <aside class="col-lg-6">
         <div class="border rounded-4 mb-3 d-flex justify-content-center">
-            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('assets/img/tesla-blanc.png')}}" />
+            <img style=" max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('images/'.$voiture->id.'/'.$voiture->photos[0]->photo_titre)}}" />
         </div>
         <div class="d-flex justify-content-center mb-3">
-            <img width="101" height="60" class="rounded-2" src="{{asset('assets/img/tesla-blanc.png')}}" />
-            <img width="101" height="60" class="rounded-2" src="{{asset('assets/img/tesla-blanc.png')}}" />
-            <img width="101" height="60" class="rounded-2" src="{{asset('assets/img/tesla-blanc.png')}}" />
-            <img width="101" height="60" class="rounded-2" src="{{asset('assets/img/tesla-blanc.png')}}" />
-            <img width="101" height="60" class="rounded-2" src="{{asset('assets/img/tesla-blanc.png')}}" />
+          @foreach($voiture->photos as $photo)
+            <img width="101" height="60" class="rounded-2" src="{{asset('images/'.$voiture->id.'/'.$photo->photo_titre)}}" />
+          @endforeach
         </div>
         <!-- thumbs-wrap.// -->
         <!-- gallery-wrap .end// -->
       </aside>
       <section class="col-lg-6">
         <div class="ps-lg-3">
-          <h4 class="title text-dark mb-4">
-            Modèle et titre de la voiture<br />
-            Marque
+          <h4 class="title text-dark mb-4 text-uppercase">
+            {{$voiture->modele->modele_en}} 
+            {{$marques->find($voiture->modele->modele_marque_id)->marque_en}}
           </h4>
 
           <div class="mb-3">
-            <span class="h1">7,777.00</span>
+            <span class="h1">{{$voiture->prix_paye}}</span>
             <span class="text-muted">CAD</span>
           </div>
 
           <p>
-          Tesla est une marque automobile qui commercialise des voitures électriques, avec une intelligence artificielle intégrée. Depuis 2003 et sous l'impulsion de Martin Eberhard et Marc Tarpenning, cette marque, anciennement Tesla Motors, s'est positionnée sur des voitures électriques avec une technologie de pointe.
+          {{$voiture->description_en}}
           </p>
 
           <div class="row">
+            {{--dump($voiture->photos)--}}
             <dt class="col-3">Année:</dt>
-            <dd class="col-9">2022</dd>
+            <dd class="col-9">{{$voiture->annee}}</dd>
 
             <dt class="col-3">Carrosserie</dt>
-            <dd class="col-9">Berline</dd>
+            <dd class="col-9">{{$voiture->carrosserie->carrosserie_en}}</dd>
 
             <dt class="col-3">Pays</dt>
-            <dd class="col-9">USA</dd>
+            <dd class="col-9">{{$voiture->pays->pays_en}}</dd>
 
             <dt class="col-3">Date d'arrivée</dt>
-            <dd class="col-9">2023-01-01</dd>
+            <dd class="col-9">{{$voiture->date_arrivee}}</dd>
           </div>
 
           <hr class="mb-4" />

@@ -36,33 +36,29 @@ max-width: 100px;
 max-height: 100px;
 }
 
-.delete-button {
-/* position: absolute;
-top: 0;
-left: 0;
-color:black;
-border-radius: 50%;
-max-width: 20px;
-max-height: 20px;
-background-color: red; */
-display:inline-block ;
-width:1em;
-height:1em;
-cursor: pointer;
-    
-    position:absolute;
-    top:2px;
-    right:2px;
-    z-index:1000;
-    
-    font-size:0.8em ;
-    line-height:1em;
-   
-    text-align:center;
-    font-weight:bold;
-    border:1px solid red ;
-    border-radius:1.2em;
-    color:red;
-    background-color:white;
-    /* opacity:.5; */
+.form-container{
+    width: fit-content;
+    text-wrap:nowrap;
+    flex:1;
+}
+.cards-container{
+    /* max-width: 75%; */
+    flex: 3;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0;
+}
+.car-card{
+/* display: flex;
+max-width: 25%; */
+min-width: 350px;
+/* margin: .5rem; */
+flex-wrap: wrap;
+overflow: hidden;
+
+/* min-width: 250px; */
+}
+.car-card img{
+width: max-content;
+
 }

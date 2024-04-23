@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('title','Tous les voitures')
 @section('content')
-<div class="row justify-content-center mt-5 mb-5 text-center">
-    <div class="d-flex flex-md-row flex-sm-column flex-column justify-content-start col-10 col-md-12 mb-4">
+<!-- <div class="row justify-content-center mt-5 mb-5 text-center"> -->
+<div class="row justify-content-center">
+    <!-- <div class="d-flex flex-md-row flex-sm-column flex-column justify-content-start col-10 col-md-12 mb-4"> -->
+    <div class=" form-container ">
 		<!--filtre-->
 		<form class="border border-1 rounded border-dark-subtle mx-4 mb-3 p-3 text-start">
 			<h4 class="mb-3">Marque & Modèle</h4>
@@ -96,62 +98,39 @@
 				<input name="annee" type="number" id="inputAnnee" min="1900" max="2100" class="form-control" placeholder="année*" value="{{old('annee')}}">
 			</div>
 		</form>
+	</div>
 		<!--list des voitures-->
-		<div class="album flex-fill d-flex flex-row flex-sm-wrap">
-			
-			<!--une voiture-->
-			<div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
-				<img src="{{asset('assets/img/tesla-blanc.png')}}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+	<!-- <div class="album flex-fill d-flex flex-row flex-sm-wrap bg-secondary"> -->
+	<div class="row col-12 cards-container col-sm-6 mx-4">
+		
+		@forelse($voitures as $voiture)
+			<div class="card shadow-sm car-card col-12 col-sm-3 col-md-4 col-lg-3" >
+			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
+			{{--dump($voiture->photos)--}}
+						<img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
 				<div class="card-body text-start d-flex flex-column justify-content-start">
 					<p class="btn btn-sm btn-info align-self-end">nouveau</p>
-					<h4>Marque voiture</h4>
-					<p class="card-text" style="height: 72px; overflow: hidden;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+					<h4> voiture</h4>
+					<p class="card-text text-center p-3">{{ \Illuminate\Support\Str::limit($voiture->description_en, 50, $end='...') }}</p>
 					<p class="text-body-secondary">Montréal Québec Canada</p>
 					<h3 class="mb-3">7 777$</h3>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-						<a href="" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
-			<button type="button" class="btn btn-sm btn-outline-secondary">Réserver</button>
-						<button type="button" class="btn btn-sm btn-outline-secondary">Ajouter au</button>
-						
+							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
+							<form action="{{ route('panier.store') }}" method="POST">
+								@csrf
+								<input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
+								<button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
+							</form>
 						</div>
-						<small class="text-body-secondary">disponible depuis 6 mois</small>
+							<small class="text-body-secondary">disponible depuis 6 mois</small>
 					</div>
 				</div>
 			</div>
 
-	@forelse($voitures as $voiture)
-
-        <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;">
-        @foreach($photos as $photo)
-          @if( $photo->photo_voiture_id == $voiture->id )
-          <img src="{{ asset('images/'. $photo->photo_voiture_id .'/' . $photo->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
-          @endif
-          @endforeach
-			<div class="card-body text-start d-flex flex-column justify-content-start">
-				<p class="btn btn-sm btn-info align-self-end">nouveau</p>
-				<h4> voiture</h4>
-				<p class="card-text">{{ $voiture->description_en }}</p>
-				<p class="text-body-secondary">Montréal Québec Canada</p>
-				<h3 class="mb-3">7 777$</h3>
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
-					<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
-          <form action="{{ route('panier.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
-          <button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
-          </form>
-        </div>
-					<small class="text-body-secondary">disponible depuis 6 mois</small>
-				</div>
-			</div>
+		@empty
+		<div class="alert alert-danger ">There are no Cars to display!</div>
 		</div>
-
-	@empty
-			<div class="alert alert-danger">There are no Cars to display!</div>
-	@endforelse  
-
-	</div>
+		@endforelse  
 </div>
 @endsection
