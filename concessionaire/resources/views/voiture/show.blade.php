@@ -20,8 +20,8 @@
       <section class="col-lg-6">
         <div class="ps-lg-3">
           <h4 class="title text-dark mb-4 text-uppercase">
-            {{$voiture->modele->modele_en}} 
-            {{$marques->find($voiture->modele->modele_marque_id)->marque_en}}
+             
+            {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}
           </h4>
 
           <div class="mb-3">

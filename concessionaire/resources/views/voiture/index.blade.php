@@ -107,24 +107,26 @@
 			<div class="card shadow-sm car-card col-12 col-sm-3 col-md-4 col-lg-3" >
 			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
 			{{--dump($voiture->photos)--}}
-						<img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
+				<a href="{{route('voiture.show', $voiture->id)}}">
+					<img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
+				</a>
 				<div class="card-body text-start d-flex flex-column justify-content-start">
 					<p class="btn btn-sm btn-info align-self-end">nouveau</p>
-					<h4> voiture</h4>
-					<p class="card-text text-center p-3">{{ \Illuminate\Support\Str::limit($voiture->description_en, 50, $end='...') }}</p>
-					<p class="text-body-secondary">Montréal Québec Canada</p>
-					<h3 class="mb-3">7 777$</h3>
+					<h4> {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}</h4>
+					<p class="card-text  p-3">{{ \Illuminate\Support\Str::limit($voiture->description_en, 50, $end='...') }}</p>
+					<p class="text-body-secondary">{{$voiture->pays->pays_en}}</p>
+					<h3 class="mb-3">{{$voiture->prix_paye}}$</h3>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
+							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-primary">Voir plus</a>
 							<form action="{{ route('panier.store') }}" method="POST">
 								@csrf
 								<input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
 								<button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
 							</form>
 						</div>
-							<small class="text-body-secondary">disponible depuis 6 mois</small>
 					</div>
+					<small class="text-body-secondary pt-2">disponible depuis 6 mois</small>
 				</div>
 			</div>
 
