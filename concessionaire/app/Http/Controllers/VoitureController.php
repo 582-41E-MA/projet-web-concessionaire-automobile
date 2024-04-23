@@ -168,7 +168,7 @@ class VoitureController extends Controller
         $photosArray[] = $request -> photos;
         $path = public_path('images').'/'.$voiture -> id;
         // Check if the folder exists
-        return (Storage::exists($path));
+        // return (Storage::exists($path));
         if (Storage::exists($path)) {
             // Delete all files and subdirectories inside the folder
             Storage::deleteDirectory($path);
@@ -196,7 +196,7 @@ class VoitureController extends Controller
         // il faut peut-etre avoir un controlleur separé pour photo, pour l'ajout et la suppresion de photo
         // et chercher comment conserver les photos initialement uploadées, lorsqu'on clique sur upload une deuxieme fois. 
 
-        return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture created successfully!');
+        return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture updated successfully!');
 
     }
 

@@ -13,7 +13,7 @@
             <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">Ajouter un employé</a>
             <a href="{{ route('admin.voiture') }}" class="list-group-item list-group-item-action">Liste des véhicules</a>
             <a href="{{ route('voiture.create') }}" class="list-group-item list-group-item-action">Ajouter un véhicule</a>
-            <a href="{{ route('admin.client') }}" class="list-group-item list-group-item-action">Liste des clients</a>
+            <a href="#" class="list-group-item list-group-item-action">Liste des clients</a>
             <a href="#" class="list-group-item list-group-item-action">Liste des factures</a>
             <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
         </div>
@@ -32,10 +32,6 @@
                         <td>
                             @if ($user->privilege_id == 1)
                             Client
-                            @elseif ($user->privilege_id == 2)
-                            Employee
-                            @elseif ($user->privilege_id == 3)
-                            Admin
                             @endif
                         </td>
                         <td>{{ $user->name }}</td>

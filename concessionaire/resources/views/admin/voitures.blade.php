@@ -21,26 +21,20 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Rôle</th>
+                        <th scope="col">Voiture ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Option</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($users as $user)
+                    @forelse($voitures as $voiture)
                     <tr>
                         <td>
-                            @if ($user->privilege_id == 1)
-                            Client
-                            @elseif ($user->privilege_id == 2)
-                            Employee
-                            @elseif ($user->privilege_id == 3)
-                            Admin
-                            @endif
+                        {{ $voiture->id }}
                         </td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $voiture->modele->modele_en }}</td>
                         <td> 
-                            <a class="btn btn-sm btn-primary" href="{{ route('user.edit', $user->id)}}">Modifier</a> 
+                            <a class="btn btn-sm btn-primary" href="{{ route('voiture.edit', $voiture->id)}}">Modifier</a> 
                             <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal">Supprimer</button>
                         </td>
                         
@@ -68,7 +62,7 @@
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <form action="{{ route('user.delete', $user->id) }}" method="POST">
+        <form action="{{ route('voiture.delete', $voiture->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-info">Delete</button>

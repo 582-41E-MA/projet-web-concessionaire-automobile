@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Inscription')
+@section('title', 'Ajoute par admin')
 @section('content')
 <!-- gestion des erreur -->
     @if(!$errors->isEmpty())

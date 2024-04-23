@@ -17,7 +17,7 @@ Route::get('/', function () { return view('welcome'); })->name('accueil');
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');
 Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.politiques');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
 Route::post('/inscription', [UserController::class, 'store'])->name('user.store');
@@ -54,6 +54,9 @@ Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name(
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
 
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/adminclients', [AdminController::class, 'client'])->name('admin.client');
+Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.voiture');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
