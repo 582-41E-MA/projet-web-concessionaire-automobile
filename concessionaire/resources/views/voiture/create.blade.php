@@ -1,9 +1,32 @@
 @extends('layouts.app')
 @section('title','ajouter voiture')
 @section('content')
-
-<!-- create voiture form -->
 <div class="row justify-content-center mt-5 mb-5 text-center">
+    <!-- gestion des erreur -->
+    @if(!$errors->isEmpty())
+    <div class="container col-6">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+    <div class="row justify-content-center mt-5 mb-5 text-center">
+        <div class="list-group mb-4 me-5 col-4 col-lg-2">
+            <a href="{{ route('admin') }}" class="list-group-item list-group-item-action" aria-current="true">Liste des employés</a>
+            <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">Ajouter un employé</a>
+            <a href="{{ route('admin.voiture') }}" class="list-group-item list-group-item-action">Liste des véhicules</a>
+            <a href="{{ route('voiture.create') }}" class="list-group-item list-group-item-action active">Ajouter un véhicule</a>
+            <a href="{{ route('admin.client') }}" class="list-group-item list-group-item-action">Liste des clients</a>
+            <a href="#" class="list-group-item list-group-item-action">Liste des factures</a>
+            <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
+        </div>
+        <!-- create voiture form -->
         <form action="{{ route('voiture.store') }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST" enctype="multipart/form-data">
 
             @csrf
@@ -169,6 +192,7 @@
             <button class="btn btn-lg btn-primary w-100" type="submit">Enregistrer</button>
         </form>
     </div>
+</div>
     <!-- les scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
