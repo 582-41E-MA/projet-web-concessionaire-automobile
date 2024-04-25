@@ -27,7 +27,7 @@ print_r($locale)
                 @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}">@lang('Administrator')</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Admin' ? 'active' : '' }}" href="{{ route('admin') }}">@lang('Administrator')</a>
                 </li>
                 @endif
                 @if(Auth::user()->privilege_id != 1 )
@@ -58,7 +58,7 @@ print_r($locale)
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">@lang('Login')</a>
             @else
 
-                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">Panier</a>
+                <a class="btn btn-info mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">Panier</a>
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
             @endguest    
             </div>
