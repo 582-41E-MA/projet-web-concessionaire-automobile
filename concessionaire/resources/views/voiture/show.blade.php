@@ -7,9 +7,9 @@
     <div class="row gx-5">
       <aside class="col-lg-6">
         <div class="border rounded-4 mb-3 d-flex justify-content-center">
-            <img style=" max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('images/'.$voiture->id.'/'.$voiture->photos[0]->photo_titre)}}" />
+            <img style=" max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('images/'.$voiture->id.'/'.$voiture->photos[0]->photo_titre)}}" id="imglarge"/>
         </div>
-        <div class="d-flex justify-content-center mb-3">
+        <div class="d-flex justify-content-center mb-3" id="imglist">
           @foreach($voiture->photos as $photo)
             <img width="101" height="60" class="rounded-2" src="{{asset('images/'.$voiture->id.'/'.$photo->photo_titre)}}" />
           @endforeach
@@ -58,5 +58,17 @@
     </div>
   </div>
 </article>
+<script>
+  const imglarge = document.getElementById('imglarge');
+  const imglist = document.getElementById('imglist').children;
 
+  console.log(typeof imglist);
+  console.log(imglarge.src);
+
+  for (const i in imglist){
+    imglist[i].addEventListener('click', function(e){
+      imglarge.src = e.target.src;
+    });
+  };
+</script>
 @endsection
