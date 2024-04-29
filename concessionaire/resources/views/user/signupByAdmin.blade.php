@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Ajoute par admin')
+@section('title', 'Admin')
 @section('content')
 <div class="column justify-content-centerr mt-5 mb-5 text-center">
     <!-- gestion des erreur -->

@@ -1,14 +1,38 @@
 @extends('layouts.app')
-@section('title','Modifier une voiture')
+@section('title','Modifier voiture')
 @section('content')
 
-<!-- create voiture form -->
 <div class="row justify-content-center mt-5 mb-5 text-center">
-        <form action="{{ route('voiture.edit', $voiture->id) }}" class="form-signin col-sm-4 mb-3" method="POST" enctype="multipart/form-data">
+    <!-- gestion des erreur -->
+    @if(!$errors->isEmpty())
+    <div class="container col-6">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+    <div class="row justify-content-center mt-5 mb-5 text-center">
+        <div class="list-group mb-4 me-5 col-4 col-lg-2">
+            <a href="{{ route('admin') }}" class="list-group-item list-group-item-action" aria-current="true">Liste des employés</a>
+            <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">Ajouter un employé</a>
+            <a href="{{ route('admin.voiture') }}" class="list-group-item list-group-item-action">Liste des véhicules</a>
+            <a href="{{ route('voiture.create') }}" class="list-group-item list-group-item-action">Ajouter un véhicule</a>
+            <a href="{{ route('admin.client') }}" class="list-group-item list-group-item-action">Liste des clients</a>
+            <a href="#" class="list-group-item list-group-item-action">Liste des factures</a>
+            <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
+        </div>
+        <!-- create voiture form -->
+        <form action="{{ route('voiture.edit', $voiture->id) }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST" enctype="multipart/form-data">
             @csrf
             @method('put')
 
-            <h1 class="h3 mb-3 font-weight-normal">Modifier une voiture</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Modifier voiture</h1>
 
             <!-- photos de la voiture -->
             <div class="form-group mb-3 text-start">
@@ -158,8 +182,8 @@
                 @endif
             </div>
 
-             <!-- pays -->
-             <div class="form-group mb-3 text-start">
+                <!-- pays -->
+                <div class="form-group mb-3 text-start">
                 <label for="inputPays" class="form-label">Pays d'origine</label>
                 <select name="pays" id="inputPays" class="form-control">
                         <option value="" >Choisir le pays</option>
@@ -178,66 +202,67 @@
             <button class="btn btn-lg btn-primary w-100" type="submit">Enregistrer</button>
         </form>
     </div>
-    <!-- les scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+</div>
+<!-- les scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
-        //generer les thumbnails des images de voitures uploadées
-        document.getElementById('inputPhotos').addEventListener('change', function(event) {
-            const thumbnailsContainer = document.getElementById('thumbnails');
-            while (thumbnailsContainer.firstChild) { 
-                // thumbnailsContainer.removeChild(thumbnailsContainer.firstChild); 
-                // OR 
-                thumbnailsContainer.firstChild.remove(); 
-            }
-            const files = event.target.files;
-        
-            Array.from(files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                const thumbnail = createThumbnail(e.target.result, file);
-                thumbnailsContainer.appendChild(thumbnail);
-            };
-            reader.readAsDataURL(file);
-        });
-        });
-
-        function createThumbnail(src, file) {        
-            const thumbnailContainer = document.createElement('div');
-            thumbnailContainer.classList.add('thumbnail');
-            thumbnailContainer.classList.add('card');
-
-            const img = document.createElement('img');
-            img.src = src;
-            thumbnailContainer.appendChild(img);
-
-            return thumbnailContainer;
+    //generer les thumbnails des images de voitures uploadées
+    document.getElementById('inputPhotos').addEventListener('change', function(event) {
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        while (thumbnailsContainer.firstChild) { 
+            // thumbnailsContainer.removeChild(thumbnailsContainer.firstChild); 
+            // OR 
+            thumbnailsContainer.firstChild.remove(); 
         }
-        //generer les modeles en fonction de la marque choisie
-        $(document).ready(function() {
-            $('#inputMarque').change(function() {
-                var oldModele = "{{ old('modele') }}";
-                var marqueId = $(this).val();
-                if (marqueId) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/modeles/"+marqueId,
-                        success: function(modeles) {
-                            $('#inputModele').empty();
-                            $.each(modeles, function(key, value) {
-                                $('#inputModele').append('<option value="' + value.id + '" >' + value.modele_en + '</option>');
-                            });
-                            console.log(oldmodele);
-                            $('#inputModele').prop('disabled', false);
-                        }
-                    });
-                } else {
-                    $('#inputModele').empty();
-                    $('#inputModele').prop('disabled', true);
-                }
-            });
-        });
+        const files = event.target.files;
+    
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+            const thumbnail = createThumbnail(e.target.result, file);
+            thumbnailsContainer.appendChild(thumbnail);
+        };
+        reader.readAsDataURL(file);
+    });
+    });
 
-    </script>
+    function createThumbnail(src, file) {        
+        const thumbnailContainer = document.createElement('div');
+        thumbnailContainer.classList.add('thumbnail');
+        thumbnailContainer.classList.add('card');
+
+        const img = document.createElement('img');
+        img.src = src;
+        thumbnailContainer.appendChild(img);
+
+        return thumbnailContainer;
+    }
+    //generer les modeles en fonction de la marque choisie
+    $(document).ready(function() {
+        $('#inputMarque').change(function() {
+            var oldModele = "{{ old('modele') }}";
+            var marqueId = $(this).val();
+            if (marqueId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/modeles/"+marqueId,
+                    success: function(modeles) {
+                        $('#inputModele').empty();
+                        $.each(modeles, function(key, value) {
+                            $('#inputModele').append('<option value="' + value.id + '" >' + value.modele_en + '</option>');
+                        });
+                        console.log(oldmodele);
+                        $('#inputModele').prop('disabled', false);
+                    }
+                });
+            } else {
+                $('#inputModele').empty();
+                $('#inputModele').prop('disabled', true);
+            }
+        });
+    });
+
+</script>
 
 @endsection
