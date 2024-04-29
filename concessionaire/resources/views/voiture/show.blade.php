@@ -59,11 +59,9 @@
   </div>
 </article>
 <script>
+  /** changer l'image lorsque cliquer */
   const imglarge = document.getElementById('imglarge');
   const imglist = document.getElementById('imglist').children;
-
-  console.log(typeof imglist);
-  console.log(imglarge.src);
 
   for (const i in imglist){
     imglist[i].addEventListener('click', function(e){

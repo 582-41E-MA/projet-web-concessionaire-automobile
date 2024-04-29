@@ -117,15 +117,10 @@
 					<h3 class="mb-3">{{$voiture->prix_paye}}$</h3>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-primary">Voir plus</a>
-							<form action="{{ route('panier.store') }}" method="POST">
-								@csrf
-								<input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
-								<button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
-							</form>
+							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
 						</div>
 					</div>
-					<small class="text-body-secondary pt-2">disponible depuis 6 mois</small>
+					<small class="text-body-secondary pt-2">disponible depuis {{$voiture->date_arrivee}}</small>
 				</div>
 			</div>
 

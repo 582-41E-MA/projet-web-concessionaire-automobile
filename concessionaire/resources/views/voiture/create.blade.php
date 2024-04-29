@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','ajouter voiture')
+@section('title','Ajouter voiture')
 @section('content')
 <div class="row justify-content-center mt-5 mb-5 text-center">
     <!-- gestion des erreur -->

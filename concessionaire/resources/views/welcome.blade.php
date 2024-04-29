@@ -26,7 +26,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>
