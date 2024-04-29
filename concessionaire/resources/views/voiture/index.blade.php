@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title','Tous les voitures')
+@section('title')
+    @lang('Cars list')
+@endsection
 @section('content')
 <!-- <div class="row justify-content-center mt-5 mb-5 text-center"> -->
 <div class="row justify-content-center">
@@ -102,7 +104,6 @@
 		<!--list des voitures-->
 	<!-- <div class="album flex-fill d-flex flex-row flex-sm-wrap bg-secondary"> -->
 	<div class="row col-12 cards-container col-sm-6 mx-4 ">
-		{{--dump()--}}
 		@forelse($voitures as $voiture)
 			<div class="card shadow-sm car-card col-12 col-sm-3 col-md-4 col-lg-3" >
 			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
@@ -118,15 +119,10 @@
 					<h3 class="mb-3">{{$voiture->prix_paye}}$</h3>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-primary">Voir plus</a>
-							<form action="{{ route('panier.store') }}" method="POST">
-								@csrf
-								<input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
-								<button type="submit" class="btn btn-sm btn-outline-secondary">Réserver (Ajouter au panier)</button>
-							</form>
+							<a href="{{route('voiture.show', $voiture->id)}}" type="button" class="btn btn-sm btn-outline-secondary">Voir plus</a>
 						</div>
 					</div>
-					<small class="text-body-secondary pt-2">disponible depuis 6 mois</small>
+					<small class="text-body-secondary pt-2">disponible depuis {{$voiture->date_arrivee}}</small>
 				</div>
 			</div>
 

@@ -51,7 +51,48 @@
     "Content" : "Contenu",
     "Confirm suppression" : "Voulez-vous vraiment supprimer l'article?",
     "New" : "Nouveau",
-    "User" : "Utilisateur"
+    "User" : "Utilisateur",
+    "Car" : "Voiture",
+    "Find a car" : "Trouver une voiture",
+    "Add a car" : "Ajouter une voiture",
+    "Edit a car" : "Modifier une voiture",
+    "Sales policy" : "Politiques de vente",
+    "About us" : "À propos de nous",
+    "Contact us" : "Nous contacter",
+    "Cart" : "Panier",
+    "Home" : "Accueil",
+    "Welcome to" : "Bienvenue chez",
+    "Cars list" : "liste des voitures",
+    "Employees list" : "Liste des employés",
+    "Add an employee" : "Ajouter un employé",
+    "Clients list" : "Liste des clients",
+    "Invoices list" : "Liste des factures",
+    "Upload pictures" : "Téléverser des photos",
+    "French description" : "Description en français",
+    "English description" : "Description en anglais",
+    "Year" : "Année",
+    "Arrival date" : "Date d'arivée",
+    "Base price" : "Prix de base",
+    "Increase rate" : "Taux d'augmentation",
+    "Price" : "Prix à payer",
+    "Bodywork" : "Carrosserie",
+    "Select bodywork" : "Choisir la carrosserie",
+    "Brand" : "Marque",
+    "Select brand" : "Choisir la Marque",
+    "Model" : "Modele",
+    "Select model" : "Choisir le modele",
+    "Country of origin" : "Pays d'origine",
+    "Select country" : "Choisir le pays",
+    "Save" : "Enregistrer",
+    "Buy now" : "Acheter maintenant",
+    "Add to cart" : "Ajouter au panier",
+    "Reserve" : "Réserver"
+
+
+
+
+
+
 
 
 

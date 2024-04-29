@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Inscription')
+@section('title', 'Admin')
 @section('content')
-<!-- gestion des erreur -->
+<div class="column justify-content-centerr mt-5 mb-5 text-center">
+    <!-- gestion des erreur -->
     @if(!$errors->isEmpty())
-    <div class="container">
-
+    <div class="container col-6">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
                 @foreach($errors->all() as $error)
@@ -14,13 +14,15 @@
             
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif
+    </div>
+    @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
+       <!-- component de menu de l'admin -->
+       <x-admin-menu/>
         <form action="{{ route('user.edit', $user->id) }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
             @csrf
             @method('put')
-            <a href="{{asset('/')}}"><img class="mb-4" src="{{asset('assets/img/logo.png')}}" alt="logo" width="176" height="155"></a>
-            <h1 class="h3 mb-3 font-weight-normal">Modifier votre compte</h1>         
+            <h1 class="h3 mb-3 font-weight-normal">Modifier Utilisateur</h1>         
             <!-- name -->
             <div class="form-group mb-3 text-start">
                 <label for="inputNom" class="sr-only form-label">Nom</label>
@@ -157,35 +159,35 @@
 
             <button class="btn btn-lg btn-primary w-100" type="submit">Modifier</button>
         </form>
-        <p>Vous avez déjà un compte ? <a href="{{ route('login') }}" class="link-underline-primary">Se connecter</a></p>
     </div>
+</div>
 
-    <!-- Script pour generer les villes a partir de la province selectionnée -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#inputProvince').change(function() {
-                var oldVille = "{{ old('ville') }}";
-                var provinceId = $(this).val();
-                if (provinceId) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/villes/"+provinceId,
-                        success: function(villes) {
-                            $('#inputVille').empty();
-                            $.each(villes, function(key, value) {
-                                $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>');
-                                // $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>').prop('selected', $('#inputVille').prop('value') !== null);
-                            });
-                            console.log(oldVille);
-                            $('#inputVille').prop('disabled', false);
-                        }
-                    });
-                } else {
-                    $('#inputVille').empty();
-                    $('#inputVille').prop('disabled', true);
-                }
-            });
+<!-- Script pour generer les villes a partir de la province selectionnée -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#inputProvince').change(function() {
+            var oldVille = "{{ old('ville') }}";
+            var provinceId = $(this).val();
+            if (provinceId) {
+                $.ajax({
+                    type: "GET",
+                    url: "/villes/"+provinceId,
+                    success: function(villes) {
+                        $('#inputVille').empty();
+                        $.each(villes, function(key, value) {
+                            $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>');
+                            // $('#inputVille').append('<option value="' + value.id + '" >' + value.ville_en + '</option>').prop('selected', $('#inputVille').prop('value') !== null);
+                        });
+                        console.log(oldVille);
+                        $('#inputVille').prop('disabled', false);
+                    }
+                });
+            } else {
+                $('#inputVille').empty();
+                $('#inputVille').prop('disabled', true);
+            }
         });
-    </script>
+    });
+</script>
 @endsection

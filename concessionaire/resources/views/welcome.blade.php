@@ -4,10 +4,10 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Bienvenue chez OZCARS</h1>
-        <p class="lead text-body-secondary">Votre prochaine aventure automobile commence ici.</p>
+        <h1 class="fw-light">@lang('Welcome to') OZCARS</h1>
+        <p class="lead text-body-secondary">@lang('lang.home.text_welcome_title')</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Trouver un véhicule</a>
+          <a href="#" class="btn btn-primary my-2">@lang('Find a car')</a>
         </p>
       </div>
     </div>
@@ -26,7 +26,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary">nouveau-arrivé</small>
               </div>
             </div>
           </div>

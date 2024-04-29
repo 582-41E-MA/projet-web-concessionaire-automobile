@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Voiture;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,28 @@ class AdminController extends Controller
 
         return view('admin.index', ['users' => $users]);
     }
+    /**
+     * Display a listing of the resource.
+     */
+    public function client()
+    {
+        //
+        $users = User::where('privilege_id', 1)->get();;
 
+        // return $user;
+
+        return view('admin.client', ['users' => $users]);
+    }
+    
+    public function voiture()
+    {
+        //
+        $voitures = Voiture::all();
+
+        // return $voiture;
+
+        return view('admin.voitures', ['voitures' => $voitures]);
+    }
     /**
      * Show the form for creating a new resource.
      */

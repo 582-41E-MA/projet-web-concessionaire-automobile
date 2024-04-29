@@ -21,34 +21,34 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('voiture.index') }}">Trouver un véhicule</a>
+                    <a class="nav-link" href="{{ route('voiture.index') }}">@lang('Find a car')</a>
                 </li>
                 @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}">@lang('Administrator')</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Admin' ? 'active' : '' }}" href="{{ route('admin') }}">@lang('Administrator')</a>
                 </li>
                 @endif
                 @if(Auth::user()->privilege_id != 1 )
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('voiture.create') }}">Ajouter un véhicule</a>
+                    <a class="nav-link" href="{{ route('voiture.create') }}">@lang('Add a car')</a>
                 </li>
                 @endif
                 @endauth
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">Politiques de vente</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">@lang('Sales policy')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'À propos de nous' ? 'active' : '' }}" href="{{asset('/about')}}">À propos de nous</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'À propos de nous' ? 'active' : '' }}" href="{{asset('/about')}}">@lang('About us')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">Nous contacter</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">@lang('Contact us')</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Langue</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') ({{$locale}})</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">
-                        <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">English</a></li>
-                        <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">Francais</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">@lang('English')</a></li>
+                        <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">@lang('French')</a></li>
                     </ul>
                 </li>
             </ul>
@@ -57,8 +57,8 @@
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">@lang('Login')</a>
             @else
 
-                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">Panier</a>
-                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">Deconnecter</a>
+                <a class="btn btn-info mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">@lang('Cart')</a>
+                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">@lang('Logout')</a>
             @endguest    
             </div>
         </div>
@@ -80,11 +80,11 @@
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="{{asset('/')}}" class="nav-link px-2 text-body-secondary">Accueil</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Trouver un véhicule</a></li>
-        <li class="nav-item"><a href="{{ route('pages.politiques') }}" class="nav-link px-2 text-body-secondary">Politiques de vente</a></li>
-        <li class="nav-item"><a href="{{ route('pages.aproposdenous') }}" class="nav-link px-2 text-body-secondary">À propos de nous</a></li>
-        <li class="nav-item"><a href="{{ route('pages.nouscontacter') }}" class="nav-link px-2 text-body-secondary">Nous contacter</a></li>
+        <li class="nav-item"><a href="{{asset('/')}}" class="nav-link px-2 text-body-secondary">@lang('Home')</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">@lang('Find a car')</a></li>
+        <li class="nav-item"><a href="{{ route('pages.politiques') }}" class="nav-link px-2 text-body-secondary">@lang('Sales policy')</a></li>
+        <li class="nav-item"><a href="{{ route('pages.aproposdenous') }}" class="nav-link px-2 text-body-secondary">@lang('About us')</a></li>
+        <li class="nav-item"><a href="{{ route('pages.nouscontacter') }}" class="nav-link px-2 text-body-secondary">@lang('Contact us')</a></li>
         </ul>
         <p class="text-center text-body-secondary">&copy; 2024 OZCARS, Inc</p>
     </footer>

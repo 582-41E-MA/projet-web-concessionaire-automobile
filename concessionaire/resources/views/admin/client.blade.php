@@ -25,10 +25,6 @@
                         <td>
                             @if ($user->privilege_id == 1)
                             Client
-                            @elseif ($user->privilege_id == 2)
-                            Employee
-                            @elseif ($user->privilege_id == 3)
-                            Admin
                             @endif
                         </td>
                         <td>{{ $user->name }}</td>
@@ -38,29 +34,6 @@
                         </td>
                         
                     </tr>
-
-                    {{-- Bootstrap Modal --}}
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="DeleteModalLabel">DELETE</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure to delete this task?
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <form action="{{ route('user.delete', $user->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-info">Delete</button>
-                            </form>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
                     @empty
                     <tr>
                         <td colspan="3" class="text-center">There are no users to display!</td>
@@ -71,5 +44,26 @@
         </div>
     </div>
 </div>
-
+{{-- Bootstrap Modal --}}
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="DeleteModalLabel">DELETE</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure to delete this task?
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form action="{{ route('user.delete', $user->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-info">Delete</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
 @endsection
