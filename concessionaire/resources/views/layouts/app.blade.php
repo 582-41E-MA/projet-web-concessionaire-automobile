@@ -10,7 +10,6 @@
 </head>
 <body class="d-flex flex-column h-100">
 @php $locale = session()->get('locale') @endphp
-
     <!--header-->
     
     @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
@@ -27,7 +26,7 @@
                 @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin') }}">Admin</a>
+                    <a class="nav-link" href="{{ route('admin') }}">@lang('Administrator')</a>
                 </li>
                 @endif
                 @if(Auth::user()->privilege_id != 1 )

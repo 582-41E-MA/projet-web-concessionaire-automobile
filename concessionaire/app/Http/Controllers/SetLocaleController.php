@@ -12,7 +12,8 @@ class SetLocaleController extends Controller
             abort(400);
         }
         // dump($locale);
-        session()->put('locale', $locale);
+        App::setlocale($locale);
+        Session::put('locale', $locale);
         return back();
      }
 }
