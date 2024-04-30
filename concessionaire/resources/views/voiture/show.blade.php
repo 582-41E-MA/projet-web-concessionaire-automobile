@@ -52,6 +52,7 @@
 
           <hr class="mb-4" />
 
+          @auth
           <a href="#" class="btn btn-info shadow-0">@lang('Buy now')</a>
           <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i>@lang('Reserve')</a>
           <form action="{{ route('panier.store') }}" method="post">
@@ -65,6 +66,7 @@
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
             <button type="submit" class="btn btn-primary shadow-0 border-0 me-1 fa fa-shopping-basket"> @lang('Add to cart') </button>
           </form>
+          @endauth
         </div>
       </section>
     </div>

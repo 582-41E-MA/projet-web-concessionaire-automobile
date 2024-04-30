@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Cart;
+use App\Models\Taxe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -15,15 +15,48 @@ class PanierController extends Controller
      */
     public function index()
     {
-        $panier = Session::get('panier');
-        // return $panier;
-
         $tps;
-        $tvq;
-        $total;
+        $tpsPanier;
+        $tvp;
+        $tvpPanier;
+        $total = 0;
         $totalTaxeInclue;
 
-        return view('panier.index', ['panier' => $panier]);
+        
+        $tauxTaxe = Taxe::where('taxe_province_id', Auth::user()->province_id)->get(); 
+        
+        foreach ($tauxTaxe as $taxe) {
+            if( $taxe['taxe_nom'] == 'TPS' ) {
+                $tps = $taxe['taxe_rate'];
+            } elseif ($taxe['taxe_nom'] == 'TVP' || $taxe['taxe_nom'] == 'TVQ' ) {
+                $tvp = $taxe['taxe_rate'];
+            };
+        }
+        // return $tauxTaxe;
+
+
+        $panier = Session::get('panier');
+        // return $panier;
+        
+        // calcul prix totale
+        foreach ($panier as $objVoiture) {
+            $total = $total + $objVoiture['prix'];
+        }
+
+        // calcule tps
+        $tpsPanier = $total * $tps;
+        // return $tpsPanier;    
+        
+        // calcule tvp
+        $tvpPanier = $total * $tvp;
+        
+        // calcule totale 
+        $totalTaxeInclue = $total + $tpsPanier + $tvpPanier;
+
+        // return $totalTaxeInclue;
+
+
+        return view('panier.index', ['panier' => $panier, 'total' => $total, 'tps' => $tpsPanier, 'tvp' => $tvpPanier, 'totalTaxeInclue' => $totalTaxeInclue ]);
     }
 
     /**
