@@ -146,8 +146,24 @@ class PanierController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        // return $request->voiture_id;
+    
+        if (Session::has('panier')) { 
+            $panier = Session::get('panier');
+            
+            foreach ($panier as $index => $objVoiture) {
+                if ($request->voiture_id == $objVoiture['voiture_id'] ) {
+                    unset($panier[$index]);
+                    Session::put('panier', $panier);
+
+                    return  redirect()->route('panier.index')->with('success', 'voiture retirer de panier successfully!');
+                    
+                }
+            }
+
+        }
     }
 }

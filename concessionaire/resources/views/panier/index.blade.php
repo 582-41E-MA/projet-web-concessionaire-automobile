@@ -46,9 +46,13 @@
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <h5 class="mb-0">$ {{ $voiture['prix'] }}</h5>
               </div>
-              <div class="col-md-2 col-lg-2 col-xl-2 text-end">
-                <a href="#" class="btn btn-info btn-md"><small>supprimer</small></a>
-              </div>
+              <form action="{{ route('panier.delete') }}" method="post">
+                @csrf
+                <input type="hidden" name="voiture_id" value="{{ $voiture['voiture_id'] }}">
+                <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                  <button type="submit" class="btn btn-info btn-md"><small>supprimer</small></button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

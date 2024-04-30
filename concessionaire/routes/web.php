@@ -61,6 +61,7 @@ Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.v
 
 Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('panier', [PanierController::class, 'store'])->name('panier.store');
+Route::post('panier/delete', [PanierController::class, 'destroy'])->name('panier.delete');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
