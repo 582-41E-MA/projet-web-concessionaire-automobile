@@ -3,7 +3,7 @@
 @section('content')
 <div class="column justify-content-centerr mt-5 mb-5 text-center">
     <!-- gestion des erreur -->
-    @if(!$errors->isEmpty())
+    <!-- @if(!$errors->isEmpty())
     <div class="container col-6">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
@@ -15,17 +15,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
-    @endif
+    @endif -->
     <div class="row justify-content-center mt-5 mb-5 text-center">
        <!-- component de menu de l'admin -->
        <x-admin-menu/>
         <form action="{{ route('user.edit', $user->id) }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
             @csrf
             @method('put')
-            <h1 class="h3 mb-3 font-weight-normal">Modifier Utilisateur</h1>         
+            <h1 class="h3 mb-3 font-weight-normal">@lang('Edit user')</h1>         
             <!-- name -->
             <div class="form-group mb-3 text-start">
-                <label for="inputNom" class="sr-only form-label">Nom</label>
+                <label for="inputNom" class="sr-only form-label">@lang('Name')</label>
                 <input name="name" type="text" id="inputNom" class="form-control" placeholder="Nom*" value="{{old('name', $user->name)}}" autofocus>
                 @if($errors->has('name'))
                     <div class="text-danger mt-2">
@@ -35,7 +35,7 @@
             </div>
             <!-- prenom -->
             <div class="form-group mb-3 text-start">
-                <label for="inputPrenom" class="sr-only form-label">Prénom</label>
+                <label for="inputPrenom" class="sr-only form-label">@lang('First name')</label>
                 <input name="prenom" type="text" id="inputPrenom" class="form-control" placeholder="Prenom*" value="{{old('prenom', $user->prenom)}}" autofocus>
                 @if($errors->has('name'))
                     <div class="text-danger mt-2">
@@ -46,7 +46,7 @@
             </div>
             <!-- anniversaire -->
             <div class="form-group mb-3 text-start">
-                <label for="inputAnniversaire" class="sr-only form-label">Anniversaire</label>
+                <label for="inputAnniversaire" class="sr-only form-label">@lang('Date of birth')</label>
                 <input name="anniversaire" type="date" id="inputAnniversaire" class="form-control" placeholder="Anniversaire*" value="{{old('anniversaire', $user->anniversaire )}}" autofocus>
                 @if($errors->has('anniversaire'))
                     <div class="text-danger mt-2">
@@ -56,7 +56,7 @@
             </div>
             <!-- adresse -->
             <div class="form-group mb-3 text-start">
-                <label for="inputAdresse" class="sr-only form-label">Adresse</label>
+                <label for="inputAdresse" class="sr-only form-label">@lang('Address')</label>
                 <input name="adresse" type="text" id="inputAdresse" class="form-control" placeholder="Adresse*" value="{{old('adresse', $user->adresse )}}" autofocus>
                 @if($errors->has('adresse'))
                     <div class="text-danger mt-2">
@@ -66,7 +66,7 @@
             </div>
             <!-- code postal -->
             <div class="form-group mb-3 text-start">
-                <label for="inputCode_postal" class="sr-only form-label">Code Postal</label>
+                <label for="inputCode_postal" class="sr-only form-label">@lang('Postal code')</label>
                 <input name="code_postal" type="text" id="inputCode_postal" class="form-control" placeholder="Code Postal*" value="{{old('code_postal', $user->code_postal)}}" autofocus>
                 @if($errors->has('code_postal'))
                     <div class="text-danger mt-2">
@@ -76,9 +76,9 @@
             </div>
             <!-- province -->
             <div class="form-group mb-3 text-start">
-                <label for="inputProvince" class="form-label">Province</label>
+                <label for="inputProvince" class="form-label">@lang('State')</label>
                 <select name="province" id="inputProvince" class="form-control">
-                        <option value="" >Choisir la province</option>
+                        <option value="" >@lang('Select state')</option>
                     @foreach($provinces as $province)
                         <option value="{{$province->id}}" @if($province->id == $user->province_id) selected @endif >{{ $province->province_en }}</option>
 
@@ -92,9 +92,9 @@
             </div>
             <!-- ville -->
             <div class="form-group mb-3 text-start">
-                <label for="inputVille" class="form-label">Ville</label>
+                <label for="inputVille" class="form-label">@lang('City')</label>
                 <select name="ville" id="inputVille" class="form-control">
-                        <option value="" >Choisir ville</option>
+                        <option value="" >@lang('Select a city')</option>
                         @foreach($villes as $ville)
                         <option value="{{$ville->id}}" @if($ville->id == $user->ville_id) selected @endif >{{ $ville->ville_en }}</option>
 
@@ -110,7 +110,7 @@
             <!-- telephone -->
             <div class="d-flex  gap-4">
                 <div class="form-group mb-3 text-start w-50">
-                    <label for="inputTelephone" class="sr-only form-label">Telephone</label>
+                    <label for="inputTelephone" class="sr-only form-label">@lang('Phone')</label>
                     <input name="telephone" type="tel" id="inputTelephone" class="form-control" placeholder="Téléphone"  value="{{old('telephone', $user->telephone)}}" autofocus>
                     @if($errors->has('telephone'))
                     <div class="text-danger mt-2">
@@ -120,7 +120,7 @@
                 </div>
                 <!-- telephone_portable -->
                 <div class="form-group mb-3 text-start w-50">
-                    <label for="inputTelephone_portable" class="sr-only form-label">Telephone Portable</label>
+                    <label for="inputTelephone_portable" class="sr-only form-label">@lang('Cell phone')</label>
                     <input name="telephone_portable" type="tel" id="inputTelephone_portable" class="form-control" placeholder="Téléphone Portable"  value="{{old('telephone_portable', $user->telephone_portable)}}" autofocus>
                     @if($errors->has('telephone_portable'))
                     <div class="text-danger mt-2">
@@ -131,7 +131,7 @@
             </div>
             <!-- courriel -->
             <div class="form-group mb-3 text-start">
-                <label for="inputEmail" class="sr-only form-label">Courriel</label>
+                <label for="inputEmail" class="sr-only form-label">@lang('Email')</label>
                 <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Courriel*"  value="{{old('email', $user->email)}}" autofocus>
                 @if($errors->has('email'))
                     <div class="text-danger mt-2">
@@ -142,7 +142,7 @@
 
             <!-- privilege -->
             <div class="form-group mb-3 text-start">
-                <label for="inputProvince" class="form-label">privilege</label>
+                <label for="inputProvince" class="form-label">@lang('Role')</label>
                 <select name="privilege_id" id="inputProvince" class="form-control">
                         
                     @foreach($privileges as $privilege)
@@ -157,7 +157,7 @@
                 @endif
             </div>
 
-            <button class="btn btn-lg btn-primary w-100" type="submit">Modifier</button>
+            <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Edit')</button>
         </form>
     </div>
 </div>
