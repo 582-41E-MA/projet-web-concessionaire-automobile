@@ -117,10 +117,10 @@
 		<!--list des voitures-->
 	<!-- <div class="album flex-fill d-flex flex-row flex-sm-wrap bg-secondary"> -->
 		
+		@php session('locale')=='en'? $description = 'description_en' : $description = 'description_fr' @endphp
 		<div class="row col-12 cards-container col-sm-6 mx-4 ">
 			@forelse($voitures as $voiture)
 			<div class="card shadow-sm car-card col-12 col-sm-3 col-md-4 col-lg-3" >
-				@php session('locale')=='en'? $marque = 'marque_en' : $marque = 'marque_fr' @endphp
 
 			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
 				<a href="{{route('voiture.show', $voiture->id)}}">
@@ -128,8 +128,8 @@
 				</a>
 				<div class="card-body text-start d-flex flex-column justify-content-start">
 					<p class="btn btn-sm btn-info align-self-end">@lang('New')</p>
-					<h4> {{$marques->find($voiture->modele->modele_marque_id)->$marque}} {{$voiture->modele->modele_en}}</h4>
-					<p class="card-text  p-3">{{ \Illuminate\Support\Str::limit($voiture->description_en, 50, $end='...') }}</p>
+					<h4> {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}</h4>
+					<p class="card-text ">{{ \Illuminate\Support\Str::limit($voiture->$description, 50, $end='...') }}</p>
 					<p class="text-body-secondary">{{$voiture->pays->pays_en}}</p>
 					<h3 class="mb-3">{{$voiture->prix_paye}}$</h3>
 					<div class="d-flex justify-content-between align-items-center">

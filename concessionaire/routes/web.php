@@ -12,7 +12,7 @@ use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\SetLocaleController;
 
-Route::get('/', function () { return view('welcome'); })->name('accueil');
+Route::get('/', [VoitureController::class, 'latest'])->name('accueil');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');

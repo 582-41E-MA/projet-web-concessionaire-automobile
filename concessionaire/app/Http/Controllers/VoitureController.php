@@ -35,6 +35,17 @@ class VoitureController extends Controller
         $marques = Marque::all(); 
         return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques]);
     }
+    /**
+     * Display a listing of the resource.
+     */
+    public function latest()
+    {
+        //
+        $voitures = Voiture::latest()->take(3)->get();
+        $photos = Photo::all(); 
+        $marques = Marque::all(); 
+        return view('welcome', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques]);
+    }
 
     //  * Show the form for creating a new resource.
     //  */
