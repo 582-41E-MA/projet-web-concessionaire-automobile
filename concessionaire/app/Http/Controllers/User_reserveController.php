@@ -21,7 +21,7 @@ class User_reserveController extends Controller
             $voitures_reservee[] = Voiture::find($reservation->ur_voiture_id);
         };
 
-        return view('panier.index');
+        return view('panier.reserver');
     }
 
     /**

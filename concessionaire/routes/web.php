@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoitureController; 
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\SetLocaleController;
+use App\Http\Controllers\PanierController;
 
 Route::get('/', function () { return view('welcome'); })->name('accueil');
 
@@ -25,8 +26,8 @@ Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edi
 Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
-Route::get('/panier', [User_reserveController::class, 'index'])->name('panier.index');
-Route::post('/panier', [User_reserveController::class, 'store'])->name('panier.store');
+Route::get('/reservation', [User_reserveController::class, 'index'])->name('reservation.index');
+Route::post('/reservation', [User_reserveController::class, 'store'])->name('reservation.store');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 
@@ -57,6 +58,9 @@ Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/adminclients', [AdminController::class, 'client'])->name('admin.client');
 Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.voiture');
+
+Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
+Route::post('panier', [PanierController::class, 'store'])->name('panier.store');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
