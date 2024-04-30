@@ -124,9 +124,10 @@
             <div class="form-group mb-3 text-start">
                 <label for="inputCarrosserie" class="form-label">@lang('Bodywork')</label>
                 <select name="carrosserie" id="inputCarrosserie" class="form-control">
+                @php session('locale')=='en'? $carro = 'carrosserie_fr' : $carro = 'carrosserie_en' @endphp
                         <option value="" >@lang('Select bodywork')</option>
                     @foreach($carrosseries as $carrosserie)
-                        <option value="{{$carrosserie->id}}" @if($carrosserie->id == old('carrosserie')) selected @endif >{{ $carrosserie->carrosserie_en }}</option>
+                        <option value="{{$carrosserie->id}}" @if($carrosserie->id == old('carrosserie')) selected @endif >{{ $carrosserie->$carro }}</option>
 
                         @endforeach
                 </select>
@@ -169,11 +170,12 @@
 
              <!-- pays -->
              <div class="form-group mb-3 text-start">
+             @php session('locale')=='en'? $lePays = 'pays_en' : $lePays = 'pays_fr' @endphp
                 <label for="inputPays" class="form-label">@lang('Country of origin')</label>
                 <select name="pays" id="inputPays" class="form-control">
                         <option value="" >@lang('Select country')</option>
                     @foreach($pays as $pays)
-                        <option value="{{$pays->id}}" @if($pays->id == old('pays')) selected @endif >{{ $pays->pays_en }}</option>
+                        <option value="{{$pays->id}}" @if($pays->id == old('pays')) selected @endif >{{ $pays->$lePays }}</option>
 
                         @endforeach
                 </select>

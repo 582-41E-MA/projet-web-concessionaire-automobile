@@ -5,4 +5,8 @@ return [
     
     ),
 
+    "catalogue" => array(
+        "no_cars" => "There are no Cars to display!",
+    ),
+
 ];

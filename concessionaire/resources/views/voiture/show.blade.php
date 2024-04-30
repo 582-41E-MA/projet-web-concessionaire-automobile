@@ -30,18 +30,19 @@
             <span class="h1">{{$voiture->prix_paye}}</span>
             <span class="text-muted">CAD</span>
           </div>
-
+          @php session('locale')=='en'? $description = 'description_en' : $description = 'description_fr' @endphp
           <p>
-          {{$voiture->description_en}}
+          {{$voiture->$description}}
           </p>
 
           <div class="row">
             {{--dump($voiture->photos)--}}
             <dt class="col-3">@lang('Year'):</dt>
             <dd class="col-9">{{$voiture->annee}}</dd>
-
+            <!-- carrosserie_en et carrosserie_fr sont inversés dans la bd -->
+            @php session('locale')=='en'? $carrosserie = 'carrosserie_fr' : $carrosserie = 'carrosserie_en' @endphp
             <dt class="col-3">@lang('Bodywork')</dt>
-            <dd class="col-9">{{$voiture->carrosserie->carrosserie_en}}</dd>
+            <dd class="col-9">{{$voiture->carrosserie->$carrosserie}}</dd>
 
             <dt class="col-3">@lang('Country of origin')</dt>
             <dd class="col-9">{{$voiture->pays->pays_en}}</dd>
