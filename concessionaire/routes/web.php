@@ -59,9 +59,15 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/adminclients', [AdminController::class, 'client'])->name('admin.client');
 Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.voiture');
 
+Route::get('/adminfiltreEmployee', [AdminController::class, 'filtreEmployee'])->name('admin.filtreEmployee');
+Route::get('/adminfiltreClient', [AdminController::class, 'filtreClient'])->name('admin.filtreClient');
+Route::get('/adminfiltreVoiture', [AdminController::class, 'filtreVoiture'])->name('admin.filtreVoiture');
+
 Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('panier', [PanierController::class, 'store'])->name('panier.store');
 Route::post('panier/delete', [PanierController::class, 'destroy'])->name('panier.delete');
+
+
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
