@@ -72,13 +72,17 @@ class VoitureController extends Controller
             'date_arrivee' => 'required|date',
             'prix_base' => 'required|numeric',
             'taux_augmenter' => 'required|numeric|min:0|max:100',
-            'prix_paye' => 'required|numeric',
             'carrosserie' => 'required|numeric',
             'marque' => 'required|numeric',
             'modele' => 'required|numeric',
             'pays' => 'required|numeric',
         ]);
-        // return Auth::id();
+
+        //calcule de prix_paye
+
+        $prix_benefice = ($request->taux_augmenter / 100) * $request->prix_base;
+        $prix_paye = $prix_benefice + $request->prix_base;
+
         $voiture = Voiture::create([
             'description_fr' => $request->description_fr,
             'description_en' => $request->description_en,
@@ -86,7 +90,7 @@ class VoitureController extends Controller
             'date_arrivee' => $request -> date_arrivee,
             'prix_base' => $request->prix_base,
             'taux_augmenter' => $request->taux_augmenter,
-            'prix_paye' => $request->prix_paye,
+            'prix_paye' => $prix_paye,
             'modele_id' => $request->modele,
             'carrosserie_id' => $request->carrosserie,
             'employe_id' => Auth::id(),

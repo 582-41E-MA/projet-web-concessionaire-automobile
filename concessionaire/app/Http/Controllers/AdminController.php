@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Voiture;
+use App\Models\Modele;
 
 use Illuminate\Http\Request;
 
@@ -14,20 +15,19 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
-        $users = User::all();
-
-        // return $user;
+        //Liste des employés
+        $users =    User::whereNot('privilege_id', 1)->get();
 
         return view('admin.index', ['users' => $users]);
     }
+
     /**
      * Display a listing of the resource.
      */
     public function client()
     {
-        //
-        $users = User::where('privilege_id', 1)->get();;
+        //Liste des clients
+        $users = User::where('privilege_id', 1)->get();
 
         // return $user;
 
@@ -36,13 +36,68 @@ class AdminController extends Controller
     
     public function voiture()
     {
-        //
+        //Liste Voitures
         $voitures = Voiture::all();
 
         // return $voiture;
 
         return view('admin.voitures', ['voitures' => $voitures]);
     }
+
+        /**
+     * Display a listing of the resource.
+     */
+    public function filtreEmployee(Request $request)
+    {
+        //
+        // return $request->search;
+        $users = User::whereNot('privilege_id', 1)
+                        ->where('name', 'REGEXP', $request->search)
+                        ->orWhere('prenom', 'REGEXP', $request->search)
+                        ->get();
+
+        // return $users;
+
+        return view('admin.index', ['users' => $users]);
+    }
+    public function filtreClient(Request $request)
+    {
+
+        $users = User::where('privilege_id', 1)
+        ->where(function($query) use ($request) {
+            $query->where('name', 'REGEXP', $request->search)
+                    ->orWhere('prenom', 'REGEXP', $request->search);
+        })
+        ->get();                
+
+        // return $users;
+
+        return view('admin.client', ['users' => $users]);
+    }
+    public function filtreVoiture(Request $request)
+    {
+        //
+        $modeleIds = [];
+        $modeles = Modele::where('modele_en', 'REGEXP', $request->search)->get();
+        // return $modeles;
+
+        foreach ($modeles as $modele) {
+            $modeleIds[] = $modele->id;
+        }
+
+        // return $modeleIds;
+        if (isset($modeleIds[0])) {
+            $voitures = Voiture::whereIn('modele_id', $modeleIds)->get();
+            return view('admin.voitures', ['voitures' => $voitures]);
+        } else {
+            $voitures = [];
+            return view('admin.voitures', ['voitures' => $voitures]);
+        }
+
+        // return $voitures;
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

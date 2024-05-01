@@ -22,7 +22,6 @@
       <section class="col-lg-6">
         <div class="ps-lg-3">
           <h4 class="title text-dark mb-4 text-uppercase">
-             
             {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}
           </h4>
 
@@ -53,9 +52,21 @@
 
           <hr class="mb-4" />
 
+          @auth
           <a href="#" class="btn btn-info shadow-0">@lang('Buy now')</a>
-          <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i>@lang('Add to cart')</a>
           <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i>@lang('Reserve')</a>
+          <form action="{{ route('panier.store') }}" method="post">
+            @csrf
+              <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
+              <input type="hidden" name="photo_principale" value=" {{ $voiture->photos[0]['photo_titre'] }} ">
+              <input type="hidden" name="marque" value="{{$marques->find($voiture->modele->modele_marque_id)->marque_en}}" >
+              <input type="hidden" name="modele" value="{{$voiture->modele->modele_en}}" >
+              <input type="hidden" name="prix" value="{{$voiture->prix_paye}}" >
+              <input type="hidden" name="province_user_id" value="{{ Auth::user()->province_id }}" >
+              <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
+            <button type="submit" class="btn btn-primary shadow-0 border-0 me-1 fa fa-shopping-basket"> @lang('Add to cart') </button>
+          </form>
+          @endauth
         </div>
       </section>
     </div>

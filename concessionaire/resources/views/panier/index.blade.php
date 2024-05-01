@@ -29,55 +29,37 @@
           </div>
         </div>
 
+      @forelse($panier as $voiture)
 
-        <!--une voiture-->
-        <div class="card rounded-3 mb-4">
+      <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img
-                  src="{{asset('assets/img/tesla-blanc.png')}}"
+                  src="{{asset('assets/img/'.$voiture['photo_principale'] )}}"
                   class="img-fluid rounded-3" alt="Cotton T-shirt">
               </div>
               <div class="col-md-5 col-lg-5 col-xl-5">
                 <p class="lead fw-normal mb-2">@lang('Car')</p>
-                <p><span class="text-muted">@lang('Brand'): </span>Tesla <span class="text-muted">@lang('Model'): </span>Model Y</p>
+                <p><span class="text-muted">@lang('Brand'): </span>{{ $voiture['marque'] }} <span class="text-muted">@lang('Model'): </span>{{ $voiture['modele'] }}</p>
               </div>
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$7777.00</h5>
+                <h5 class="mb-0">$ {{ $voiture['prix'] }}</h5>
               </div>
-              <div class="col-md-2 col-lg-2 col-xl-2 text-end">
-                <a href="#" class="btn btn-info btn-md"><small>@lang('Delete')</small></a>
-              </div>
+              <form action="{{ route('panier.delete') }}" method="post">
+                @csrf
+                <input type="hidden" name="voiture_id" value="{{ $voiture['voiture_id'] }}">
+                <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                  <button type="submit" class="btn btn-info btn-md"><small>@lang('Delete')</small></button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
 
-        
-        <!--une voiture-->
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="{{asset('assets/img/tesla-blanc.png')}}"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-5 col-lg-5 col-xl-5">
-                <p class="lead fw-normal mb-2">Titre de la voiture</p>
-                <p><span class="text-muted">Marque: </span>Tesla <span class="text-muted">Modèle: </span>Model Y</p>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$7777.00</h5>
-              </div>
-              <div class="col-md-2 col-lg-2 col-xl-2 text-end">
-                <a href="#" class="btn btn-info btn-md"><small>supprimer</small></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
+      @empty
+        <div class="alert alert-danger">There are no cars to display!</div>
+    @endforelse 
 
         <!--prix total-->
         <div class="card mb-4">
@@ -88,17 +70,17 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
                 Total
-                <span>$53579.98</span>
+                <span> $ {{ $total }}</span>
               </li>
               <!--taxes-->
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
                 TPS
-                <span>$455.66</span>
+                <span> $ {{ $tps }}</span>
               </li>
               <!--taxes-->
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
-                TVQ
-                <span>$257.34</span>
+                TVP
+                <span>$ {{ $tvp }}</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center border-top px-0 mb-3">
                 <div>
@@ -107,7 +89,7 @@
                     <p class="mb-0">(@lang('Taxes included'))</p>
                   </strong>
                 </div>
-                <span><strong>$56749.98</strong></span>
+                <span><strong>$ {{ $totalTaxeInclue }}</strong></span>
               </li>
             </ul>
 
@@ -149,11 +131,6 @@
                   <input class="form-check-input" type="radio" name="mode_paiement_id" value="4" id="virement">
                   <label class="form-check-label" for="virement">@lang('Etransfert')</label>
                 </div>
-                <div class="form-check mb-2 me-4">
-                  <input class="form-check-input" type="radio" name="mode_paiement_id" value="5" id="passerelle">
-                  <label class="form-check-label" for="passerelle">@lang('Payment gateway')</label>
-                </div>
-              </div>
               <!--afficher si payer avec card-->
               <div class="container text-start bg-light border-light rounded p-4 mb-5" id="cardDetail">
                 <h5 class="mb-3">@lang('Payment gateway')</h5>
