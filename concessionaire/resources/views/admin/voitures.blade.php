@@ -3,8 +3,8 @@
 @section('content')
 <div class="row justify-content-center mt-5 mb-5 text-center">
     <h1 class="mt-3 mb-3">Liste des véhicules</h1>
-    <form class="form-group my-2 my-lg-0 d-flex flex-row col-4">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-group my-2 my-lg-0 d-flex flex-row col-4" action="{{ route('admin.filtreVoiture') }}" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-primary my-2 my-sm-0" type="submit">Rechercher</button>
     </form>    
     <div class="d-flex flex-md-row flex-sm-column justify-content-center col-sm-11 col-md-10 col-lg-9 my-4">
@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Voiture ID</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Modele</th>
                         <th scope="col">Option</th>
                     </tr>
                 </thead>

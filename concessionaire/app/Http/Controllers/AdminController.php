@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Voiture;
+use App\Models\Modele;
 
 use Illuminate\Http\Request;
 
@@ -76,11 +77,25 @@ class AdminController extends Controller
     public function filtreVoiture(Request $request)
     {
         //
-        $users = User::all();
+        $modeleIds = [];
+        $modeles = Modele::where('modele_en', 'REGEXP', $request->search)->get();
+        // return $modeles;
 
-        // return $user;
+        foreach ($modeles as $modele) {
+            $modeleIds[] = $modele->id;
+        }
 
-        return view('admin.index', ['users' => $users]);
+        // return $modeleIds;
+        if (isset($modeleIds[0])) {
+            $voitures = Voiture::whereIn('modele_id', $modeleIds)->get();
+            return view('admin.voitures', ['voitures' => $voitures]);
+        } else {
+            $voitures = [];
+            return view('admin.voitures', ['voitures' => $voitures]);
+        }
+
+        // return $voitures;
+
     }
 
     /**
