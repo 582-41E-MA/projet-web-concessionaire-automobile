@@ -131,11 +131,6 @@
                   <input class="form-check-input" type="radio" name="mode_paiement_id" value="4" id="virement">
                   <label class="form-check-label" for="virement">virement bancaire</label>
                 </div>
-                <div class="form-check mb-2 me-4">
-                  <input class="form-check-input" type="radio" name="mode_paiement_id" value="5" id="passerelle">
-                  <label class="form-check-label" for="passerelle">passerelle de paiement (service externalisé)</label>
-                </div>
-              </div>
               <!--afficher si payer avec card-->
               <div class="container text-start bg-light border-light rounded p-4 mb-5" id="cardDetail">
                 <h5 class="mb-3">Détails de la carte</h5>

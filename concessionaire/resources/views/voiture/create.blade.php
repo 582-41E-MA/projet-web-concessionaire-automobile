@@ -110,7 +110,7 @@
             </div>
             
             <!-- prix_paye -->
-            <div class="form-group mb-3 text-start">
+            <!-- <div class="form-group mb-3 text-start">
                 <label for="inputPrix_paye" class="sr-only form-label">@lang('Price')</label>
                 <input name="prix_paye" type="number" min="0" id="inputPrix_paye" class="form-control" placeholder="prix_paye*" value="{{old('prix_paye')}}" autofocus>
                 @if($errors->has('prix_paye'))
@@ -118,7 +118,7 @@
                         {{ $errors->first('prix_paye')}}
                     </div>
                 @endif
-            </div>
+            </div> -->
 
             <!-- carrosserie -->
             <div class="form-group mb-3 text-start">
