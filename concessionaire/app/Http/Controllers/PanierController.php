@@ -15,12 +15,12 @@ class PanierController extends Controller
      */
     public function index()
     {
-        $tps;
-        $tpsPanier;
-        $tvp;
-        $tvpPanier;
+        $tps = 0;
+        $tpsPanier = 0;
+        $tvp = 0;
+        $tvpPanier = 0;
         $total = 0;
-        $totalTaxeInclue;
+        $totalTaxeInclue = 0;
 
         
         $tauxTaxe = Taxe::where('taxe_province_id', Auth::user()->province_id)->get(); 
@@ -34,7 +34,7 @@ class PanierController extends Controller
         }
         // return $tauxTaxe;
 
-
+        if (Session::has('panier')) { 
         $panier = Session::get('panier');
         // return $panier;
         
@@ -42,7 +42,6 @@ class PanierController extends Controller
         foreach ($panier as $objVoiture) {
             $total = $total + $objVoiture['prix'];
         }
-
         // calcule tps
         $tpsPanier = $total * $tps;
         // return $tpsPanier;    
@@ -52,11 +51,17 @@ class PanierController extends Controller
         
         // calcule totale 
         $totalTaxeInclue = $total + $tpsPanier + $tvpPanier;
-
+        
         // return $totalTaxeInclue;
-
-
+        
+        
         return view('panier.index', ['panier' => $panier, 'total' => $total, 'tps' => $tpsPanier, 'tvp' => $tvpPanier, 'totalTaxeInclue' => $totalTaxeInclue ]);
+    } else {
+        
+        $panier = [];
+        return view('panier.index', ['panier' => $panier, 'total' => $total, 'tps' => $tpsPanier, 'tvp' => $tvpPanier, 'totalTaxeInclue' => $totalTaxeInclue ]);
+    }
+
     }
 
     /**
@@ -124,7 +129,7 @@ class PanierController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
