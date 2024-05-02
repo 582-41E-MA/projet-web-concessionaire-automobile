@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    @lang('Login')
+@lang('Login')
 @endsection
 @section('content')
 

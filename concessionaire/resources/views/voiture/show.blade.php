@@ -51,20 +51,12 @@
           </div>
           <hr class="mb-4" />
           <!-- Auth::user() -->
-
+          <div class="d-flex gap-3">
             <form action="{{ route('reservation.store') }}" method="post">
               @csrf
               <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
               <button type="submit" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i>@lang('Reserve')</button>
             </form>
-
-
-            @if($voiture->user_reserve)
-							<div class="text-dark m-4 shadow-sm rounded border bg-light text-center pt-2"><h5>@lang('Reserved car')</h5>
-                <p><span class="text-muted text-center">@lang('Remaining time'): </span></p>
-              </div>
-            @endif
-            
               <a href="#" class="btn btn-info shadow-0">@lang('Buy now')</a> 
               <form action="{{ route('panier.store') }}" method="post">
                 @csrf
@@ -75,9 +67,15 @@
                 <input type="hidden" name="prix" value="{{$voiture->prix_paye}}" >
                 <input type="hidden" name="province_user_id" value="{{ Auth::user()->province_id }}" >
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
-                <button type="submit" class="btn btn-primary shadow-0 border-0 me-1 fa fa-shopping-basket"> @lang('Add to cart') </button>
+                <button type="submit" class="btn btn-primary p-2 shadow-0"> @lang('Add to cart') </button>
               </form>
+            </div>
         </div>
+        @if($voiture->user_reserve)
+							<div class="text-dark m-4 shadow-sm rounded border bg-light text-center pt-2"><h5>@lang('Reserved car')</h5>
+                <p><span class="text-muted text-center">@lang('Remaining time'): </span></p>
+              </div>
+            @endif
       </section>
     </div>
   </div>

@@ -67,7 +67,7 @@ class User_reserveController extends Controller
             ]);
         }else{
             
-            return redirect()->route('voiture.show', $request->voiture_id)->withSuccess('cette voiture est deja reservee');
+            return redirect()->route('reservation.index')->withSuccess('cette voiture est deja reservee');
         }
 
         return redirect()->route('reservation.index')->withSuccess('Voiture reservée avec succees');
