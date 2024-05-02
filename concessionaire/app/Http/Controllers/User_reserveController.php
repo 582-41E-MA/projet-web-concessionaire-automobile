@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User_reserve;
 use App\Models\Voiture;
+use App\Models\Marque;
 use Illuminate\Http\Request;
+// pour le calcul sur le temps
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class User_reserveController extends Controller
@@ -16,12 +19,17 @@ class User_reserveController extends Controller
     {
         //
         $reservations = User_reserve::where('ur_user_id', Auth::user()->id)->get(); 
+        $marques = Marque::all();
         
         foreach ($reservations as $reservation) {
-            $voitures_reservee[] = Voiture::find($reservation->ur_voiture_id);
+            $current_time = Carbon::now();
+            $temps_limite = $reservation->created_at->addDay();
+            $temps_restant = $temps_limite->diff($current_time);
+            // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
+            $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
         };
 
-        return view('panier.reserver');
+        return view('panier.reserver', ["voitures_reservees" => $voitures_reservees, "marques" => $marques ]);
     }
 
     /**
@@ -52,7 +60,7 @@ class User_reserveController extends Controller
             'ur_voiture_id' => $request->voiture_id
         ]);
 
-        return redirect()->route('panier.index')->withSuccess('Voiture ajouter au panier avec succees');
+        return redirect()->route('reservation.index')->withSuccess('Voiture reservée avec succees');
     }
 
     /**

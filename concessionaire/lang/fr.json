@@ -102,7 +102,11 @@
     "You don't have an account" : "Vous n'avez pas de compte",
     "Your email" : "Votre adresse courriel",
     "Your comment" : "Votre commentaire",
-    "Contact" : "Contacter"
+    "Contact" : "Contacter",
+    "Reserved cars" : "Voitures réservées",
+    "Remaining time" : "Temps restant",
+    "Reservation date" : "Date de réservation",
+    "Car number" : "Numero de voiture"
 
 
 }
