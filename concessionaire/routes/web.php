@@ -23,13 +23,15 @@ Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.p
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
 Route::post('/inscription', [UserController::class, 'store'])->name('user.store');
-Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
-Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
 
-Route::get('/reservation', [User_reserveController::class, 'index'])->name('reservation.index');
-Route::post('/reservation', [User_reserveController::class, 'store'])->name('reservation.store');
-Route::delete('/reservation/{reservation}', [User_reserveController::class, 'destroy'])->name('reservation.delete');
+Route::middleware('auth')->group(function () {
+    Route::get('/edit/user/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/edit/user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.delete');
+    Route::get('/reservation', [User_reserveController::class, 'index'])->name('reservation.index');
+    Route::post('/reservation', [User_reserveController::class, 'store'])->name('reservation.store');
+    Route::delete('/reservation/{reservation}', [User_reserveController::class, 'destroy'])->name('reservation.delete');
+});
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 
@@ -51,12 +53,16 @@ Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
+
+Route::middleware('auth')->group(function () {
 Route::get('/create/voiture', [VoitureController::class, 'create'])->name('voiture.create');
 Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voiture.store');
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
+});
 
+Route::middleware('auth')->group(function () {
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/adminclients', [AdminController::class, 'client'])->name('admin.client');
 Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.voiture');
@@ -64,10 +70,11 @@ Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.v
 Route::get('/adminfiltreEmployee', [AdminController::class, 'filtreEmployee'])->name('admin.filtreEmployee');
 Route::get('/adminfiltreClient', [AdminController::class, 'filtreClient'])->name('admin.filtreClient');
 Route::get('/adminfiltreVoiture', [AdminController::class, 'filtreVoiture'])->name('admin.filtreVoiture');
-
 Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('panier', [PanierController::class, 'store'])->name('panier.store');
 Route::post('panier/delete', [PanierController::class, 'destroy'])->name('panier.delete');
+});
+
 
 Route::post('checkout', [CommandeController::class, 'checkout'])->name('commande.checkout');
 Route::get('success', [CommandeController::class, 'success'])->name('commande.success');
