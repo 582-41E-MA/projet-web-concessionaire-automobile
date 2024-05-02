@@ -9,6 +9,7 @@ use App\Models\Carrosserie;
 use App\Models\Marque;
 use App\Models\Modele;
 use App\Models\Pays;
+use App\Models\User_reserve;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -32,10 +33,20 @@ class VoitureController extends Controller
     public function index()
     {
         //
+        $reservations = User_reserve::all(); 
         $voitures = Voiture::all();
         $photos = Photo::all(); 
-        $marques = Marque::all(); 
-        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques]);
+        $marques = Marque::all();
+        foreach ($voitures as $key => $voiture) {
+            foreach ($reservations as $key => $reservation) {
+                if ($voiture->id == $reservation->ur_voiture_id) {
+                    $voitures_reservees[] = $voiture->id;
+                }else{
+                    // $voiture_reservee = false;
+                }
+            }
+        }
+        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques, "voitures_reservees" => $voitures_reservees ]);
     }
     /**
      * Display a listing of the resource.
