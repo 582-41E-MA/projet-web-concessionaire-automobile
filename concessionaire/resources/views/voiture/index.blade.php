@@ -12,8 +12,8 @@
 			<h4 class="mb-3">Marque & Modèle</h4>
 			@foreach($marques as $marque)
 			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="maruqe1">
-				<label class="form-check-label" for="maruqe1">{{ $marque->marque_en }}</label>
+				<input class="form-check-input" type="radio" name="marque" id="{{ $marque->marque_en }}" value="{{ $marque->marque_en }}"/>
+				<label class="form-check-label" for="{{ $marque->marque_en }}">{{ $marque->marque_en }}</label>
 			</div>
 			@endforeach
 
@@ -112,6 +112,7 @@
 			<div class="form-group mb-3">
 				<input name="annee" type="number" id="inputAnnee" min="1900" max="2100" class="form-control" placeholder="année*" value="{{old('annee')}}">
 			</div>
+			<button class="btn btn-lg btn-primary w-100" type="submit">@lang('Search')</button>
 		</form>
 	</div>
 		<!--list des voitures-->
