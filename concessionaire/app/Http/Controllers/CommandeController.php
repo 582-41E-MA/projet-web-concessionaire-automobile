@@ -6,6 +6,7 @@ use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CommandeController extends Controller
 {
@@ -68,15 +69,18 @@ class CommandeController extends Controller
         $session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('commande.success', [], true),
+            'success_url' => route('commande.success', [], true)."?session_id={CHECKOUT_SESSION_ID}",
             'cancel_url' => route('commande.cancel', [], true),
           ]);
 
+        //   return $session->id;
+
+
           $commande = Commande::create([
-            'id' => $session->id,
+            'session_id' => $session->id,
             'date_commande' => date("Y-m-d"), 
             'commande_user_id' => Auth::id(),
-            'mode_paiment_id' => $request->mode_paiement_id,
+            'mode_paiement_id' => $request->mode_paiement_id,
             'expedition_id' => $request->expedition_id,
             'statut_id' => 1
           ]);
@@ -87,17 +91,43 @@ class CommandeController extends Controller
         /**
      * Display the success of the payment.
      */
-    public function success()
+    public function success(Request $request)
     {
         //
-    }
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $sessionId = $request->get('session_id');
 
-            /**
+        try {
+            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+            if (!$session) {
+                throw new NotFoundHttpException ;
+                
+            }
+            $customer = $session->customer_details; 
+
+            $commande = Commande::where( 'session_id', $sessionId )->where('statut_id', 1)->first();
+
+            if (!$commande) {
+                throw new NotFoundHttpException();
+            }
+            $commande->statut_id = 2;
+            $commande->save();
+
+            return view('panier.success', compact('customer') );
+            
+        } catch (\Throwable $th) {
+            throw new NotFoundHttpException();
+        }
+
+    }
+    
+    /**
      * Display the cancel of the payment.
      */
     public function cancel()
     {
         //
+        return view('panier.cancel');
     }
 
     /**
