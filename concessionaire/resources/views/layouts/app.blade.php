@@ -12,7 +12,6 @@
 @php $locale = session()->get('locale') @endphp
     <!--header-->
     
-    @if($__env->yieldContent('title') != 'Connexion' && $__env->yieldContent('title') != 'Inscription')
     <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
         <a class="navbar-brand" href="{{asset('/')}}"><img src="{{asset('assets/img/logo.png')}}" width="30" height="30" class="d-inline-block align-top mx-3" alt="logo">OZCARS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +44,7 @@
                     <a class="nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">@lang('Contact us')</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') ({{$locale}})</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') {{$locale}}</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">
                         <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">@lang('English')</a></li>
                         <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">@lang('French')</a></li>
@@ -57,13 +56,14 @@
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">@lang('Login')</a>
             @else
 
+                <a class="btn btn-secondary mx-3 my-2 my-sm-0" href="{{ route('reservation.index') }}">@lang('Reservation')</a>
                 <a class="btn btn-info mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">@lang('Cart')</a>
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">@lang('Logout')</a>
             @endguest    
             </div>
         </div>
     </nav>
-    @endif
+    
     <!--main-->
     <div>
         <div class="container my-5">

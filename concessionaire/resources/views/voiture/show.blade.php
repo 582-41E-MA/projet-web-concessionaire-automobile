@@ -57,7 +57,6 @@
               <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
               <button type="submit" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i>@lang('Reserve')</button>
             </form>
-              <a href="#" class="btn btn-info shadow-0">@lang('Buy now')</a> 
               <form action="{{ route('panier.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="voiture_id" value="{{ $voiture->id }}">
