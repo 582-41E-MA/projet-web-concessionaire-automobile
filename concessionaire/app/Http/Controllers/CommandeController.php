@@ -105,13 +105,16 @@ class CommandeController extends Controller
             }
             $customer = $session->customer_details; 
 
-            $commande = Commande::where( 'session_id', $sessionId )->where('statut_id', 1)->first();
+            $commande = Commande::where( 'session_id', $sessionId )->first();
 
             if (!$commande) {
                 throw new NotFoundHttpException();
             }
-            $commande->statut_id = 2;
-            $commande->save();
+            if ($commande->statut_id === 1) {
+
+                $commande->statut_id = 2;
+                $commande->save();
+            }
 
             return view('panier.success', compact('customer') );
             
@@ -127,7 +130,58 @@ class CommandeController extends Controller
     public function cancel()
     {
         //
-        return view('panier.cancel');
+        $commande = Commande::where( 'session_id', 'cs_test_b1sGu1brs3FF75Gv1uKIBcvuQfKiUW4XfKIoExyOFdLkPLne5CYw6OkCvz' )->first();
+        
+        return $commande;
+        return view('panier.cancel', compact('commande'));
+    }
+
+    /**
+     * Display the webhook of the payment.
+     */
+    public function webhook()
+    {
+
+// This is your Stripe CLI webhook secret for testing your endpoint locally.
+$endpoint_secret = 'whsec_2421ebfa1c00535c07da3c137348e6d18a8f19c083d8b78feda2c907ad7ccffa';
+
+$payload = @file_get_contents('php://input');
+$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+$event = null;
+
+try {
+  $event = \Stripe\Webhook::constructEvent(
+    $payload, $sig_header, $endpoint_secret
+  );
+} catch(\UnexpectedValueException $e) {
+  // Invalid payload
+  return response('', 400);
+} catch(\Stripe\Exception\SignatureVerificationException $e) {
+  // Invalid signature
+  return response('', 400);
+}
+
+// Handle the event
+switch ($event->type) {
+  case 'checkout.session.completed':
+    $session = $event->data->object;
+    $sessionId = $session->id;
+  // ... handle other event types
+
+  $commande = Commande::where( 'session_id', $sessionId )->first();
+
+  if ($commande && $commande->statut_id === 1) {
+
+      $commande->statut_id = 2;
+      $commande->save();
+  }
+
+  default:
+    echo 'Received unknown event type ' . $event->type;
+}
+
+  return response('');
+
     }
 
     /**

@@ -72,6 +72,7 @@ Route::post('panier/delete', [PanierController::class, 'destroy'])->name('panier
 Route::post('checkout', [CommandeController::class, 'checkout'])->name('commande.checkout');
 Route::get('success', [CommandeController::class, 'success'])->name('commande.success');
 Route::get('cancel', [CommandeController::class, 'cancel'])->name('commande.cancel');
+Route::post('webhook', [CommandeController::class, 'webhook'])->name('commande.webhook');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 
