@@ -142,7 +142,7 @@
 			</div>
 
 		@empty
-		<div class="alert alert-danger ">@lang(lang.catalogue.no_cars)</div>
+		<div class="alert alert-danger ">@lang('no_cars')</div>
 		</div>
 		@endforelse  
 </div>

@@ -106,7 +106,15 @@
     "Reserved cars" : "Voitures réservées",
     "Remaining time" : "Temps restant",
     "Reservation date" : "Date de réservation",
-    "Car number" : "Numero de voiture"
+    "Car number" : "Numero de voiture",
+    "no_cars" : "Aucune voiture à afficher!"
+
+
+
+
+
+
+
 
 
 }

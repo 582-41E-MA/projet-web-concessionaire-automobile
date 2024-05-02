@@ -11,6 +11,8 @@ use App\Models\Modele;
 use App\Models\Pays;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 
 class VoitureController extends Controller
@@ -99,12 +101,27 @@ class VoitureController extends Controller
         ]);
         
         $photosArray[] = $request -> photos;
-        $path = public_path('images').'/'.$voiture -> id;
+        // Chemin du répertoire
+        $directory = public_path('images') . '/' . $voiture->id;
+
+        // Vérifie si le répertoire n'existe pas déjà
+        if (!file_exists($directory)) {
+            // Crée le répertoire avec les permissions nécessaires (par exemple, 0777 pour tous les droits)
+            mkdir($directory, 0777, false);
+        }
+        // return $path;
 
         foreach ($photosArray as $key => $photo) {
             foreach ($photo as $key => $singlePhoto) {
+                $manager = new ImageManager(new Driver());
                 $picName = $singlePhoto->getClientOriginalName();
-                $singlePhoto -> move($path, $picName);
+                $img = $manager->read($singlePhoto);
+                $img = $img->resize(400, 400);
+                
+                $img = $img->toJpeg(80)->save(base_path('public/images/'. $voiture->id.'/'. $picName));
+
+
+                // $singlePhoto -> move($path, $picName);
 
                 $photosVoiture = Photo::create([
                         'photo_titre' => $picName,
