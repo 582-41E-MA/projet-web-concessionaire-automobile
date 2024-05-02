@@ -78,8 +78,22 @@ class PanierController extends Controller
     public function store(Request $request)
     {
 
-        // return $request;
-        // 
+        $tauxTaxe = Taxe::where('taxe_province_id', Auth::user()->province_id)->get(); 
+        
+        foreach ($tauxTaxe as $taxe) {
+            if( $taxe['taxe_nom'] == 'TPS' ) {
+                $tps = $taxe['taxe_rate'];
+            } elseif ($taxe['taxe_nom'] == 'TVP' || $taxe['taxe_nom'] == 'TVQ' ) {
+                $tvp = $taxe['taxe_rate'];
+            };
+        }
+
+        
+        $taxeAjouter = ($request->prix * $tps) + ($request->prix * $tvp);
+        $prixTaxeInclue = $request->prix + $taxeAjouter;
+        
+        // return $request->prix;
+
         if (Session::has('panier')) { 
             $panier = Session::get('panier');
             
@@ -98,15 +112,16 @@ class PanierController extends Controller
                 'photo_principale' => $request->photo_principale, 
                 'marque' => $request->marque,
                 'modele' => $request->modele, 
-                'prix' => $request->prix, 
+                'prix' => round($request->prix, 2), 
+                'prixTaxeInclue' => round($prixTaxeInclue, 2), 
                 'province_user_id' => $request->province_user_id,
                 'user_id' => $request->user_id
             ];
             $panier[] = $nouveauArticle;
-
+            
             Session::put('panier', $panier);
-
-
+            
+            
         } else {
             $panier[] = [ 
     
@@ -115,6 +130,7 @@ class PanierController extends Controller
                 'marque' => $request->marque,
                 'modele' => $request->modele, 
                 'prix' => $request->prix, 
+                'prixTaxeInclue' => $prixTaxeInclue, 
                 'province_user_id' => $request->province_user_id,
                 'user_id' => $request->user_id
             ];
