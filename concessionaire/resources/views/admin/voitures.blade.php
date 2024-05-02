@@ -26,7 +26,7 @@
                         <td>
                         {{ $voiture->id }}
                         </td>
-                        <td>{{ $voiture->modele->modele_en }}</td>
+                        <td>{{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{ $voiture->modele->modele_en }}</td>
                         <td> 
                             <a class="btn btn-sm btn-primary" href="{{ route('voiture.edit', $voiture->id)}}">@lang('Edit')</a> 
                             <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal">@lang('Delete')</button>

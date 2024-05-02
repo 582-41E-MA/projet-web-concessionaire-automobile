@@ -18,16 +18,18 @@ class User_reserveController extends Controller
     public function index()
     {
         //
-        $reservations = User_reserve::where('ur_user_id', Auth::user()->id)->get(); 
+        $reservations = User_reserve::where('ur_user_id', Auth::user()->id)->get();
+        $voitures_reservees = [];
         $marques = Marque::all();
-        
-        foreach ($reservations as $reservation) {
-            $current_time = Carbon::now();
-            $temps_limite = $reservation->created_at->addDay();
-            $temps_restant = $temps_limite->diff($current_time);
-            // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
-            $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
-        };
+        if(isset($reservations)){
+            foreach ($reservations as $reservation) {
+                $current_time = Carbon::now();
+                $temps_limite = $reservation->created_at->addDay();
+                $temps_restant = $temps_limite->diff($current_time);
+                // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
+                $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
+            };
+        }
 
         return view('panier.reserver', ["voitures_reservees" => $voitures_reservees, "marques" => $marques ]);
     }
@@ -53,12 +55,20 @@ class User_reserveController extends Controller
         //     'ur_voiture_id' => 'required|unique:user_reserves'
 
         // ]);
-
-        $ajout_au_panier = User_reserve::create([
-            'date_reserver' => date('Y-m-d'),
-            'ur_user_id' =>  Auth::user()->id,
-            'ur_voiture_id' => $request->voiture_id
-        ]);
+        // $voiture = Voiture::find($request->voiture_id)->get();
+        // return ($voiture->user_reserve);
+        // $reserve = User_reserve::all();
+        
+        if(!User_reserve::where('ur_voiture_id', $request->voiture_id)->exists()){
+            $ajout_au_panier = User_reserve::create([
+                'date_reserver' => date('Y-m-d'),
+                'ur_user_id' =>  Auth::user()->id,
+                'ur_voiture_id' => $request->voiture_id
+            ]);
+        }else{
+            
+            return redirect()->route('voiture.show', $request->voiture_id)->withSuccess('cette voiture est deja reservee');
+        }
 
         return redirect()->route('reservation.index')->withSuccess('Voiture reservée avec succees');
     }

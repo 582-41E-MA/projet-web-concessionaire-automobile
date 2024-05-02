@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Voiture;
 use App\Models\Modele;
+use App\Models\Marque;
 
 use Illuminate\Http\Request;
 
@@ -38,10 +39,11 @@ class AdminController extends Controller
     {
         //Liste Voitures
         $voitures = Voiture::all();
+        $marques = Marque::all();
 
-        // return $voiture;
+        // return $voitures;
 
-        return view('admin.voitures', ['voitures' => $voitures]);
+        return view('admin.voitures', ['voitures' => $voitures, "marques" => $marques]);
     }
 
         /**
@@ -77,6 +79,8 @@ class AdminController extends Controller
     public function filtreVoiture(Request $request)
     {
         //
+        $marques = Marque::all();
+
         $modeleIds = [];
         $modeles = Modele::where('modele_en', 'REGEXP', $request->search)->get();
         // return $modeles;
@@ -91,7 +95,7 @@ class AdminController extends Controller
             return view('admin.voitures', ['voitures' => $voitures]);
         } else {
             $voitures = [];
-            return view('admin.voitures', ['voitures' => $voitures]);
+            return view('admin.voitures', ['voitures' => $voitures, "marques" => $marques]);
         }
 
         // return $voitures;

@@ -38,4 +38,7 @@ class Voiture extends Model
     public function modele(){
         return $this->belongsTo(Modele::class);
     }
+    public function user_reserve(){
+        return $this->hasOne(user_reserve::class, 'ur_voiture_id');
+    }
 }
