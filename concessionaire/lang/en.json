@@ -6,6 +6,7 @@
     "Language" : "Language",
     "Student" : "Student",
     "Students" : "Students",
+    "Suscribe": "Suscribe",
     "Add student": "New student",
     "Students list": "Students list",
     "Users list": "Users list",
@@ -63,7 +64,8 @@
     "Welcome to" : "Welcome to",
     "Cars list" : "Cars list",
     "Employees list" : "Employees list",
-    "no_cars" : "There are no Cars to display!" 
+    "no_cars" : "There are no Cars to display!",
+    "Search" : "Search"
 
 
 
