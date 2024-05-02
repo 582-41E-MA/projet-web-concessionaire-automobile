@@ -31,6 +31,6 @@
             <p><a href="#" class="link-underline-primary">@lang('Forgotten password') ?</a></p>
             <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Login')</button>
         </form>
-        <p>@lang('You don't have an account') ? <a href="{{ route('user.create') }}" class="link-underline-primary">@lang('Suscribe')</a></p>
+        <p>@lang("You don't have an account") ? <a href="{{ route('user.create') }}" class="link-underline-primary">@lang("Suscribe")</a></p>
     </div>
 @endsection

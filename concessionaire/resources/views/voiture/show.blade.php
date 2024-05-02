@@ -65,8 +65,10 @@
                 <input type="hidden" name="marque" value="{{$marques->find($voiture->modele->modele_marque_id)->marque_en}}" >
                 <input type="hidden" name="modele" value="{{$voiture->modele->modele_en}}" >
                 <input type="hidden" name="prix" value="{{$voiture->prix_paye}}" >
+                @auth
                 <input type="hidden" name="province_user_id" value="{{ Auth::user()->province_id }}" >
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
+                @endauth
                 <button type="submit" class="btn btn-primary p-2 shadow-0"> @lang('Add to cart') </button>
               </form>
             </div>

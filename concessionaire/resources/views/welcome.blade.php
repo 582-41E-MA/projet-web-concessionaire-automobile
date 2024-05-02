@@ -9,7 +9,7 @@
         <h1 class="fw-light">@lang('Welcome to') OZCARS</h1>
         <p class="lead text-body-secondary">@lang('lang.home.text_welcome_title')</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">@lang('Find a car')</a>
+          <a href="{{ route('voiture.index') }}" class="btn btn-primary my-2">@lang('Find a car')</a>
         </p>
       </div>
     </div>
@@ -39,21 +39,23 @@
         @forelse($voitures as $voiture)
         <div class="col" style="width: 437px;">
           <div class="card shadow-sm">
-            <img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+				    <a href="{{route('voiture.show', $voiture->id)}}">
+              <img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+            </a>
 					<h4> {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}</h4>
             <div class="card-body">
               <p class="card-text">{{ \Illuminate\Support\Str::limit($voiture->$description, 50, $end='...') }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">@lang('See more')</button>
+                  <a href="{{route('voiture.show', $voiture->id)}}" class="btn btn-sm btn-outline-secondary">@lang('See more')</a>
                 </div>
                 <small class="text-body-secondary ">@lang('New')</small>
               </div>
             </div>
           </div>
+        </div>
         @empty
           <div class="alert alert-danger ">@lang('no_cars')</div>
-        </div>
         @endforelse 
         
       </div>
