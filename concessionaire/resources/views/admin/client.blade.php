@@ -36,17 +36,8 @@
                         </td>
                         
                     </tr>
-                    @empty
-                    <tr>
-                        <td colspan="3" class="text-center">@lang('There are no users to display')!</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-{{-- Bootstrap Modal --}}
+
+                    {{-- Bootstrap Modal --}}
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -71,7 +62,7 @@
 
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center">There are no users to display!</td>
+                        <td colspan="3" class="text-center">@lang('There are no users to display')!</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -79,5 +70,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

@@ -36,15 +36,16 @@ class VoitureController extends Controller
     {
         //
         $reservations = User_reserve::all(); 
+        $voitures_reservees = [];
         $voitures = Voiture::all();
         $photos = Photo::all(); 
         $marques = Marque::all();
-        foreach ($voitures as $key => $voiture) {
-            foreach ($reservations as $key => $reservation) {
-                if ($voiture->id == $reservation->ur_voiture_id) {
-                    $voitures_reservees[] = $voiture->id;
-                }else{
-                    // $voiture_reservee = false;
+        if(isset($reservations)){
+            foreach ($voitures as $key => $voiture) {
+                foreach ($reservations as $key => $reservation) {
+                    if ($voiture->id == $reservation->ur_voiture_id) {
+                        $voitures_reservees[] = $voiture->id;
+                    }
                 }
             }
         }

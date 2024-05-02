@@ -20,6 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- rajouter l marque -->
                     @forelse($voitures as $voiture)
                     <tr>
                         <td>

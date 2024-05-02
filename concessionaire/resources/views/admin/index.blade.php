@@ -16,6 +16,7 @@
                     <tr>
                         <th scope="col">@lang('Role')</th>
                         <th scope="col">@lang('Name')</th>
+                        <th scope="col">@lang('First name')</th>
                         <th scope="col">Options</th>
                     </tr>
                 </thead>
