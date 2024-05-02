@@ -140,7 +140,7 @@
 					<small class="text-body-secondary pt-2">disponible @lang('Since') {{$voiture->date_arrivee}}</small>
 					@foreach($voitures_reservees as $voiture_reservee)
 						@if($voiture_reservee == $voiture->id)
-							<div class="text-dark mt-4 shadow-sm rounded border bg-light text-center"><h3>@lang('Reserved car')</h3></div>
+							<div class="text-dark m-4 shadow-sm rounded border bg-light text-center"><h5>@lang('Reserved car')</h5></div>
 						@endif
 					{{--print_r($voitures_reservees)--}}
 					@endforeach

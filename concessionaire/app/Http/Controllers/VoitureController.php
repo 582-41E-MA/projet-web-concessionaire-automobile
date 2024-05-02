@@ -7,6 +7,8 @@ use App\Models\Voiture;
 use App\Models\Photo;
 use App\Models\Carrosserie;
 use App\Models\Marque;
+// pour le calcul sur le temps
+use Carbon\Carbon;
 use App\Models\Modele;
 use App\Models\Pays;
 use App\Models\User_reserve;
@@ -151,8 +153,17 @@ class VoitureController extends Controller
     public function show(Voiture $voiture)
     {
         $marques = Marque::all();
+        $reservations = User_reserve::where('ur_user_id', Auth::user()->id)->get(); 
+        
+        foreach ($reservations as $reservation) {
+            $current_time = Carbon::now();
+            $temps_limite = $reservation->created_at->addDay();
+            $temps_restant = $temps_limite->diff($current_time);
+            // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
+            $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
+        };
 
-        return view('voiture.show', ['voiture' => $voiture, 'marques' => $marques]);
+        return view('voiture.show', ['voiture' => $voiture, 'marques' => $marques, "voitures_reservees" => $voitures_reservees]);
     }
 
     

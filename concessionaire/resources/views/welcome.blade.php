@@ -39,7 +39,7 @@
         @forelse($voitures as $voiture)
         <div class="col" style="width: 437px;">
           <div class="card shadow-sm">
-            <img src="{{ asset('images/'. $voiture->id .'/' ) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
+            <img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="d-inline-block align-top mx-3" alt="tesla">
 					<h4> {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}</h4>
             <div class="card-body">
               <p class="card-text">{{ \Illuminate\Support\Str::limit($voiture->$description, 50, $end='...') }}</p>
