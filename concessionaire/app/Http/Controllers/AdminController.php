@@ -92,7 +92,7 @@ class AdminController extends Controller
         // return $modeleIds;
         if (isset($modeleIds[0])) {
             $voitures = Voiture::whereIn('modele_id', $modeleIds)->get();
-            return view('admin.voitures', ['voitures' => $voitures]);
+            return view('admin.voitures', ['voitures' => $voitures, "marques" => $marques]);
         } else {
             $voitures = [];
             return view('admin.voitures', ['voitures' => $voitures, "marques" => $marques]);
