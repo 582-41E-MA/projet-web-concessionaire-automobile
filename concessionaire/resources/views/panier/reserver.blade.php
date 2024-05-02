@@ -51,8 +51,16 @@
                         <input type="hidden" name="prix" value="{{$voiture_reservee[0]->prix_paye}}" >
                         <input type="hidden" name="province_user_id" value="{{ Auth::user()->province_id }}" >
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
-                      <button type="submit" class="btn btn-info btn-md"> <small>@lang('Add to cart')</small></button>
+                      <button type="submit" class="btn btn-secondary btn-md"> <small>@lang('Add to cart')</small></button>
                     </form>
+                    <form action="{{ route('reservation.delete', $voiture_reservee[1]->id) }}" method="POST">
+                      {{--dump($voiture_reservee[1]->id)--}}
+                      @csrf
+                      @method('DELETE')
+                      <input type="hidden" name="user_reserve_id" value="{{ $voiture_reservee[1]->id }}">
+                      <button type="submit" class="btn btn-dark btn-md mt-4"> <small>@lang('Delete')</small></button>
+                    </form>
+
                   </div>
                   @endauth
                 </div>

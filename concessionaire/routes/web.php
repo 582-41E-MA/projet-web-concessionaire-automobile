@@ -28,6 +28,7 @@ Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.de
 
 Route::get('/reservation', [User_reserveController::class, 'index'])->name('reservation.index');
 Route::post('/reservation', [User_reserveController::class, 'store'])->name('reservation.store');
+Route::delete('/reservation/{reservation}', [User_reserveController::class, 'destroy'])->name('reservation.delete');
 
 Route::get('/villes/{id}', [UserController::class, 'getVilles']);
 

@@ -90,8 +90,10 @@ class User_reserveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User_reserve $user_reserve)
+    public function destroy(Request $request)
     {
-        //
+        $reservation = User_reserve::find($request->user_reserve_id);
+        $reservation->delete();
+        return redirect()->route('reservation.index')->with('success', 'voiture supprimee de la liste avec succes');
     }
 }
