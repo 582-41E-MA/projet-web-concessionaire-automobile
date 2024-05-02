@@ -12,6 +12,7 @@ use App\Http\Controllers\VoitureController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\SetLocaleController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
 
 Route::get('/', [VoitureController::class, 'latest'])->name('accueil');
 
@@ -68,7 +69,9 @@ Route::get('panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('panier', [PanierController::class, 'store'])->name('panier.store');
 Route::post('panier/delete', [PanierController::class, 'destroy'])->name('panier.delete');
 
-
+Route::post('checkout', [CommandeController::class, 'checkout'])->name('commande.checkout');
+Route::get('success', [CommandeController::class, 'success'])->name('commande.success');
+Route::get('cancel', [CommandeController::class, 'cancel'])->name('commande.cancel');
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

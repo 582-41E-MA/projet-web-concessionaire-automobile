@@ -98,7 +98,7 @@
 
         <!--formulaire-->
         <div class="card mb-4">
-            <form class="card-body px-4 py-2 text-start w-100 mb-3" method="POST" id="checkoutForm">
+            <form class="card-body px-4 py-2 text-start w-100 mb-3" action="{{ route('commande.checkout') }}" method="POST" id="checkoutForm">
               @csrf              
               <!--Expédition-->
               <h5 class="my-3">@lang('Shipping')</h5>
@@ -132,7 +132,7 @@
                   <label class="form-check-label" for="virement">@lang('Etransfert')</label>
                 </div>
               <!--afficher si payer avec card-->
-              <div class="container text-start bg-light border-light rounded p-4 mb-5" id="cardDetail">
+              <!-- <div class="container text-start bg-light border-light rounded p-4 mb-5" id="cardDetail">
                 <h5 class="mb-3">@lang('Payment gateway')</h5>
                 <div class="form-group mb-3">
                   <label for="inputNom" class="sr-only form-label">@lang('Cardholder Name')</label>
@@ -150,7 +150,7 @@
                   <label for="inputCvc" class="sr-only form-label">CVC</label>
                   <input name="cvc" type="text" id="inputCvc" class="form-control" placeholder="Le code CVC*" value="{{old('cvc')}}" required/>
                 </div>
-              </div>
+              </div> -->
               <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Make a paiement')</button>
             </form>
         </div>
