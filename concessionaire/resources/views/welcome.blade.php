@@ -37,6 +37,7 @@
         </div> -->
 				@php session('locale')=='en'? $description = 'description_en' : $description = 'description_fr' @endphp
         @forelse($voitures as $voiture)
+        @if(!$voiture->commande_id)
         <div class="col" style="width: 437px;">
           <div class="card shadow-sm">
 				    <a href="{{route('voiture.show', $voiture->id)}}">
@@ -54,6 +55,7 @@
             </div>
           </div>
         </div>
+        @endif
         @empty
           <div class="alert alert-danger ">@lang('no_cars')</div>
         @endforelse 
