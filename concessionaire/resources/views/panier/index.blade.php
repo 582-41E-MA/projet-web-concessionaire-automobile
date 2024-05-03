@@ -131,31 +131,10 @@
                   <input class="form-check-input" type="radio" name="mode_paiement_id" value="4" id="virement">
                   <label class="form-check-label" for="virement">@lang('Etransfert')</label>
                 </div>
-              <!--afficher si payer avec card-->
-              <!-- <div class="container text-start bg-light border-light rounded p-4 mb-5" id="cardDetail">
-                <h5 class="mb-3">@lang('Payment gateway')</h5>
-                <div class="form-group mb-3">
-                  <label for="inputNom" class="sr-only form-label">@lang('Cardholder Name')</label>
-                  <input name="cardholder" type="text" id="inputNom" class="form-control" placeholder="Nom du titulaire*" value="{{old('cardholder')}}" required/>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="inputNumero" class="sr-only form-label">@lang('Card number')</label>
-                  <input name="cardnumber" type="text" id="inputNumero" class="form-control" placeholder="Numéro de carte*" value="{{old('cardnumber')}}" required/>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="inputExpiration" class="sr-only form-label">@lang('Expiration date')</label>
-                  <input name="expiration" type="text" id="inputExpiration" class="form-control" placeholder="MM/YY*" value="{{old('expiration')}}" required/>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="inputCvc" class="sr-only form-label">CVC</label>
-                  <input name="cvc" type="text" id="inputCvc" class="form-control" placeholder="Le code CVC*" value="{{old('cvc')}}" required/>
-                </div>
-              </div> -->
                   </div>
               <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Make a paiement')</button>
             </form>
         </div>
-
       </div>
     </div>
   </div>
