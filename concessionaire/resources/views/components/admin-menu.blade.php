@@ -4,6 +4,8 @@
     <a href="{{ route('admin.voiture') }}" class="list-group-item list-group-item-action">@lang('Cars list')</a>
     <a href="{{ route('voiture.create') }}" class="list-group-item list-group-item-action">@lang('Add a car')</a>
     <a href="{{ route('admin.client') }}" class="list-group-item list-group-item-action">@lang('Clients list')</a>
+    <a href="{{ route('admin.marques') }}" class="list-group-item list-group-item-action">@lang('Brands list')</a>
+    <a href="{{ route('marque.create') }}" class="list-group-item list-group-item-action">@lang('Add a brand')</a>
     <a href="#" class="list-group-item list-group-item-action">@lang('Invoices list')</a>
     <!-- <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> -->
 </div>

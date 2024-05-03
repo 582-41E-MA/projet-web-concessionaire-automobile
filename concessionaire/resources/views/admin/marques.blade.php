@@ -14,21 +14,22 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">@lang('Car') ID</th>
+                        <th scope="col">@lang('Brand') ID</th>
                         <th scope="col">@lang('Name')</th>
                         <th scope="col">Options</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- rajouter l marque -->
-                    @forelse($voitures as $voiture)
+                    {{--dd($marques)--}}
+                    @forelse($marques as $marque)
                     <tr>
                         <td>
-                        {{ $voiture->id }}
+                        {{ $marque->id }}
                         </td>
-                        <td>{{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{ $voiture->modele->modele_en }}</td>
+                        <td>{{$marque->marque_en}} </td>
                         <td> 
-                            <a class="btn btn-sm btn-primary" href="{{ route('voiture.edit', $voiture->id)}}">@lang('Edit')</a> 
+                            <a class="btn btn-sm btn-primary" href="{{ route('marque.edit', $marque->id)}}">@lang('Edit')</a> 
                             <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal">@lang('Delete')</button>
                         </td>
                         
@@ -47,7 +48,7 @@
                             </div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">@lang('Cancel')</button>
-                            <form action="{{ route('voiture.delete', $voiture->id) }}" method="POST">
+                            <form action="{{ route('marque.delete', $marque->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-info">@lang('Delete')</button>
