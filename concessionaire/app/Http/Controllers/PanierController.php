@@ -55,11 +55,11 @@ class PanierController extends Controller
         // return $totalTaxeInclue;
         
         
-        return view('panier.index', ['panier' => $panier, 'total' => $total, 'tps' => $tpsPanier, 'tvp' => $tvpPanier, 'totalTaxeInclue' => $totalTaxeInclue ]);
+        return view('panier.index', ['panier' => $panier, 'total' => round($total, 2), 'tps' => round($tpsPanier, 2), 'tvp' => round($tvpPanier, 2), 'totalTaxeInclue' => round($totalTaxeInclue, 2) ]);
     } else {
         
         $panier = [];
-        return view('panier.index', ['panier' => $panier, 'total' => $total, 'tps' => $tpsPanier, 'tvp' => $tvpPanier, 'totalTaxeInclue' => $totalTaxeInclue ]);
+        return view('panier.index', ['panier' => $panier, 'total' => round($total, 2), 'tps' => round($tpsPanier, 2), 'tvp' => round($tvpPanier, 2), 'totalTaxeInclue' => round($totalTaxeInclue, 2) ]);
     }
 
     }

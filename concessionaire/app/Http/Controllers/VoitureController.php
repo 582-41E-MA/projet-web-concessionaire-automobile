@@ -40,6 +40,7 @@ class VoitureController extends Controller
         $voitures = Voiture::all();
         $photos = Photo::all(); 
         $marques = Marque::all();
+        $carrosseries = Carrosserie::all();
         if(isset($reservations)){
             foreach ($voitures as $key => $voiture) {
                 foreach ($reservations as $key => $reservation) {
@@ -49,8 +50,67 @@ class VoitureController extends Controller
                 }
             }
         }
-        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques, "voitures_reservees" => $voitures_reservees ]);
+        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques, 'carrosseries' => $carrosseries, "voitures_reservees" => $voitures_reservees ]);
     }
+
+        /**
+     * Display a listing of the resource.
+     */
+
+    public function indexFiltreVoiture(Request $request)
+    {
+
+        $modeles = Modele::query(); 
+        $voitures = Voiture::query(); 
+        
+        if ($request['marque']) {
+
+        $modelesFiltre = $modeles->whereIn('modele_marque_id', $request['marque']);
+
+        $modelesFiltre = $modelesFiltre->get();
+
+        foreach ($modelesFiltre as $modele) {
+            $modeleIds[] = $modele['id'];
+        }
+
+        $voitures->whereIn('modele_id', $modeleIds);
+        
+        }
+
+        // Filtrer par carrosserie
+        if ($request['carrosserie']) {
+            $voitures->whereIn('carrosserie_id', $request['carrosserie']);
+        }
+        
+        // Filtrer par année
+        if ($request['annee']) {
+            $voitures->where('annee', $request['annee']);
+        }
+        
+        // Exécuter la requête pour obtenir les résultats
+        $voitures = $voitures->get();
+
+        // return $resultats;
+
+        $reservations = User_reserve::all(); 
+        $voitures_reservees = [];
+
+        $photos = Photo::all(); 
+        $marques = Marque::all();
+        $carrosseries = Carrosserie::all();
+        
+        if(isset($reservations)){
+            foreach ($voitures as $key => $voiture) {
+                foreach ($reservations as $key => $reservation) {
+                    if ($voiture->id == $reservation->ur_voiture_id) {
+                        $voitures_reservees[] = $voiture->id;
+                    }
+                }
+            }
+        }
+        return view('voiture.index', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques, 'carrosseries' => $carrosseries, "voitures_reservees" => $voitures_reservees ]);
+    }
+
     /**
      * Display a listing of the resource.
      */

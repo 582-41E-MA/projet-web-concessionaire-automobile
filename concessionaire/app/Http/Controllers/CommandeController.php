@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commande;
+use App\Models\Voiture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -50,6 +51,7 @@ class CommandeController extends Controller
         }
         // return $panier;
         foreach ($panier as $voiture) {
+            $voiture['prixTaxeInclue'] = round($voiture['prixTaxeInclue'], 2);
             $lineItems[] = 
                 [
                   'price_data' => [
@@ -100,6 +102,8 @@ class CommandeController extends Controller
         try {
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
             if (!$session) {
+
+              // return "session problem";
                 throw new NotFoundHttpException ;
                 
             }
@@ -108,6 +112,8 @@ class CommandeController extends Controller
             $commande = Commande::where( 'session_id', $sessionId )->first();
 
             if (!$commande) {
+
+              // return "commande probleme";
                 throw new NotFoundHttpException();
             }
             if ($commande->statut_id === 1) {
@@ -115,11 +121,25 @@ class CommandeController extends Controller
                 $commande->statut_id = 2;
                 $commande->save();
             }
+            if (Session::has('panier')) { 
 
-            return view('panier.success', compact('customer') );
+            $panier = Session::get('panier');
+
+            foreach ($panier as $voiturePanier) {
+              $voiture = Voiture::where( 'id', $voiturePanier['voiture_id'])->first();
+              $voiture->commande_id = $commande->id;
+              $voiture->save();
+            }
+
+            Session::forget('panier');
+
+          }
+          
+          return view('panier.success', compact('customer') );
             
         } catch (\Throwable $th) {
-            throw new NotFoundHttpException();
+          return $th;
+            // throw new NotFoundHttpException();
         }
 
     }

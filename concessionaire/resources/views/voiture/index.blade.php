@@ -8,105 +8,24 @@
     <!-- <div class="d-flex flex-md-row flex-sm-column flex-column justify-content-start col-10 col-md-12 mb-4"> -->
     <div class=" form-container ">
 		<!--filtre-->
-		<form class="border border-1 rounded border-dark-subtle mx-4 mb-3 p-3 text-start">
-			<h4 class="mb-3">Marque & Modèle</h4>
+		<form class="border border-1 rounded border-dark-subtle mx-4 mb-3 p-3 text-start" action="{{ route('voiture.indexFiltre') }}" method="GET">
+			<h4 class="mb-3">Marque</h4>
 			@foreach($marques as $marque)
 			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="{{ $marque->marque_en }}" value="{{ $marque->marque_en }}"/>
+				<input class="form-check-input" type="checkbox" name="marque[]" id="{{ $marque->marque_en }}" value="{{ $marque->id }}"/>
 				<label class="form-check-label" for="{{ $marque->marque_en }}">{{ $marque->marque_en }}</label>
 			</div>
 			@endforeach
 
-			<!-- marque -->
-                <label for="inputMarque" class="form-label">@lang('Brand')</label>
-                <select name="marque" id="inputMarque" class="">
-                        <option value="" >@lang('Select brand')</option>
-                    @foreach($marques as $marque)
-                        <option value="{{$marque->id}}" @if($marque->id == old('marque')) selected @endif >{{ $marque->marque_en }}</option>
-
-                        @endforeach
-                </select>
-
-			<!--liste des modèle-->
-			<div class="container">
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque1-modele1">
-					<label class="form-check-label" for="marque1-modele1">marque1-modele1</label>
-				</div>
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque1-modele2" disabled>
-					<label class="form-check-label" for="marque1-modele2">marque1-modele2</label>
-				</div>
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque1-modele3" disabled>
-					<label class="form-check-label" for="marque1-modele3">marque1-modele3</label>
-				</div>
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque1-modele4" disabled>
-					<label class="form-check-label" for="marque1-modele4">marque1-modele4</label>
-				</div>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="maruqe2">
-				<label class="form-check-label" for="maruqe2">Marque 2</label>
-			</div>
-			<!--liste des modèle-->
-			<div class="container">
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque2-modele1">
-					<label class="form-check-label" for="marque2-modele1">marque1-modele1</label>
-				</div>
-				<div class="form-check ms-4 mb-2">
-					<input class="form-check-input" type="checkbox" value="" id="marque2-modele2">
-					<label class="form-check-label" for="marque2-modele2">marque1-modele2</label>
-				</div>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="maruqe3">
-				<label class="form-check-label" for="maruqe3">Marque 3</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="maruqe4">
-				<label class="form-check-label" for="maruqe4">Marque 4</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="radio" name="marque" id="maruqe5">
-				<label class="form-check-label" for="maruqe5">Marque 5</label>
-			</div>
 			<hr class="border-bottom border-1 border-dark">
 			<h4 class="mb-3">Type de Carrosserie</h4>
+
+			@foreach($carrosseries as $carrosserie)
 			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="berline">
-				<label class="form-check-label" for="berline">Berline</label>
+				<input class="form-check-input" type="checkbox" name="carrosserie[]" id="{{ $carrosserie->carrosserie_en }}" value="{{ $carrosserie->id }}"/>
+				<label class="form-check-label" for="{{ $carrosserie->carrosserie_en }}">{{ $carrosserie->carrosserie_en }}</label>
 			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="coupe">
-				<label class="form-check-label" for="coupe">Coupé</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="camion">
-				<label class="form-check-label" for="camion">Camion</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="commercial">
-				<label class="form-check-label" for="commercial">Commercial</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="vus">
-				<label class="form-check-label" for="vus">VUS</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="hayon">
-				<label class="form-check-label" for="hayon">Hayon</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="cabriolet">
-				<label class="form-check-label" for="cabriolet">Cabriolet</label>
-			</div>
-			<div class="form-check ms-2 mb-2">
-				<input class="form-check-input" type="checkbox" value="" id="fourgonnette" disabled>
-				<label class="form-check-label" for="fourgonnette">Fourgonnette</label>
-			</div>
+			@endforeach
 			<hr class="border-bottom border-1 border-dark">
 			<h4 class="mb-3">@lang('Year')</h4>
 			<div class="form-group mb-3">
@@ -121,6 +40,7 @@
 		@php session('locale')=='en'? $description = 'description_en' : $description = 'description_fr' @endphp
 		<div class="row col-12 cards-container col-sm-6 ">
 			@forelse($voitures as $voiture)
+			@if(!$voiture->commande_id)
 			<div class="card shadow-sm car-card col-12 col-sm-3 " >
 
 			<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
@@ -147,7 +67,7 @@
 					@endforeach
 				</div>
 			</div>
-
+			@endif
 		@empty
 		<div class="alert alert-danger ">@lang('no_cars')</div>
 		</div>
