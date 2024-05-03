@@ -57,7 +57,7 @@ return [
     ),
 
     "controllers" => array(
-        "signed_in" => "Vous êtes connectés",
+        "signed_in" => "Vous êtes connecté",
         "added_to_cart" => "Voiture rajoutée au panier avec succès!",
         "removed_from_cart" => "Voiture retirée du panier avec succès!",
         "already_reserved" => "Cette voiture est déjà réservée",

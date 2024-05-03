@@ -3,7 +3,7 @@
 @section('content')
 <div class="column justify-content-centerr mt-5 mb-5 text-center">
     <!-- gestion des erreur -->
-    <!-- @if(!$errors->isEmpty())
+    @if(!$errors->isEmpty())
     <div class="container col-6">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
@@ -15,7 +15,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
-    @endif -->
+    @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
        <!-- component de menu de l'admin -->
        <x-admin-menu/>

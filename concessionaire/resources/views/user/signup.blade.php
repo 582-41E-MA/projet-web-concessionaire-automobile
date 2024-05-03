@@ -2,7 +2,7 @@
 @section('title', 'Inscription')
 @section('content')
 <!-- gestion des erreur -->
-<!-- 
+
     @if(!$errors->isEmpty())
     <div class="container">
 
@@ -15,7 +15,7 @@
             
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif -->
+        @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
         <form action="{{ route('user.store') }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
 

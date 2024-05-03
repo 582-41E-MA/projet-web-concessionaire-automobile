@@ -2,7 +2,7 @@
 @section('title', 'Inscription')
 @section('content')
 <!-- gestion des erreur -->
-<!-- 
+
     @if(!$errors->isEmpty())
     <div class="container">
 
@@ -15,7 +15,7 @@
             
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @endif -->
+        @endif
     <div class="row justify-content-center mt-5 mb-5 text-center">
         <form action="{{ route('user.store') }}" class="form-signin col-8 col-sm-8 col-md-6 col-lg-4 mb-3" method="POST">
 
@@ -146,13 +146,13 @@
 
             <!-- privilege -->
             <div class="form-group mb-3 text-start">
-                <label for="inputProvince" class="form-label">privilege</label>
-                <select name="privilege_id" id="inputProvince" class="form-control">
-                        <option value="" >Choisir le privilege</option>
+                <label for="inputPrivilege" class="form-label">privilege</label>
+                <select name="privilege_id" id="inputPrivilege" class="form-control">
+                    <option value="" >Choisir le privilege</option>
                     @foreach($privileges as $privilege)
-                        <option value="{{$privilege->id}}" @if($privilege->id == old('privilege')) selected @endif >{{ $privilege->pri_role_en }}</option>
-
-                        @endforeach
+                        <option value="{{$privilege->id}}" @if($privilege->id == old('privilege_id')) selected @endif >{{ $privilege->pri_role_en }}</option>
+                    
+                    @endforeach 
                 </select>
                 @if($errors->has('privilege'))
                     <div class="text-danger mt-2">

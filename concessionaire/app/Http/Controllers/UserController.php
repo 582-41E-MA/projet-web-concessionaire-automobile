@@ -68,10 +68,14 @@ class UserController extends Controller
 
         $password = Hash::make($request->password);
 
-        if (!Auth::check() && $request->privilege_id == "") {
+        // if (!Auth::check() && $request->privilege_id == "") {
+        //     $request->privilege_id = 1;
+        // }
+
+        if ($request->privilege_id == "") {
             $request->privilege_id = 1;
         }
-
+        // return $request;
         $user_client = User::create([
             'name' => $request->name,
             'prenom' => $request->prenom,
@@ -84,7 +88,7 @@ class UserController extends Controller
             'ville_id' => $request->ville,
             'telephone' => $request->telephone,
             'telephone_portable' => $request->telephone_portable,
-            'privilege_id' => $request->privilege_id,
+            'privilege_id' => $request->privilege_id
         ]);
         
 
