@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CommandeController extends Controller
 {
@@ -218,9 +219,19 @@ switch ($event->type) {
     public function show(Commande $commande)
     {
         //
-
-
         return view('commande.show', ['commande' => $commande]);
+    }
+
+    public function genererPDF(Commande $commande)
+    {
+        //
+        $user = Auth::user();
+
+        $pdf = PDF::loadView('commande.pdf', compact('user', 'commande'));
+
+        return $pdf->stream('facture.pdf');
+
+        // return view('commande.show', ['commande' => $commande]);
     }
 
     /**

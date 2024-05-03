@@ -1,8 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Facture')
-
-@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -29,9 +24,7 @@
                     <p><strong>Statut:</strong> {{ $commande->statut_commande->statut_en }}</p>
                     <p><strong>Statut:</strong> $ {{ number_format($commande->prix_totale, 0, ',', ' ') }}</p>
                 </div>
-                <a href="{{ route('commande.pdf', $commande->id) }}" class="btn btn-primary">Télécharger en PDF</a>
             </div>
         </div>
     </div>
 </div>
-@endsection
