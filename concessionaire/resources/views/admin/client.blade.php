@@ -32,33 +32,14 @@
                         <td>{{ $user->prenom }}</td>
                         <td> 
                             <a class="btn btn-sm btn-primary" href="{{ route('user.edit', $user->id)}}">@lang('Edit')</a> 
-                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#deleteModal">@lang('Delete')</button>
-                        </td>
-                        
-                    </tr>
-
-                    {{-- Bootstrap Modal --}}
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h1 class="modal-title fs-5" id="DeleteModalLabel">@lang('Delete')</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        @lang('Are you sure to delete this user')?
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">@lang('Cancel')</button>
-        <form action="{{ route('user.delete', $user->id) }}" method="POST">
+                            <form action="{{ route('user.delete', $user->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm btn-info">@lang('Delete')</button>
         </form>
-        </div>
-    </div>
-    </div>
-</div>
+                        </td>
+                        
+                    </tr>
 
                     @empty
                     <tr>
