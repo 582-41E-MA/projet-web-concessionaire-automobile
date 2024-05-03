@@ -58,7 +58,7 @@
         </div>
 
       @empty
-        <div class="alert alert-danger">There are no cars to display!</div>
+        <div class="alert alert-danger">@lang('No car to display!')</div>
     @endforelse 
 
         <!--prix total-->
