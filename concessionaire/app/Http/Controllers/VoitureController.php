@@ -144,7 +144,7 @@ class VoitureController extends Controller
             }
         }
 
-        return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture created successfully!');
+        return  redirect()->route('voiture.show', $voiture->id)->with('success', __('lang.controllers.car_created_success'));
 
     }
 
@@ -256,7 +256,7 @@ class VoitureController extends Controller
         // il faut peut-etre avoir un controlleur separé pour photo, pour l'ajout et la suppresion de photo
         // et chercher comment conserver les photos initialement uploadées, lorsqu'on clique sur upload une deuxieme fois. 
 
-        return  redirect()->route('voiture.show', $voiture->id)->with('success', 'voiture updated successfully!');
+        return  redirect()->route('voiture.show', $voiture->id)->with('success', __('lang.controllers.car_updated_success'));
 
     }
 
@@ -267,7 +267,7 @@ class VoitureController extends Controller
     {
         //
         $voiture->delete();
-        return redirect()->route('accueil')->with('success', 'voiture supprimee avec succes');
+        return redirect()->route('accueil')->with('success', __('lang.controllers.car_deleted_success'));
     }
 
 }

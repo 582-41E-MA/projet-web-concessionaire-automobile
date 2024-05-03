@@ -56,4 +56,21 @@ return [
         "paragraph7_1" => "Chez Ozcars, nous nous efforçons de fournir une expérience d'achat sans stress et agréable à nos clients. Nous sommes là pour vous aider à trouver la voiture parfaite qui correspond à vos besoins et à votre budget. N'hésitez pas à nous contacter ou à visiter notre showroom pour en savoir plus sur nos politiques de vente et découvrir notre gamme de voitures d'occasion de qualité.",
     ),
 
+    "controllers" => array(
+        "signed_in" => "Vous êtes connectés",
+        "added_to_cart" => "Voiture rajoutée au panier avec succès!",
+        "removed_from_cart" => "Voiture retirée du panier avec succès!",
+        "already_reserved" => "Cette voiture est déjà réservée",
+        "reserved_success" => "La voiture est maintenant réservée pour vous, pour 24h",
+        "removed_success" => "La voiture est retirée de la liste des reservations",
+        "user_created_success" => "Utilisateur créé avec succès, vous pouvez maintenant vous connecter!",
+        "user_updated_success" => "Utilisateur modifié avec succès!",
+        "user_deleted_success" => "Utilisateur supprimé avec succès!",
+        "car_created_success" => "Voiture créée avec succès!",
+        "car_updated_success" => "Voiture modifiée avec succès!",
+        "car_deleted_success" => "Voiture supprimée avec succès!",
+
+
+    ),
+
 ];

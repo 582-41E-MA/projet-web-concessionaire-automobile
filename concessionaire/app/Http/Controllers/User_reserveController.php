@@ -26,7 +26,6 @@ class User_reserveController extends Controller
                 $current_time = Carbon::now();
                 $temps_limite = $reservation->created_at->addDay();
                 $temps_restant = $temps_limite->diff($current_time);
-                // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
                 $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
             };
         }
@@ -67,10 +66,10 @@ class User_reserveController extends Controller
             ]);
         }else{
             
-            return redirect()->route('reservation.index')->withSuccess('cette voiture est deja reservee');
+            return redirect()->route('reservation.index')->withSuccess(__('lang.controllers.already_reserved'));
         }
 
-        return redirect()->route('reservation.index')->withSuccess('Voiture reservée avec succees');
+        return redirect()->route('reservation.index')->withSuccess(__('lang.controllers.reserved_success'));
     }
 
     /**
@@ -104,6 +103,6 @@ class User_reserveController extends Controller
     {
         $reservation = User_reserve::find($request->user_reserve_id);
         $reservation->delete();
-        return redirect()->route('reservation.index')->with('success', 'voiture supprimee de la liste avec succes');
+        return redirect()->route('reservation.index')->with('success', __('lang.controllers.removed_success'));
     }
 }

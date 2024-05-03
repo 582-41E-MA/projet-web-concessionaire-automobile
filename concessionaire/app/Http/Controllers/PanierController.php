@@ -102,7 +102,7 @@ class PanierController extends Controller
                     unset($panier[$index]);
                     Session::put('panier', $panier);
 
-                    return  redirect()->route('panier.index')->with('success', 'voiture retirer de panier successfully!');
+                    return  redirect()->route('panier.index')->with('success', __('lang.controllers.removed_from_cart'));
                     
                 }
             }
@@ -137,7 +137,7 @@ class PanierController extends Controller
             Session::put('panier', $panier );
         }
 
-        return  redirect()->route('panier.index')->with('success', 'voiture added to shopping-cart successfully!');        
+        return  redirect()->route('panier.index')->with('success', __('lang.controllers.added_to_cart'));        
     }
 
     /**
@@ -180,7 +180,7 @@ class PanierController extends Controller
                     unset($panier[$index]);
                     Session::put('panier', $panier);
 
-                    return  redirect()->route('panier.index')->with('success', 'voiture retirer de panier successfully!');
+                    return  redirect()->route('panier.index')->with('success', __('lang.controllers.removed_from_cart'));
                     
                 }
             }

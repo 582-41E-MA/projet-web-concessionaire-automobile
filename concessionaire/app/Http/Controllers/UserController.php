@@ -91,12 +91,12 @@ class UserController extends Controller
         // return redirect()->route('accueil')->with('success', 'user created with success');
 
         // return $user->type;
-        // if($user->type == "etudiant"){
+        // if(Auth::){
             // return redirect(route('/'));
             // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
 
         // }else{
-            return redirect(route('login'))->withSuccess('User created successfully, you can now login!');
+            return redirect(route('login'))->withSuccess(__('lang.controllers.user_created_success'));
         // }
     }
 
@@ -155,7 +155,7 @@ class UserController extends Controller
             'privilege_id' => $request->privilege_id,
         ]);
 
-        return redirect()->route('accueil')->with('success', 'user updated with success');
+        return redirect()->route('accueil')->with('success', __('user updated with success'));
     }
 
     /**
@@ -165,7 +165,7 @@ class UserController extends Controller
     {
         //
         $user->delete();
-        return redirect()->route('accueil')->with('success', 'user deleted with success');
+        return redirect()->route('accueil')->with('success', __('user deleted with success'));
     }
     public function forgot(){
         return view('user.forgot');

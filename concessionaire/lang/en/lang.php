@@ -59,4 +59,21 @@ return [
         "paragraph7_1" => "At Ozcars, we strive to provide a stress-free and enjoyable shopping experience for our customers. We are here to assist you in finding the perfect car that fits your needs and budget. Feel free to contact us or visit our showroom to learn more about our sales policies and explore our range of quality used cars.",
     ),
 
+    "controllers" => array(
+        "signed_in" => "You are signed in",
+        "added_to_cart" => "Car added to shopping-cart successfully!",
+        "removed_from_cart" => "Car removed from cart successfully!",
+        "already_reserved" => "This car is already reserved",
+        "reserved_success" => "Car reserved for you succesfully, for 24h",
+        "removed_success" => "Car removed from reserved list succesfully",
+        "user_created_success" => "User created successfully, you can now login!",
+        "user_updated_success" => "User updated successfully!",
+        "user_deleted_success" => "User deleted successfully!",
+        "car_created_success" => "Car created successfully!",
+        "car_updated_success" => "Car updated successfully!",
+        "car_deleted_success" => "Car deleted successfully!",
+        
+
+
+    ),
 ];
