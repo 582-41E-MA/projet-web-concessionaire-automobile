@@ -130,16 +130,18 @@ class CommandeController extends Controller
               $voiture->commande_id = $commande->id;
               $voiture->save();
             }
-
+            
+            // return $panier;
             Session::forget('panier');
-
+            
+            return view('panier.success', ['customer' => $customer, 'panier' => $panier] );
           }
           
-          return view('panier.success', compact('customer') );
+          return redirect()->route('accueil');
             
         } catch (\Throwable $th) {
-          return $th;
-            // throw new NotFoundHttpException();
+          // return $th;
+            throw new NotFoundHttpException();
         }
 
     }

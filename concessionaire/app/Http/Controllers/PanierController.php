@@ -129,8 +129,8 @@ class PanierController extends Controller
                 'photo_principale' => $request->photo_principale,
                 'marque' => $request->marque,
                 'modele' => $request->modele, 
-                'prix' => $request->prix, 
-                'prixTaxeInclue' => $prixTaxeInclue, 
+                'prix' => round($request->prix, 2), 
+                'prixTaxeInclue' => round($prixTaxeInclue, 2), 
                 'province_user_id' => $request->province_user_id,
                 'user_id' => $request->user_id
             ];
