@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/adminclients', [AdminController::class, 'client'])->name('admin.client');
 Route::get('/adminvoitures', [AdminController::class, 'voiture'])->name('admin.voiture');
+Route::get('/adminmarques', [AdminController::class, 'marque'])->name('admin.marques');
 
 Route::get('/adminfiltreEmployee', [AdminController::class, 'filtreEmployee'])->name('admin.filtreEmployee');
 Route::get('/adminfiltreClient', [AdminController::class, 'filtreClient'])->name('admin.filtreClient');

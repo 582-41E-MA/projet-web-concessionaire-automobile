@@ -46,6 +46,18 @@ class AdminController extends Controller
         return view('admin.voitures', ['voitures' => $voitures, "marques" => $marques]);
     }
 
+    // afficher les marques dans admin
+    public function marque()
+    {
+        //Liste Voitures
+        $marques = Marque::all();
+        $modeles = Modele::all();
+
+        // return $voitures;
+
+        return view('admin.voitures', ["marques" => $marques, "modeles" => $modeles]);
+    }
+
         /**
      * Display a listing of the resource.
      */
