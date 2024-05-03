@@ -14,6 +14,23 @@ class Commande extends Model
         'date_commande',
         'mode_paiement_id',
         'expedition_id',
-        'statut_id'
+        'statut_commande_id'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function mode_paiement() {
+        return $this->belongsTo(Mode_paiement::class);
+    }
+
+    public function expedition() {
+        return $this->belongsTo(Expedition::class);
+    }
+
+    public function statut_commande() {
+        return $this->belongsTo(Statut_commande::class);
+    }
+
 }

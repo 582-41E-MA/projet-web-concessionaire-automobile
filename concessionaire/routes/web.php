@@ -19,6 +19,7 @@ Route::get('/', [VoitureController::class, 'latest'])->name('accueil');
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');
 Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.politiques');
+Route::get('/commandes', [CommandeController::class, 'index'])->name('commande.index');
 
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
@@ -81,6 +82,7 @@ Route::post('checkout', [CommandeController::class, 'checkout'])->name('commande
 Route::get('success', [CommandeController::class, 'success'])->name('commande.success');
 Route::get('cancel', [CommandeController::class, 'cancel'])->name('commande.cancel');
 Route::post('webhook', [CommandeController::class, 'webhook'])->name('commande.webhook');
+
 
 Route::get('/lang/{locale}', [SetLocaleController::class, 'index'])->name('lang');
 

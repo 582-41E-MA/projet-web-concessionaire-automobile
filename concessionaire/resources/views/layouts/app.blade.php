@@ -43,6 +43,13 @@
                 <li class="nav-item">
                     <a class="text-nowrap nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">@lang('Contact us')</a>
                 </li>
+                @auth
+                @if(Auth::user()->privilege_id == 1 )
+                <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ route('commande.index') }}">@lang('Bills')</a>
+                </li>
+                @endif
+                @endauth
                 <li class="nav-item dropdown">
                     <a class="text-nowrap nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') {{$locale}}</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">

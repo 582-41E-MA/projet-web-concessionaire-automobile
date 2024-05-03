@@ -17,6 +17,10 @@ class CommandeController extends Controller
     public function index()
     {
         //
+
+        $commandes = Commande::where('commande_user_id', Auth::id())->get();
+
+        return view('commande.index', ['commandes' => $commandes]);
     }
 
     /**
