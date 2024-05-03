@@ -216,20 +216,19 @@ class VoitureController extends Controller
         $marques = Marque::all();
         $voitures_reservees = [];
             # code...
+            $temps_restant= 0;
             $reservations = User_reserve::where('ur_voiture_id', $voiture->id)->get(); 
-            if (isset($reservations)) {
-                # code...
+            if(isset($reservations)){
                 foreach ($reservations as $reservation) {
                     $current_time = Carbon::now();
                     $temps_limite = $reservation->created_at->addDay();
                     $temps_restant = $temps_limite->diff($current_time);
-                    // $temps_restant = ($temps_limite->diff($current_time))->format('H:i:s');
                     $voitures_reservees[] = [Voiture::find($reservation->ur_voiture_id), $reservation, $temps_restant];
                 };
             }
       
             
-            return view('voiture.show', ['voiture' => $voiture, 'marques' => $marques, "voitures_reservees" => $voitures_reservees]);
+            return view('voiture.show', ['voiture' => $voiture, 'marques' => $marques, 'voitures_reservees' => $voitures_reservees]);
     }
 
     

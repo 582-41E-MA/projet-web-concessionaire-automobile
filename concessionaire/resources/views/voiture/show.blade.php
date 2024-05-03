@@ -74,9 +74,11 @@
         </div>
         @if($voiture->user_reserve)
 							<div class="text-dark m-4 shadow-sm rounded border bg-light text-center pt-2"><h5>@lang('Reserved car')</h5>
-                <p><span class="text-muted text-center">@lang('Remaining time'): </span></p>
+            @foreach($voitures_reservees as $voiture_reservee)
+                <p><span class="text-muted text-center">@lang('Remaining time'): {{$voiture_reservee[2]}}</span></p>
+            @endforeach
               </div>
-            @endif
+        @endif
       </section>
     </div>
   </div>
