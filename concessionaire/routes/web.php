@@ -22,6 +22,7 @@ Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.p
 
 Route::get('/commandes', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/commande/{commande}', [CommandeController::class, 'show'])->name('commande.show');
+Route::get('/pdf/{commande}', [CommandeController::class, 'genererPDF'])->name('commande.pdf');
 
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
