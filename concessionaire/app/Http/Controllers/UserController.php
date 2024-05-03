@@ -157,7 +157,11 @@ class UserController extends Controller
             'privilege_id' => $request->privilege_id,
         ]);
 
+        if(Auth::user()->privilege_id == 3){
+            return redirect(route('admin'))->withSuccess(__('lang.controllers.user_updated_success'));
+        }else{
         return redirect()->route('accueil')->with('success', __('user updated with success'));
+        }
     }
 
     /**
@@ -167,7 +171,12 @@ class UserController extends Controller
     {
         //
         $user->delete();
-        return redirect()->route('accueil')->with('success', __('user deleted with success'));
+        
+        if(Auth::user()->privilege_id == 3){
+            return redirect(route('admin'))->withSuccess(__('lang.controllers.user_updated_success'));
+        }else{
+        return redirect()->route('accueil')->with('success', __('user updated with success'));
+        }
     }
     public function forgot(){
         return view('user.forgot');

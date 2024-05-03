@@ -65,6 +65,12 @@ Route::post('/create/voiture', [VoitureController::class, 'store'])->name('voitu
 Route::get('/edit/voiture/{voiture}', [VoitureController::class, 'edit'])->name('voiture.edit');
 Route::put('/edit/voiture/{voiture}', [VoitureController::class, 'update'])->name('voiture.update');
 Route::delete('/voiture/{voiture}', [VoitureController::class, 'destroy'])->name('voiture.delete');
+
+Route::get('/create/marque', [MarqueController::class, 'create'])->name('marque.create');
+Route::put('/edit/marque/{marque}', [MarqueController::class, 'update'])->name('marque.update');
+Route::get('/edit/marque/{marque}', [MarqueController::class, 'edit'])->name('marque.edit');
+Route::post('/create/marque', [MarqueController::class, 'store'])->name('marque.store');
+Route::delete('/marque/{marque}', [MarqueController::class, 'destroy'])->name('marque.delete');
 });
 
 Route::middleware('auth')->group(function () {
