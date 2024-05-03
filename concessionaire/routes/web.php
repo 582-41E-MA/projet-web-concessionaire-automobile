@@ -52,6 +52,7 @@ Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
 Route::get('/voitures', [VoitureController::class, 'index'])->name('voiture.index');
+Route::get('/voitures/filtre', [VoitureController::class, 'indexFiltreVoiture'])->name('voiture.indexFiltre');
 Route::get('/voiture/{voiture}', [VoitureController::class, 'show'])->name('voiture.show');
 
 Route::middleware('auth')->group(function () {
