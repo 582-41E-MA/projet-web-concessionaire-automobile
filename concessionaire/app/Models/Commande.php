@@ -14,7 +14,8 @@ class Commande extends Model
         'date_commande',
         'mode_paiement_id',
         'expedition_id',
-        'statut_commande_id'
+        'statut_commande_id',
+        'prix_totale'
     ];
 
     public function user() {

@@ -19,7 +19,9 @@ Route::get('/', [VoitureController::class, 'latest'])->name('accueil');
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.nouscontacter');
 Route::get('/about', [AproposController::class, 'index'])->name('pages.aproposdenous');
 Route::get('/politiques', [PolitiquesController::class, 'index'])->name('pages.politiques');
+
 Route::get('/commandes', [CommandeController::class, 'index'])->name('commande.index');
+Route::get('/commande/{commande}', [CommandeController::class, 'show'])->name('commande.show');
 
 
 Route::get('/inscription', [UserController::class, 'create'])->name('user.create');
