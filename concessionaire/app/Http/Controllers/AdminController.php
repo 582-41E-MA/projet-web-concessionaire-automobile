@@ -55,7 +55,7 @@ class AdminController extends Controller
 
         // return $voitures;
 
-        return view('admin.voitures', ["marques" => $marques, "modeles" => $modeles]);
+        return view('admin.marques', ["marques" => $marques, "modeles" => $modeles]);
     }
 
         /**

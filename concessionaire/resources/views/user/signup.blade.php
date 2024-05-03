@@ -144,7 +144,7 @@
                 @endif
             </div>
 
-            <input type="hidden" name="privilege_id" value="">
+            <!-- <input type="hidden" name="privilege_id" value=""> -->
 
             <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Suscribe')</button>
         </form>
