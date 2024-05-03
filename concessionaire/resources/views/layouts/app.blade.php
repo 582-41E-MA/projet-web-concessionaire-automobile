@@ -20,31 +20,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('voiture.index') }}">@lang('Find a car')</a>
+                    <a class="text-nowrap nav-link" href="{{ route('voiture.index') }}">@lang('Find a car')</a>
                 </li>
                 @auth
                 @if(Auth::user()->privilege_id == 3)
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'Admin' ? 'active' : '' }}" href="{{ route('admin') }}">@lang('Administrator')</a>
+                    <a class="nav-link {{ $__env->yieldContent('title') == 'Admin' ? 'active' : '' }} text-nowrap" href="{{ route('admin') }}">@lang('Administrator')</a>
                 </li>
                 @endif
                 @if(Auth::user()->privilege_id != 1 )
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('voiture.create') }}">@lang('Add a car')</a>
+                    <a class="nav-link text-nowrap" href="{{ route('voiture.create') }}">@lang('Add a car')</a>
                 </li>
                 @endif
                 @endauth
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">@lang('Sales policy')</a>
+                    <a class="text-nowrap nav-link {{ $__env->yieldContent('title') == 'Politiques de vente' ? 'active' : '' }}" href="{{asset('/politiques')}}">@lang('Sales policy')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'À propos de nous' ? 'active' : '' }}" href="{{asset('/about')}}">@lang('About us')</a>
+                    <a class="text-nowrap nav-link {{ $__env->yieldContent('title') == 'À propos de nous' ? 'active' : '' }}" href="{{asset('/about')}}">@lang('About us')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">@lang('Contact us')</a>
+                    <a class="text-nowrap nav-link {{ $__env->yieldContent('title') == 'Nous contacter' ? 'active' : '' }}" href="{{ route('pages.nouscontacter') }}">@lang('Contact us')</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') {{$locale}}</a>
+                    <a class="text-nowrap nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">@lang('Language') {{$locale}}</a>
                     <ul class="dropdown-menu col-xs-6 col-sm-4 col-md-3">
                         <li><a class="dropdown-item" href="{{ route('lang', 'en') }}">@lang('English')</a></li>
                         <li><a class="dropdown-item" href="{{ route('lang', 'fr') }}">@lang('French')</a></li>
@@ -55,10 +55,11 @@
             @guest
                 <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('login') }}">@lang('Login')</a>
             @else
-
-                <a class="btn btn-secondary mx-3 my-2 my-sm-0" href="{{ route('reservation.index') }}">@lang('Reservation')</a>
-                <a class="btn btn-info mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">@lang('Cart')</a>
-                <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">@lang('Logout')</a>
+                <div class="d-flex">
+                    <a class="btn btn-secondary mx-3 my-2 my-sm-0" href="{{ route('reservation.index') }}">@lang('Reservation')</a>
+                    <a class="btn btn-info mx-3 my-2 my-sm-0" href="{{ route('panier.index') }}">@lang('Cart')</a>
+                    <a class="btn btn-primary mx-3 my-2 my-sm-0" href="{{ route('logout') }}">@lang('Logout')</a>
+                </div>
             @endguest    
             </div>
         </div>
