@@ -33,7 +33,7 @@
 
       <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
+            <div class="row d-flex flex-lg-nowrap justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img
                   src="{{asset('assets/img/'.$voiture['photo_principale'] )}}"
@@ -151,6 +151,7 @@
                   <input name="cvc" type="text" id="inputCvc" class="form-control" placeholder="Le code CVC*" value="{{old('cvc')}}" required/>
                 </div>
               </div> -->
+                  </div>
               <button class="btn btn-lg btn-primary w-100" type="submit">@lang('Make a paiement')</button>
             </form>
         </div>
