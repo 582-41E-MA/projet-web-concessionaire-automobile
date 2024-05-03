@@ -46,6 +46,9 @@ class CommandeController extends Controller
     {
         //
         // return $request;
+
+
+
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $lineItems = [];
@@ -92,6 +95,26 @@ class CommandeController extends Controller
             'statut_commande_id' => 1,
             'prix_totale' => $prixTotale
           ]);
+
+          if ($request['mode_paiement_id'] == 1) {
+
+            if (Session::has('panier')) { 
+
+              $panier = Session::get('panier');
+  
+              foreach ($panier as $voiturePanier) {
+                $voiture = Voiture::where( 'id', $voiturePanier['voiture_id'])->first();
+                $voiture->commande_id = $commande->id;
+                $voiture->save();
+              }
+              
+              // return $panier;
+              Session::forget('panier');
+            }
+            
+
+            return redirect()->route('accueil')->with('success', 'Félicitations ! La voiture vous appartient dès que vous avez payé.');
+          }
 
           return redirect($session->url);
     }
@@ -160,7 +183,7 @@ class CommandeController extends Controller
         //
         $commande = Commande::where( 'session_id', 'cs_test_b1sGu1brs3FF75Gv1uKIBcvuQfKiUW4XfKIoExyOFdLkPLne5CYw6OkCvz' )->first();
         
-        return $commande;
+        // return $commande;
         return view('panier.cancel', compact('commande'));
     }
 

@@ -35,6 +35,10 @@ a.list-group-item-action.active {
 max-width: 100px;
 max-height: 100px;
 }
+.img-container img {
+max-width: 400px;
+max-height: 400px;
+}
 
 .form-container{
     width: fit-content;

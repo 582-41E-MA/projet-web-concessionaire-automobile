@@ -44,9 +44,11 @@
 				<div class="card shadow-sm car-card col-12 col-sm-3" >
 
 					<!-- <div class="card shadow-sm mb-3 me-3" style="width: 437px; height: 557px;"> -->
-					<a href="{{route('voiture.show', $voiture->id)}}">
-						<img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
-					</a>
+					<div class=" d-flex justify-content-center">
+						<a class="d-flex justify-content-center mt-2" href="{{route('voiture.show', $voiture->id)}} ">
+							<img src="{{ asset('images/'. $voiture->id .'/' . $voiture->photos[0]->photo_titre) }}" width="400" height="225" class="img-fluid d-inline-block align-top mx-3" alt="tesla">
+						</a>
+					</div>
 					<div class="card-body text-start d-flex flex-column h-auto justify-content-start">
 						<p class="btn btn-sm btn-info align-self-end">@lang('New')</p>
 						<h4> {{$marques->find($voiture->modele->modele_marque_id)->marque_en}} {{$voiture->modele->modele_en}}</h4>

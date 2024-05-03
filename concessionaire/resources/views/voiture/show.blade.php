@@ -8,12 +8,12 @@
   <div class="container">
     <div class="row gx-5">
       <aside class="col-lg-6">
-        <div class="border rounded-4 mb-3 d-flex justify-content-center">
-            <img style=" max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{asset('images/'.$voiture->id.'/'.$voiture->photos[0]->photo_titre)}}" id="imglarge"/>
+        <div class="border img-container rounded-4 mb-3 d-flex justify-content-center">
+            <img style="max-width:100%; max-height:100vh; margin:auto;" class="rounded-4 fit" src="{{asset('images/'.$voiture->id.'/'.$voiture->photos[0]->photo_titre)}}" id="imglarge"/>
         </div>
         <div class="d-flex justify-content-center mb-3" id="imglist">
           @foreach($voiture->photos as $photo)
-            <img width="101" height="60" class="rounded-2" src="{{asset('images/'.$voiture->id.'/'.$photo->photo_titre)}}" />
+            <img width="101" height="60" class="rounded-2 m-1" src="{{asset('images/'.$voiture->id.'/'.$photo->photo_titre)}}" />
           @endforeach
         </div>
         <!-- thumbs-wrap.// -->
@@ -43,8 +43,9 @@
             <dt class="col-3">@lang('Bodywork')</dt>
             <dd class="col-9">{{$voiture->carrosserie->$carrosserie}}</dd>
 
+            @php session('locale')=='en'? $le_pays = 'pays_en' : $le_pays = 'pays_fr' @endphp
             <dt class="col-3">@lang('Country of origin')</dt>
-            <dd class="col-9">{{$voiture->pays->pays_en}}</dd>
+            <dd class="col-9">{{$voiture->pays->$le_pays}}</dd>
 
             <dt class="col-3">@lang('Arrival date')</dt>
             <dd class="col-9">{{$voiture->date_arrivee}}</dd>

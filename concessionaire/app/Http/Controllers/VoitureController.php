@@ -190,7 +190,7 @@ class VoitureController extends Controller
                 $manager = new ImageManager(new Driver());
                 $picName = $singlePhoto->getClientOriginalName();
                 $img = $manager->read($singlePhoto);
-                $img = $img->resize(400, 400);
+                $img = $img->resize(622, 400);
                 
                 $img = $img->toJpeg(80)->save(base_path('public/images/'. $voiture->id.'/'. $picName));
 
