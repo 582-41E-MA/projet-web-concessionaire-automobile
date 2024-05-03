@@ -53,9 +53,10 @@ class CommandeController extends Controller
         if (Session::has('panier')) { 
             $panier = Session::get('panier');
         }
-        // return $panier;
+        $prixTotale = 0;
         foreach ($panier as $voiture) {
             $voiture['prixTaxeInclue'] = round($voiture['prixTaxeInclue'], 2);
+            $prixTotale += $voiture['prixTaxeInclue'];
             $lineItems[] = 
                 [
                   'price_data' => [
@@ -88,7 +89,8 @@ class CommandeController extends Controller
             'commande_user_id' => Auth::id(),
             'mode_paiement_id' => $request->mode_paiement_id,
             'expedition_id' => $request->expedition_id,
-            'statut_id' => 1
+            'statut_commande_id' => 1,
+            'prix_totale' => $prixTotale
           ]);
 
           return redirect($session->url);
@@ -120,9 +122,9 @@ class CommandeController extends Controller
               // return "commande probleme";
                 throw new NotFoundHttpException();
             }
-            if ($commande->statut_id === 1) {
+            if ($commande->statut_commande_id === 1) {
 
-                $commande->statut_id = 2;
+                $commande->statut_commande_id = 2;
                 $commande->save();
             }
             if (Session::has('panier')) { 
@@ -216,6 +218,9 @@ switch ($event->type) {
     public function show(Commande $commande)
     {
         //
+
+
+        return view('commande.show', ['commande' => $commande]);
     }
 
     /**
