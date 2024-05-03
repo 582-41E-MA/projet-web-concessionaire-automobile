@@ -91,13 +91,11 @@ class UserController extends Controller
         // return redirect()->route('accueil')->with('success', 'user created with success');
 
         // return $user->type;
-        // if(Auth::){
-            // return redirect(route('/'));
-            // return redirect(route('user.login'))->withSuccess('Utilisateur enregistré comme etudiant');
-
-        // }else{
+        if(Auth::user()->privilege_id == 3){
+            return redirect(route('admin'))->withSuccess(__('lang.controllers.user_created_success'));
+        }else{
             return redirect(route('login'))->withSuccess(__('lang.controllers.user_created_success'));
-        // }
+        }
     }
 
     /**
