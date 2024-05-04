@@ -97,7 +97,7 @@ class CommandeController extends Controller
             'prix_totale' => $prixTotale
           ]);
 
-          if ($request['mode_paiement_id'] == 1) {
+          if ($request['mode_paiement_id'] != 2 && $request['mode_paiement_id'] != 3 ) {
 
             if (Session::has('panier')) { 
 
@@ -113,8 +113,14 @@ class CommandeController extends Controller
               Session::forget('panier');
             }
             
+            if ($request['mode_paiement_id'] == 1) {
+              # code...
+              return redirect()->route('accueil')->with('success', 'Félicitations ! La voiture vous appartient dès que vous avez payé.');
+            } 
 
-            return redirect()->route('accueil')->with('success', 'Félicitations ! La voiture vous appartient dès que vous avez payé.');
+            if ($request['mode_paiement_id'] == 4) {
+              return redirect()->route('accueil')->with('success', 'Félicitations ! La voiture vous appartiendra dès que nous recevrons le virement sur oscar@virment.ca');
+            }
           }
 
           return redirect($session->url);

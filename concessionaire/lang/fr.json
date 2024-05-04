@@ -41,9 +41,9 @@
     "Cart" : "Panier",
     "Home" : "Accueil",
     "Welcome to" : "Bienvenue chez",
-    "Cars list" : "liste des voitures",
+    "Cars list" : "Liste des voitures",
     "Employees list" : "Liste des employés",
-    "Add an employee" : "Ajouter un employé",
+    "Add a user" : "Ajouter un utilisateur",
     "Clients list" : "Liste des clients",
     "Invoices list" : "Liste des factures",
     "Upload pictures" : "Téléverser des photos",
@@ -110,6 +110,7 @@
     "No cars to display!" : "Aucune voiture à afficher!",
     "Reserved car" : "Voiture réservée",
     "Bills" : "Factures",
-    "Brands list" : "Liste des marques"
+    "Brands list" : "Liste des marques",
+    "Add a brand" : "Ajouter une marque"
 
 }

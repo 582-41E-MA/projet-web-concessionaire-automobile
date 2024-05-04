@@ -58,7 +58,7 @@
                     </div>
                     @empty
                     <tr>
-                        <td colspan="3" class="text-center">@lang('There are no users to display')!</td>
+                        <td colspan="3" class="text-center">@lang('No cars to display!')!</td>
                     </tr>
                     @endforelse
                 </tbody>

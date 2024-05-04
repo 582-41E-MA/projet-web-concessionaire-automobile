@@ -35,8 +35,9 @@
           <div class="card-body p-4">
             <div class="row d-flex flex-lg-nowrap justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
+                {{--print_r($voiture)--}}
                 <img
-                  src="{{asset('assets/img/'.$voiture['photo_principale'] )}}"
+                  src="{{ asset('images/'. $voiture['voiture_id'] .'/' . $voiture['photo_principale']) }}"
                   class="img-fluid rounded-3" alt="Cotton T-shirt">
               </div>
               <div class="col-md-5 col-lg-5 col-xl-5">

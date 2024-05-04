@@ -31,11 +31,13 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->prenom }}</td>
                         <td> 
-                            <a class="btn btn-sm btn-primary" href="{{ route('user.edit', $user->id)}}">@lang('Edit')</a> 
-                            <form action="{{ route('user.delete', $user->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-sm btn-info">@lang('Delete')</button>
+                            <div class="d-flex gap-3">
+                                <a class="btn btn-sm btn-primary" href="{{ route('user.edit', $user->id)}}">@lang('Edit')</a> 
+                                <form action="{{ route('user.delete', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-info">@lang('Delete')</button>
+                            </div>
         </form>
                         </td>
                         

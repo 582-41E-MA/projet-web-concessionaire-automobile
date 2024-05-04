@@ -173,9 +173,9 @@ class UserController extends Controller
         $user->delete();
         
         if(Auth::user()->privilege_id == 3){
-            return redirect(route('admin'))->withSuccess(__('lang.controllers.user_updated_success'));
+            return redirect(route('admin.client'))->withSuccess(__('lang.controllers.user_deleted_success'));
         }else{
-        return redirect()->route('accueil')->with('success', __('user updated with success'));
+        return redirect()->route('accueil')->with('success', __('lang.controllers.user_deleted_success'));
         }
     }
     public function forgot(){

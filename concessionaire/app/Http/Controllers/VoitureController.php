@@ -117,7 +117,7 @@ class VoitureController extends Controller
     public function latest()
     {
         //
-        $voitures = Voiture::latest()->take(3)->get();
+        $voitures = Voiture::latest()->take(7)->get();
         $photos = Photo::all(); 
         $marques = Marque::all(); 
         return view('welcome', ["voitures" => $voitures, "photos" => $photos, 'marques' => $marques]);
